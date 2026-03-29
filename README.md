@@ -8,11 +8,11 @@ O sistema tem como objetivo centralizar informações, otimizar o acesso a dados
 
 ### backend structure:
 
-![backend](image.png)
+![backend](./assets/image.png)
 
 ### modules structure:
 
-![alt text](image-2.png)
+![alt text](./assets/image-2.png)
 
 <!--
 **RequiemSys/RequiemSys** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
