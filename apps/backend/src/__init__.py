@@ -1,1 +1,0 @@
-import apps.backend.src.main as main
