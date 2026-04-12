@@ -20,4 +20,9 @@ install-front:
 	@echo "==> Instalando dependências do Angular..."
 	cd $(FRONT_DIR) && npm install
 
-# TODO: Criar script para criação de módulos
+run:
+	@echo "iniciando ambiente..."
+	docker compose up -d
+
+see_backend:
+	docker logs -f fastapi_app
