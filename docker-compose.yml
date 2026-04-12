@@ -23,6 +23,6 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/requiem_db
+      DATABASE_URL: mysql+pymysql://${DB_USER}:${DB_PASS_USER}@db:3306/requiem_db
 volumes:
   db_data:
