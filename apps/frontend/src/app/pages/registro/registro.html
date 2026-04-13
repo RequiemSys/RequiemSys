@@ -1,0 +1,134 @@
+<div class="page">
+      <header class="top-bar">
+        <div class="brand" aria-label="RequiemSys">
+          <span class="brand-text">
+            Requie<span class="brand-flame-wrap"
+              >m<span class="brand-flame" aria-hidden="true"></span></span
+            >Sys
+          </span>
+        </div>
+      </header>
+
+      <main class="card">
+        <h1 class="title">Área de Cadastro</h1>
+        <p class="breadcrumb">login/login-dois/registro</p>
+        <hr class="divider" />
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+          <h2 class="section-title">
+            Dados do Colaborador
+          </h2>
+
+          <div class="grid">
+            <div class="field">
+              <label for="nome"
+                >Nome <span class="req">*</span></label
+              >
+              <input id="nome" type="text" formControlName="nome" />
+            </div>
+            <div class="field">
+              <label for="sexo"
+                >Sexo <span class="req">*</span></label
+              >
+              <select id="sexo" formControlName="sexo">
+                <option value="" disabled selected hidden>Selecione</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+                <option value="O">Outro</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="dataNascimento"
+                >Data de Nascimento <span class="req">*</span></label
+              >
+              <div class="input-date-wrap">
+                <input id="dataNascimento" type="date" formControlName="dataNascimento" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="cpf">CPF <span class="req">*</span></label>
+              <input
+                id="cpf"
+                type="text"
+                formControlName="cpf"
+                placeholder="000.000.000-00"
+                maxlength="14"
+              />
+            </div>
+
+            <div class="field">
+              <label for="email"
+                >Email <span class="req">*</span></label
+              >
+              <input id="email" type="email" formControlName="email" />
+            </div>
+            <div class="field">
+              <label for="telefone"
+                >Telefone <span class="req">*</span></label
+              >
+              <div class="phone-row">
+                <select
+                  id="ddd"
+                  formControlName="ddd"
+                  class="ddd"
+                  aria-label="DDD"
+                >
+                  <option value="" disabled selected hidden>DDD</option>
+                  @for (d of ddds; track d) {
+                    <option [value]="d">{{ d }}</option>
+                  }
+                </select>
+                <input
+                  id="telefone"
+                  type="tel"
+                  formControlName="telefone"
+                  class="phone-num"
+                  placeholder="9 0000-0000"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="roles">
+            <div class="role-block">
+              <label class="check-label">
+                <input type="checkbox" formControlName="isAdmin" />
+                Sou ADM
+              </label>
+              @if (form.controls.isAdmin.value) {
+                <div class="field role-field">
+                  <label for="adminId"
+                    >ID do Administrador <span class="req-blue">*</span></label
+                  >
+                  <input id="adminId" type="text" formControlName="adminId" />
+                </div>
+              }
+            </div>
+
+            <div class="role-block">
+              <label class="check-label">
+                <input type="checkbox" formControlName="isEmployee" />
+                Sou Funcionário
+              </label>
+              @if (form.controls.isEmployee.value) {
+                <div class="field role-field">
+                  <label for="matricula"
+                    >Matrícula do Func.
+                    <span class="req-blue">*</span></label
+                  >
+                  <input id="matricula" type="text" formControlName="matricula" />
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn btn-secondary" (click)="onCancel()">
+              Cancelar
+            </button>
+            <button type="submit" class="btn btn-primary">Continuar</button>
+          </div>
+        </form>
+      </main>
+    </div>
