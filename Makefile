@@ -38,7 +38,7 @@ migrate:
 	docker exec -it fastapi_app alembic upgrade head
 
 makemigrations:
-	docker exec -it fastapi_app alembic revision --autogenerate -m "auto migration"
+	docker exec -it fastapi_app alembic revision --autogenerate -m "$(name)"
 
 shell:
 	docker exec -it fastapi_app bash

@@ -1,0 +1,14 @@
+@baseUrl = http://0.0.0.0:8000
+
+
+POST http://0.0.0.0:8000/api/v1/users/create_user/
+Content-Type: application/json
+
+{
+    "name": "Lucas Alves",
+    "gender": "Masculino",
+    "birth": "1997-11-10",
+    "email": "lucas97brito@outlook.com",
+    "phone": "11976411386",
+    "user_type": "admin"
+}
