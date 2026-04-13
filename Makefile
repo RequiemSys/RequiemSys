@@ -20,9 +20,28 @@ install-front:
 	@echo "==> Instalando dependências do Angular..."
 	cd $(FRONT_DIR) && npm install
 
-run:
-	@echo "iniciando ambiente..."
+.PHONY: up down logs migrate makemigrations shell
+
+up:
 	docker compose up -d
 
-see_backend:
-	docker logs -f fastapi_app
+down:
+	docker compose down
+
+down-volume:
+	docker compose down -v
+
+logs:
+	docker compose logs -f app
+
+migrate:
+	docker exec -it fastapi_app alembic upgrade head
+
+makemigrations:
+	docker exec -it fastapi_app alembic revision --autogenerate -m "auto migration"
+
+shell:
+	docker exec -it fastapi_app bash
+
+stop:
+	docker compose stop
