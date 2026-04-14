@@ -62,15 +62,28 @@
 
 button {
   padding: 10px 20px;
+  margin-bottom: 10px;
   border: none;
   border-radius: 8px;
-  background: #eee;
+  background: #3b82f6;
+  color: white;
   cursor: pointer;
   transition: 0.2s;
+  width: 100%;
+}
+
+.admin-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: background 0.2s;
+  margin-top: 10px;
 }
 
 button:hover {
-  background: #ddd;
+  background: #1056c5;
 }
 
 @media (max-width: 600px) {
