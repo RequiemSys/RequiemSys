@@ -1,27 +1,27 @@
-<body>
+<div class="login-shell">
   <main class="container">
     <div class="header">
-      <div class="icon">🔒</div>
+      <div class="icon">&#128274;</div>
       <h1>Selecione seu perfil de acesso</h1>
       <p>Escolha o perfil com o qual você deseja entrar no sistema.</p>
     </div>
 
     <div class="cards">
       <div class="card">
-        <div class="card-icon">👤</div>
+        <div class="card-icon">&#128100;</div>
         <h2>Funcionário</h2>
-        <button>Entrar</button>
-        
-         <p><a routerLink="/registro">Cadastre-se</a></p>
+        <button type="button" (click)="irParaLogin()">Entrar</button>
+
+        <button type="button" (click)="irParaRegistro()">Cadastre-se</button>
       </div>
 
       <div class="card">
-        <div class="card-icon">👥</div>
+        <div class="card-icon">&#128101;</div>
         <h2>Administrador</h2>
-        <button>Entrar</button>
+        <button type="button" (click)="irParaLogin()">Entrar</button>
 
-        <p><a routerLink="/registro">Cadastre-se</a></p>
+        <button type="button" (click)="irParaRegistro()">Cadastre-se</button>
       </div>
     </div>
   </main>
-</body>
+</div>
