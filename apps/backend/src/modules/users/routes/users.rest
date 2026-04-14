@@ -6,6 +6,7 @@ Content-Type: application/json
 
 {
     "name": "Lucas Alves",
+    "password": "Guido_Guloso",
     "gender": "Masculino",
     "birth": "1997-11-10",
     "email": "lucas97brito@outlook.com",

@@ -1,6 +1,6 @@
 from typing import Protocol
-from service.schemas import User
-from repository.repository import UserRepository
+from src.modules.users.service.schemas import User
+from src.modules.users.repository.repository import UserRepository
 
 
 class IUserService(Protocol):
