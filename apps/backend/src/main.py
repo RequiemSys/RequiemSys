@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from src.api import routes
+
 app = FastAPI()
+
+app.include_router(routes.api_router, prefix="/api/v1")
 
 origins = ["http://localhost:4200"]
 
