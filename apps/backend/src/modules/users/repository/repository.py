@@ -1,6 +1,6 @@
 from typing import Protocol
-from modules.users.application.schemas import User
-from src.modules.users.infra.models import User as UserModel
+from users.service.schemas import User
+from models import UserModel
 from sqlalchemy.orm import Session
 
 

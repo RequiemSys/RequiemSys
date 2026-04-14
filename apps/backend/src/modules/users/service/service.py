@@ -1,11 +1,10 @@
 from typing import Protocol
-from modules.users.application.schemas import User
-from modules.users.infra.repository import UserRepository
+from service.schemas import User
+from repository.repository import UserRepository
 
 
 class IUserService(Protocol):
-    def create_user(self, repository: UserRepository):
-        ...
+    def create_user(self, repository: UserRepository): ...
 
 
 class UserService:
