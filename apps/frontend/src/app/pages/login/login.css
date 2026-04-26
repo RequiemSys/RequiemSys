@@ -1,81 +1,122 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
-}
-
-body {
-  height: 100vh;
+.login-shell {
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f5f5;
+  background-color: #E5E5E5; /* Fundo cinza claro da imagem */
 }
 
-.container {
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 400px;
   text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-.header {
-  margin-bottom: 40px;
+.logo-section h2 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 30px;
+  color: #333;
 }
 
-.header h1 {
-  font-size: 24px;
-  margin: 10px 0;
+.input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #D1D1D1;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 10px 15px;
 }
 
-.header p {
+.input-group input {
+  border: none;
+  outline: none;
+  width: 100%;
+  margin-left: 10px;
+  font-size: 16px;
   color: #666;
 }
 
-/* Cards */
-.cards {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-}
-
-.card {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 30px;
-  width: 220px;
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-.card-icon {
-  font-size: 40px;
-  margin-bottom: 15px;
-}
-
-.card h2 {
-  margin-bottom: 20px;
-}
-
-button {
-  padding: 10px 20px;
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background-color: #4655B5; /* Tom de azul da imagem */
+  color: white;
   border: none;
   border-radius: 8px;
-  background: #eee;
+  font-size: 16px;
   cursor: pointer;
-  transition: 0.2s;
+  margin-top: 10px;
 }
 
-button:hover {
-  background: #ddd;
+.forgot-password {
+  display: block;
+  margin: 20px 0;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
 }
 
-@media (max-width: 600px) {
-  .cards {
-    flex-direction: column;
-    align-items: center;
-  }
+.btn-outline {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid #4655B5;
+  color: #4655B5;
+  border-radius: 20px; /* Botão arredondado da imagem */
+  cursor: pointer;
 }
+
+/* ... (mantenha o restante que já fizemos) ... */
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background-color: #4655B5; 
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px; /* Dei um pouco mais de espaço já que não tem o link embaixo */
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #374496;
+}
+
+.logo-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+/* ... (mantenha o código anterior) ... */
+
+.support-text {
+  margin-top: 25px;
+  font-size: 13px;
+  color: #757575;
+  font-family: sans-serif;
+}
+
+.support-text span {
+  display: block; /* Faz o "Contate o administrador" pular para a linha de baixo se quiser dar destaque */
+  font-weight: 600;
+  color: #4655B5; /* Cor azul combinando com o tema */
+  margin-top: 5px;
+  cursor: default;
+}
+
+/* Pequeno ajuste no botão para dar respiro */
+.btn-primary {
+  /* ... (outros estilos) ... */
+  margin-top: 15px;
+}
+

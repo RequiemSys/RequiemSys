@@ -4,7 +4,9 @@ import { Registro } from './pages/registro/registro';
 import { LoginDois } from './pages/login-dois/login-dois';
 
 export const routes: Routes = [
-    {path: 'login', component: Login}, // rota do login
-    {path: 'registro', component: Registro }, // rota do registro
-    {path: 'login-dois', component: LoginDois }, // rota do registro
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: Login },
+  { path: 'registro', component: Registro },
+  // A "Base" de dashboard seria algo como:
+  // { path: 'dashboard', component: DashboardBaseComponent }
 ];
