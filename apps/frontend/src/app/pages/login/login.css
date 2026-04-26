@@ -3,23 +3,33 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #E5E5E5; /* Fundo cinza claro da imagem */
+  background-color: #E5E5E5;
+  font-family: sans-serif;
 }
 
 .login-card {
   background: white;
-  padding: 40px;
-  border-radius: 15px;
-  border: 1px solid #ccc;
+  padding: 50px 40px;
+  border-radius: 12px;
+  border: 1px solid #DCDCDC;
   width: 100%;
   max-width: 400px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.logo-section {
+  margin-bottom: 35px;
+}
+
+.logo-icon {
+  margin-bottom: 10px;
+  color: #000;
 }
 
 .logo-section h2 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin-bottom: 30px;
+  font-size: 22px;
+  font-weight: 600;
   color: #333;
 }
 
@@ -29,94 +39,66 @@
   border: 1px solid #D1D1D1;
   border-radius: 8px;
   margin-bottom: 15px;
-  padding: 10px 15px;
+  padding: 12px 15px;
+  transition: border-color 0.2s;
+}
+
+.input-group:focus-within {
+  border-color: #4655B5;
+}
+
+/* Estilo para quando o campo tem erro */
+.input-group.error {
+  border-color: #e74c3c;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  color: #666;
 }
 
 .input-group input {
   border: none;
   outline: none;
   width: 100%;
-  margin-left: 10px;
-  font-size: 16px;
-  color: #666;
-}
-
-.btn-primary {
-  width: 100%;
-  padding: 12px;
-  background-color: #4655B5; /* Tom de azul da imagem */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.forgot-password {
-  display: block;
-  margin: 20px 0;
+  margin-left: 12px;
+  font-size: 15px;
   color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
 }
-
-.btn-outline {
-  width: 100%;
-  padding: 10px;
-  background: transparent;
-  border: 1px solid #4655B5;
-  color: #4655B5;
-  border-radius: 20px; /* Botão arredondado da imagem */
-  cursor: pointer;
-}
-
-/* ... (mantenha o restante que já fizemos) ... */
 
 .btn-primary {
   width: 100%;
-  padding: 12px;
-  background-color: #4655B5; 
+  padding: 14px;
+  background-color: #4655B5;
   color: white;
   border: none;
   border-radius: 8px;
   font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  margin-top: 20px; /* Dei um pouco mais de espaço já que não tem o link embaixo */
-  font-weight: bold;
-  transition: background 0.3s;
+  margin-top: 15px;
+  transition: opacity 0.2s;
 }
 
-.btn-primary:hover {
+.btn-primary:disabled {
+  background-color: #a5addb;
+  cursor: not-allowed;
+}
+
+.btn-primary:hover:not(:disabled) {
   background-color: #374496;
 }
 
-.logo-icon {
-  font-size: 40px;
-  margin-bottom: 10px;
-}
-
-/* ... (mantenha o código anterior) ... */
-
 .support-text {
-  margin-top: 25px;
+  margin-top: 30px;
   font-size: 13px;
-  color: #757575;
-  font-family: sans-serif;
+  color: #666;
 }
 
 .support-text span {
-  display: block; /* Faz o "Contate o administrador" pular para a linha de baixo se quiser dar destaque */
-  font-weight: 600;
-  color: #4655B5; /* Cor azul combinando com o tema */
-  margin-top: 5px;
-  cursor: default;
+  display: block;
+  font-weight: bold;
+  color: #4655B5;
+  margin-top: 4px;
 }
-
-/* Pequeno ajuste no botão para dar respiro */
-.btn-primary {
-  /* ... (outros estilos) ... */
-  margin-top: 15px;
-}
-

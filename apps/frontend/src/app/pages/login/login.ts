@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule], // Importante para o formulário funcionar
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -14,25 +14,24 @@ export class Login {
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
 
-  // Criando o formulário com validações básicas
+  // Formulário com validação de E-mail e Senha (mínimo 6 caracteres)
   loginForm: FormGroup = this.fb.group({
-    usuario: ['', [Validators.required]],
+    usuario: ['', [Validators.required, Validators.email]],
     senha: ['', [Validators.required, Validators.minLength(6)]]
   });
 
   entrar(): void {
     if (this.loginForm.valid) {
-      console.log('Dados de login:', this.loginForm.value);
-      // Aqui seu colega de backend entrará com a lógica de autenticação futuramente
-      void this.router.navigateByUrl('/dashboard'); // Rota para a "Base" que ele citou
+      console.log('Login solicitado:', this.loginForm.value);
+      // Simulação de navegação para a base do sistema
+      void this.router.navigateByUrl('/dashboard'); 
     } else {
+      // Marca todos os campos como tocados para exibir erros de validação (borda vermelha etc)
       Object.values(this.loginForm.controls).forEach(control => {
-        control.markAsTouched(); // Mostra erros se o usuário clicar sem preencher
+        if (control) {
+          control.markAsTouched();
+        }
       });
     }
-  }
-
-  irParaRegistro(): void {
-    void this.router.navigateByUrl('/registro');
   }
 }
