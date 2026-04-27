@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  background: #E5E5E5;
+}
+
+header {
+  background: #fdfdfd;
+  display: flex;
+  padding-right: 30px;
+  padding-top: 15px;
+  padding-bottom: 2px;
+  height: 10vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: calc(100% - 250px);
+  z-index: 1001;
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-sizing: border-box;
+}
+
+header.header-full {
+  width: 100%;
+}
+
+.requiem-logo {
+  background-color: #fdfdfd;
+  margin-left: auto;
+  height: 45px;
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+}
+
+.main-container {
+  height: 100%;
+
+}
+
+.sidebar {
+  width: 250px;
+  border-right: 1px solid #e0e0e0;
+  background-color: #8054c4;
+  border-radius: 0%;
+  position: fixed;
+}
+
+.menu-button {
+  height: 90%;
+}
+
+.menu-button:focus ::ng-deep .mat-mdc-button-persistent-ripple::before,
+.menu-button:hover ::ng-deep .mat-mdc-button-persistent-ripple::before {
+  opacity: 0 !important;
+}
+
+.content {
+  background-color: #E5E5E5;
+}
+
+.exit-option {
+  margin-top: 65vh;
+  color: white !important;
+}
+
+.divider {
+  width: 75%;
+  height: 0px;
+  border: 0.5px solid #e0e0e0;
+}
+
+.perfil {
+  display: flex;
+  justify-content: center; /* Centro horizontal */
+  align-items: center;  
+}
+
+.perfil-name{
+  color: white;
+  justify-content: center;
+  padding-top: 20px;
+  font-size: 20px;
+  align-items: center;
+  text-align: center;
+}

@@ -1,0 +1,38 @@
+<header class="header-top" [class.header-full]="!drawer.opened">
+    <button mat-icon-button (click)="drawer.toggle()" class="menu-button" [disableRipple]="true">
+      <mat-icon class="icon-menu">menu</mat-icon>
+    </button>
+  <img src="./requiem-logo.png" alt="Requiem-sys-logo" class='requiem-logo'>
+</header>
+
+
+
+<mat-sidenav-container class="main-container">
+
+  <mat-sidenav #drawer mode="side" opened class="sidebar">
+    <p class="perfil-name">Olá, {{ nome }}</p>
+    <hr class="divider">
+    <mat-nav-list class="sidebar-icon">
+      <a mat-list-item [routerLink]="['registro']" routerLinkActive="active-link">
+        <mat-icon matListItemIcon [style.color]="'white'">folder</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Gestão de usuários</span>
+      </a>
+    </mat-nav-list>
+
+    <mat-nav-list class="exit-option">
+      <hr class="divider">
+      <a mat-list-item routerLink="/login-dois">
+        <mat-icon [style.color]="'white'" matListItemIcon>exit_to_app</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Sair</span>
+      </a>
+      <a mat-list-item routerLink="">
+        <mat-icon [style.color]="'white'" matListItemIcon>settings</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Configurações</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
