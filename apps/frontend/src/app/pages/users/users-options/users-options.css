@@ -25,10 +25,11 @@
 
 .option-icon {
   font-size: xx-large;
-  justify-content: center;
   display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #8054c4;
-  border-radius: 50%;
+  border-radius: 100%;
   padding: 25px;
   margin-top: 50px;
 }
