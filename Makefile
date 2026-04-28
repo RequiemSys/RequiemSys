@@ -18,7 +18,7 @@ install-back:
 
 install-front:
 	@echo "==> Instalando dependências do Angular..."
-	cd $(FRONT_DIR) && npm install
+	cd $(FRONT_DIR) && pnpm install
 
 .PHONY: up down logs migrate makemigrations shell
 
