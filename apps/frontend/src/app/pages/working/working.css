@@ -1,0 +1,13 @@
+img {
+  display: flex;
+  direction: row;
+  padding-left: 55%;
+}
+p {
+  display: flex;
+  flex-direction: row;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  justify-content: center;
+  margin-top: 0px;
+  font-size: xx-large;
+}

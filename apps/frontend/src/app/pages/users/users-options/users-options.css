@@ -1,0 +1,78 @@
+.top-text {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 15px;
+  color: rgb(141, 145, 145);
+}
+
+.container {
+  display: flex;
+  direction: row;
+  column-gap: 20px;
+  justify-content: center;
+}
+
+.option-add, .option-update, .option-delete, .option-get {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  border: 1px solid rgb(192, 191, 191);
+  border-radius: 5px;
+  width: 230px;
+  background-color: rgb(253, 253, 253);
+}
+
+.option-icon {
+  font-size: xx-large;
+  justify-content: center;
+  display: flex;
+  background-color: #8054c4;
+  border-radius: 50%;
+  padding: 25px;
+  margin-top: 50px;
+}
+
+.option-link {
+  color: rgb(102, 100, 100);
+  background-color: rgb(242, 242, 242);
+  text-decoration: none;
+  margin-bottom: 50px;
+  border: 1px rgb(196, 196, 196) solid;
+  border-radius: 10px;
+  font-size: medium;
+  padding: 9px 15px;
+  width: 70%;
+  box-shadow: 1px 3px 3px rgba(107, 106, 106, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.option-link::after {
+  content: "→";
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+.option-link:hover::after {
+  transform: translateX(3px);
+}
+
+.option-link:hover {
+  box-shadow: inset 2px 2px 1px rgba(129, 128, 128, 0.5);
+}
+
+h1 {
+  padding: 30px;
+  font-size: medium;
+}
+
+p {
+  text-align: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 40px;
+  font-size: small;
+}

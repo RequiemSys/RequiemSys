@@ -13,7 +13,7 @@
     <p class="perfil-name">Olá, {{ nome }}</p>
     <hr class="divider">
     <mat-nav-list class="sidebar-icon">
-      <a mat-list-item [routerLink]="['registro']" routerLinkActive="active-link">
+      <a mat-list-item [routerLink]="['employee-management']" routerLinkActive="active-link">
         <mat-icon matListItemIcon [style.color]="'white'">folder</mat-icon>
         <span matListItemTitle [style.color]="'white'">Gestão de usuários</span>
       </a>
@@ -33,6 +33,8 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="content">
-    <router-outlet></router-outlet>
+    <main class="main-box">
+      <router-outlet></router-outlet>
+    </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

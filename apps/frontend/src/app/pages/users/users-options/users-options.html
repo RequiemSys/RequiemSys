@@ -1,0 +1,46 @@
+<main class="main-container">
+  <div class="top-text">
+    <p style="font-size: 20px;">Escolha uma das opções abaixo para gerenciar os usuários do sistema.</p>
+  </div>
+  <div class="container">
+    <div class="option-add">
+      <mat-icon class="option-icon" [style.color]="'white'" matListItemIcon>person_add</mat-icon>
+      <h1>Registrar Usuário</h1>
+      <p>Cadastre novos usuários no sistema</p>
+      <a class="option-link" mat-list-item [routerLink]="['/base/registro']">
+        <span matListItemTitle>Registrar</span>
+      </a>
+    </div>
+    <div class="option-update">
+      <mat-icon class="option-icon" [style.color]="'white'" matListItemIcon>edit</mat-icon>
+      <h1>Editar Usuário</h1>
+      <p>Edite as informações dos usuários existentes no sistema</p>
+      <a class="option-link" mat-list-item [routerLink]="['/base/working']">
+        <span matListItemTitle>Editar</span>
+      </a>
+    </div>
+    <div class="option-delete">
+      <mat-icon class="option-icon" [style.color]="'white'" matListItemIcon>person_remove</mat-icon>
+      <h1>Deletar Usuário</h1>
+      <p>
+        <br>
+        Remova usuários do sistema
+      </p>
+      <a class="option-link" mat-list-item [routerLink]="['/base/working']">
+        <span matListItemTitle>Deletar</span>
+      </a>
+    </div>
+    <div class="option-get">
+      <mat-icon class="option-icon" [style.color]="'white'" matListItemIcon>person_search</mat-icon>
+      <h1>Obter Informações</h1>
+      <p>Consulte informações dos usuários</p>
+      <a class="option-link" mat-list-item [routerLink]="['/base/working']">
+        <span matListItemTitle>Consultar</span>
+      </a>
+    </div>
+  </div>
+    <main class="main-box">
+      <router-outlet></router-outlet>
+  </main>
+</main>
+
