@@ -8,13 +8,13 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrls: ['./login.css'],
 })
 export class Login {
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
 
-  // Formulário com validação de E-mail e Senha (mínimo 6 caracteres)
+  // Formulário com validação de e-mail e mínimo de 6 caracteres para senha
   loginForm: FormGroup = this.fb.group({
     usuario: ['', [Validators.required, Validators.email]],
     senha: ['', [Validators.required, Validators.minLength(6)]]
@@ -23,10 +23,10 @@ export class Login {
   entrar(): void {
     if (this.loginForm.valid) {
       console.log('Login solicitado:', this.loginForm.value);
-      // Simulação de navegação para a base do sistema
+      // Navega para a base do sistema (Dashboard)
       void this.router.navigateByUrl('/dashboard'); 
     } else {
-      // Marca todos os campos como tocados para exibir erros de validação (borda vermelha etc)
+      // Resolve o erro ts(18046) verificando se o 'control' existe
       Object.values(this.loginForm.controls).forEach(control => {
         if (control) {
           control.markAsTouched();
