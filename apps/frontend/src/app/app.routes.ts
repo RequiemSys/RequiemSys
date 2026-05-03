@@ -6,7 +6,7 @@ import { UsersOptions } from './pages/users/users-options/users-options';
 import { Working } from './pages/working/working';
 
 export const routes: Routes = [
-    {path: 'login', component: Login},
+    {path: '', component: Login},
     {path: 'base',
     component: BaseLayout,
     children:[  
