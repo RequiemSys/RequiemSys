@@ -14,6 +14,19 @@ class User(BaseModel):
 
     model_config = ConfigDict(from_attributes=True)
 
+
+class UserCreateInput(BaseModel):
+    name: str
+    password: str
+    gender: str
+    birth: datetime.date
+    email: str
+    phone: str
+    user_type: str = Field(default="employee")
+
+    model_config = ConfigDict(from_attributes=True)
+
+
 class UserUpdate(BaseModel):
     name: str | None = Field(default=None)
     password: str | None = Field(default=None)
@@ -28,3 +41,13 @@ class UserUpdate(BaseModel):
 class UserResponse(BaseModel):
     name: str
     email: str
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class UserInfosOutput(BaseModel):
+    name: str
+    gender: str
+    birth: datetime.date
+    email: str
+    phone: str

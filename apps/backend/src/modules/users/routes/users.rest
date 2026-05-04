@@ -5,12 +5,12 @@ POST http://0.0.0.0:8000/api/v1/users/create_user
 Content-Type: application/json
 
 {
-    "name": "Lucas Alves",
-    "password": "Guido_Guloso",
+    "name": "teste2",
+    "password": "Gdo_Guloso",
     "gender": "Masculino",
     "birth": "1997-11-10",
-    "email": "lucas97brito@outlook.com",
-    "phone": "11976411386",
+    "email": "Luna3@outlook.com",
+    "phone": "1197634765",
     "user_type": "admin"
 }
 
@@ -18,10 +18,22 @@ Content-Type: application/json
 PATCH http://0.0.0.0:8000/api/v1/users/update_user
 Content-Type: application/json
 
-{   "email":"lucaslo@outlook.com",
+{   "email":"Luna3@outlook.com",
     "user_update":{
-        "name": "Lucas Alves Lima",
+        "name": "Luna 2",
         "password": "3435",
-        "phone": "11976411386"
+        "phone": "132424234"
         }
 }
+
+###
+GET http://0.0.0.0:8000/api/v1/users/list_all
+Content-Type: application/json
+
+###
+DELETE  http://0.0.0.0:8000/api/v1/users/delete?email=yas@outlook.com
+Content-Type: application/json
+
+###
+GET http://0.0.0.0:8000/api/v1/users/user?email=Luna@outlook.com
+Content-Type: application/json
