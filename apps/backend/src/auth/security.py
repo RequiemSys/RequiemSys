@@ -69,8 +69,8 @@ class AuthService:
     def create_access_token(self, username: str, password: str) -> str:
         user = self._authenticate_user(username=username, password=password)
         
-        is_admin = False
         if user:
+            is_admin = False
             if user.user_type == 'admin':
                 is_admin = True
 
@@ -83,8 +83,8 @@ class AuthService:
                 "iat": datetime.now(timezone.utc)
 
                 }
-
-        return jwt.encode(payload=payload, key=self.secret_key, algorithm=self.algorithm)
+            return jwt.encode(payload=payload, key=self.secret_key, algorithm=self.algorithm)
+        raise ValueError("user not found")
         
 
 
