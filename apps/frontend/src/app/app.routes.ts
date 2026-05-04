@@ -7,7 +7,7 @@ import { Working } from './pages/working/working';
 
 export const routes: Routes = [
     {path: '', component: Login},
-    {path: 'base',
+    {path: 'main',
     component: BaseLayout,
     children:[  
         {path: 'employee-management', component: UsersOptions },
