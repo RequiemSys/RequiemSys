@@ -7,7 +7,7 @@
       <mat-icon class="option-icon" [style.color]="'white'" matListItemIcon>person_add</mat-icon>
       <h1>Registrar Usuário</h1>
       <p>Cadastre novos usuários no sistema</p>
-      <a class="option-link" mat-list-item [routerLink]="['/base/registro']">
+      <a class="option-link" mat-list-item [routerLink]="['create-user']">
         <span matListItemTitle>Registrar</span>
       </a>
     </div>
@@ -15,7 +15,7 @@
       <mat-icon class="option-icon" [style.color]="'white'" matListItemIcon>edit</mat-icon>
       <h1>Editar Usuário</h1>
       <p>Edite as informações dos usuários existentes no sistema</p>
-      <a class="option-link" mat-list-item [routerLink]="['/base/working']">
+      <a class="option-link" mat-list-item [routerLink]="['working']">
         <span matListItemTitle>Editar</span>
       </a>
     </div>
@@ -26,7 +26,7 @@
         <br>
         Remova usuários do sistema
       </p>
-      <a class="option-link" mat-list-item [routerLink]="['/base/working']">
+      <a class="option-link" mat-list-item [routerLink]="['working']">
         <span matListItemTitle>Deletar</span>
       </a>
     </div>
@@ -34,13 +34,12 @@
       <mat-icon class="option-icon" [style.color]="'white'" matListItemIcon>person_search</mat-icon>
       <h1>Obter Informações</h1>
       <p>Consulte informações dos usuários</p>
-      <a class="option-link" mat-list-item [routerLink]="['/base/working']">
+      <a class="option-link" mat-list-item [routerLink]="['working']">
         <span matListItemTitle>Consultar</span>
       </a>
     </div>
   </div>
     <main class="main-box">
-      <router-outlet></router-outlet>
   </main>
 </main>
 

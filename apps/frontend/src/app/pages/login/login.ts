@@ -29,8 +29,7 @@ export class Login {
       };
       this.authService.login(payload).subscribe({
         next: (res) => {
-          alert('Login realizado com sucesso');
-          void this.router.navigateByUrl('/base');
+          void this.router.navigateByUrl('/main');
         },
         error: (err) => {
           console.error('Falha na autenticação', err);

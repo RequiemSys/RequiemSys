@@ -1,16 +1,17 @@
 <div class="registro-container">
+ 
   <div class="registro-card registro-card--wide">
     <div class="logo">
+      <mat-icon>person_add</mat-icon>
       <h1>RequiemSys</h1>
-      <p>Criação de Conta</p>
+      <p>Preencha os campos abaixo para criar um novo usuário no sistema</p>
     </div>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="registro-form">
-      <h2 class="section-title">Dados do Colaborador</h2>
 
       <div class="cadastro-grid">
         <div class="form-group">
-          <label for="nome">Nome <span class="req">*</span></label>
+          <label for="nome">Nome<span class="req">*</span></label>
           <input
             id="nome"
             type="text"
@@ -36,10 +37,12 @@
             id="dataNascimento"
             type="date"
             formControlName="dataNascimento"
+            min="1900-01-01" 
+            max="2099-12-31"
             class="form-control"
           />
         </div>
-
+        
         <div class="form-group">
           <label for="email">Email <span class="req">*</span></label>
           <input
@@ -50,6 +53,9 @@
             class="form-control"
             placeholder="Digite seu email"
           />
+         @if (form.get('email')?.errors?.['email'] && form.get('email')?.touched) {
+          <span style="color: rgba(238, 83, 83, 0.479);">Formato de e-mail inválido.</span>
+          }
         </div>
 
         <div class="form-group">
@@ -101,12 +107,23 @@
             </select>
             <input
               id="telefone"
-              type="tel"
+              type="text"
               formControlName="telefone"
               class="form-control phone-num"
-              placeholder="9 0000-0000"
-            />
+              placeholder="9 9999-9999"
+              (input)="applyPhoneMask($event)" 
+              maxlength="11"
+            >
           </div>
+          <div class="error-messages">
+      
+          @if (form.get('telefone')?.hasError('required') && form.get('telefone')?.touched) {
+            <small style="color:  rgba(238, 83, 83, 0.479);">Telefone é obrigatório.</small>
+          }
+          @if (form.get('telefone')?.hasError('pattern') && form.get('telefone')?.touched){
+            <small style="color:  rgba(238, 83, 83, 0.479);">Insira um formato válido (9 9999-9999)</small>
+          }
+        </div>
         </div>
       </div>
 
@@ -118,19 +135,19 @@
         <button
           type="button"
           class="btn-secundario"
-          (click)="voltar()"
+          (click)="back()"
           [disabled]="submitting()"
         >
           Voltar
         </button>
-        <button type="submit" class="btn-registro" [disabled]="submitting()">
+        <button 
+        type="submit"
+        class="btn-registro" 
+        [disabled]="form.invalid"
+        >
           {{ submitting() ? 'Enviando…' : 'Continuar' }}
         </button>
       </div>
-
-      <p class="login-link">
-        Já tem uma conta? <a routerLink="/login">Entrar</a>
-      </p>
     </form>
   </div>
 </div>

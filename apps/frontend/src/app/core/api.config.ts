@@ -2,4 +2,4 @@
 export const API_BASE_URL = 'http://localhost:8000';
 
 /** Valor padrão de `user_type` no cadastro (ajuste conforme o backend). */
-export const DEFAULT_USER_TYPE = '';
+export const DEFAULT_USER_TYPE = 'employee';

@@ -1,18 +1,21 @@
 import { Routes } from '@angular/router';
 import { Login } from './pages/login/login';
-import { Registro } from './pages/registro/registro';
 import { BaseLayout } from './pages/base-layout/base-layout';
-import { UsersOptions } from './pages/users/users-options/users-options';
+import { UserControlPanelComponent } from './pages/users/control-panel/user-control-panel';
 import { Working } from './pages/working/working';
+import { CreateUserComponent } from './pages/users/operations/create-user/create-user';
 
 export const routes: Routes = [
-    {path: '', component: Login},
-    {path: 'main',
+  { path: '', component: Login },
+  {
+    path: 'main',
     component: BaseLayout,
     children:[  
-        {path: 'employee-management', component: UsersOptions },
-        {path: 'registro', component: Registro },
-        {path: 'working', component: Working},
-    ]}
+        {path: 'user-control-panel', component: UserControlPanelComponent },
+        {path: 'user-control-panel/create-user', component: CreateUserComponent },
+        {path: 'user-control-panel/working', component: Working},
+        {path: 'working', component: Working}
+    ]},
+    
 
 ];
