@@ -1,0 +1,91 @@
+.container {
+  width: 60%;
+  margin: 10px auto;
+  padding: 24px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.header p {
+  color: #666;
+  font-size: 16px
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 0 16px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 14px 0;
+  border: none;
+  outline: none;
+}
+
+.table-container {
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #dcdcdc;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #edecec;
+}
+
+th {
+  text-align: left;
+  padding: 18px;
+  font-size: 12px;
+  color: #656565;
+  text-transform: uppercase;
+}
+
+td {
+  padding: 20px 18px;
+  border-top: 1px solid #f0f0f0;
+}
+
+td strong {
+  font-size: 15px;
+}
+
+tbody tr:hover {
+  background: #fafafa;
+}
+
+.delete-icon {
+  color: #ff4d4d;
+  font-size: 24px;
+}
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+button:hover {
+  transform: scale(1.1);
+}

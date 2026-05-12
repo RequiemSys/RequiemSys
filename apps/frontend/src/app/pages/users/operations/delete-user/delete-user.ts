@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 import { DeleteUserModalComponent } from './delete-user-modal/delete-user-modal';
 
@@ -8,7 +9,8 @@ import { DeleteUserModalComponent } from './delete-user-modal/delete-user-modal'
   selector: 'app-delete-user',
   imports: [
     CommonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule,
   ],
   templateUrl: './delete-user.html',
   styleUrl: './delete-user.css',
@@ -18,13 +20,15 @@ export class DeleteUserComponent {
   users = [
     {
       id: 1,
-      name: 'Carlos',
-      email: 'carlos@email.com'
+      name: 'Carlos Oliveira',
+      email: 'carlos@gmail.com',
+      acess: 'Funcionário'
     },
     {
       id: 2,
-      name: 'Maria',
-      email: 'maria@email.com'
+      name: 'Maria Silva',
+      email: 'maria@gmail.com',
+      acess: 'Administrador'
     }
   ]
 
