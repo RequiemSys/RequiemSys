@@ -29,7 +29,9 @@ export class DeleteUserComponent {
   ]
 
   openDeleteModal(user: any): void {
-    this.dialog.open(DeleteUserModalComponent);
+    this.dialog.open(DeleteUserModalComponent, {
+      data: user
+    });
   }
 
   constructor(private dialog: MatDialog) {
