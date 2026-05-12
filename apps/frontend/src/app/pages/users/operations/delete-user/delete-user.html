@@ -1,1 +1,14 @@
-<p>delete-user works!</p>
+<table>
+  <tr *ngFor="let user of users">
+
+    <td> {{ user.name }}</td>
+    <td> {{ user.email }}</td>
+
+    <td>
+      <button (click)="openDeleteModal(user)">
+        🗑️
+      </button>
+    </td>
+
+  </tr>
+</table>
