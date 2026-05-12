@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Inject } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-delete-user-modal',
-  imports: [],
+  imports: [
+    MatIconModule
+  ],
   templateUrl: './delete-user-modal.html',
   styleUrl: './delete-user-modal.css',
 })

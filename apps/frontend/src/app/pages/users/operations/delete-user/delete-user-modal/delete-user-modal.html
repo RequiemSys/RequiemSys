@@ -1,4 +1,17 @@
-<h1>Deseja deletar {{ data.name }}?</h1>
+<div class="modal-container">
+  <div class="modal-content">
+    <div class="icon-container">
+      <mat-icon>person_remove</mat-icon>
+    </div>
 
-<button (click)="close()">Cancelar</button>
-<button>Confirmar</button>
+    <div class="text-content">
+      <h2>Deletar usuário</h2>
+      <p>Tem certeza que deseja deletar <strong>{{ data.name }}</strong> do sistema?</p>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="cancel-button" (click)="close()">Cancelar</button>
+    <button class="confirm-button">Confirmar</button>
+  </div>
+</div>
