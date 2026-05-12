@@ -102,3 +102,18 @@ p {
   font-weight: bold;
   color: #bbb;
 }
+.option-icon-custom {
+  background-color: #90a4d4; /* Cor azul do design */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.option-icon-custom svg {
+  /* Opcional: ajuste fino se o SVG parecer desalinhado */
+  display: block;
+}
