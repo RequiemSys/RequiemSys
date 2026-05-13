@@ -1,11 +1,39 @@
-<table>
-  <tr *ngFor="let user of users">
-      <td> {{ user.name }}</td>
+<div class="container">
+  <div class="header">
+    <h1>RequiemSys</h1>
+    <p>Visualize todos os usuários cadastrados no sistema</p>
+  </div>
 
-      <td>
-        <button (click)="openViewModal(user)">
-          🔍
-        </button>
-      </td>
-  </tr>
-</table>
+  <div class="search-container">
+    <mat-icon>search</mat-icon>
+    <input type="text" placeholder="Buscar por nome ou email...">
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>usuário</th>
+          <th>email</th>
+          <th>perfil de acesso</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td><strong>{{ user.name }}</strong></td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.acess }}</td>
+
+          <td>
+            <button (click)="openViewModal(user)">
+               <mat-icon class="search-icon">search</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>
