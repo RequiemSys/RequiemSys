@@ -9,6 +9,7 @@ import { DeleteUserComponent } from './pages/users/operations/delete-user/delete
 import { ViewUserComponent } from './pages/users/operations/view-user/view-user';
 import { DeleteUserModalComponent } from './pages/users/operations/delete-user/delete-user-modal/delete-user-modal';
 import { UserSearchModalComponent } from './pages/users/operations/update-user/update-user-modal/update-user-modal';
+import { ViewUserModalComponent } from './pages/users/operations/view-user/view-user-modal/view-user-modal';
 
 export const routes: Routes = [
   { path: '', component: Login },
@@ -23,6 +24,7 @@ export const routes: Routes = [
         {path: 'user-control-panel/delete-user', component: DeleteUserComponent},
         {path: 'user-control-panel/delete-user', component: DeleteUserModalComponent},
         {path: 'user-control-panel/view-user', component: ViewUserComponent},
+        {path:  'user-control/view/user', component: ViewUserModalComponent},
         {path: 'working', component: Working}
     ]},
 
