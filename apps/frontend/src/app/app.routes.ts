@@ -6,6 +6,7 @@ import { Working } from './pages/working/working';
 import { CreateUserComponent } from './pages/users/operations/create-user/create-user';
 import { UpdateUserComponent } from './pages/users/operations/update-user/update-user';
 import { DeleteUserComponent } from './pages/users/operations/delete-user/delete-user';
+import { ViewUserComponent } from './pages/users/operations/view-user/view-user';
 import { DeleteUserModalComponent } from './pages/users/operations/delete-user/delete-user-modal/delete-user-modal';
 import { UserSearchModalComponent } from './pages/users/operations/update-user/update-user-modal/update-user-modal';
 
@@ -21,7 +22,7 @@ export const routes: Routes = [
         {path: 'user-control-panel/create-user', component: CreateUserComponent },
         {path: 'user-control-panel/delete-user', component: DeleteUserComponent},
         {path: 'user-control-panel/delete-user', component: DeleteUserModalComponent},
-        {path: 'user-control-panel/working', component: Working},
+        {path: 'user-control-panel/view-user', component: ViewUserComponent},
         {path: 'working', component: Working}
     ]},
 
