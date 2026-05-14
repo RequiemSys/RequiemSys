@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ViewUserModalComponent } from './view-user-modal/view-user-modal';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-user',
@@ -19,22 +20,38 @@ export class ViewUserComponent {
   users = [
     {
       id: 1,
-      name: 'Rodrigo Silva',
+      nome: 'Rodrigo Silva',
+      sexo: 'Masculino',
+      nascimento: '26/08/1978',
       email: 'rodrigo.silva@gmail.com',
-      acess: 'Funcionário'
+      cpf: '123.456.789-01',
+      tel: '(11) 12345-6789',
+      access: 'Funcionário'
     },
     {
       id: 2,
-      name: 'Ana Rodrigues',
+      nome: 'Ana Rodrigues',
+      sexo: 'Feminino',
+      nascimento: '03/01/1985',
       email: 'ana.rodrigues@gmail.com',
-      acess: 'Administrador'
+      cpf: '123.456.789-01',
+      tel: '(11) 12345-6789',
+      access: 'Administrador'
     }
   ]
 
   openViewModal(user: any): void {
-    this.dialog.open(ViewUserModalComponent);
+    this.dialog.open(ViewUserModalComponent, {
+      data: user
+    });
   }
 
-  constructor(private dialog: MatDialog) {
+   back(): void {
+    this.router.navigate(['/main/user-control-panel'])
   }
+
+  constructor(
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
 }

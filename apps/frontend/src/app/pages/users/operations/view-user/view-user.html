@@ -1,4 +1,11 @@
 <div class="container">
+  <div class="back-button">
+    <button type="button" (click)="back()" >
+      <mat-icon>arrow_back</mat-icon>
+      Voltar
+    </button>
+  </div>
+  
   <div class="header">
     <h1>RequiemSys</h1>
     <p>Visualize todos os usuários cadastrados no sistema</p>
@@ -22,9 +29,9 @@
 
       <tbody>
         <tr *ngFor="let user of users">
-          <td><strong>{{ user.name }}</strong></td>
+          <td><strong>{{ user.nome }}</strong></td>
           <td>{{ user.email }}</td>
-          <td>{{ user.acess }}</td>
+          <td>{{ user.access }}</td>
 
           <td>
             <button (click)="openViewModal(user)">
