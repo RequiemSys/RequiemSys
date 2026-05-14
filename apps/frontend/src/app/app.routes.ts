@@ -22,11 +22,7 @@ export const routes: Routes = [
         {path: 'user-control-panel/search-user', component: UserSearchModalComponent },
         {path: 'user-control-panel/create-user', component: CreateUserComponent },
         {path: 'user-control-panel/delete-user', component: DeleteUserComponent},
-        {path: 'user-control-panel/delete-user', component: DeleteUserModalComponent},
         {path: 'user-control-panel/view-user', component: ViewUserComponent},
-        {path:  'user-control/view/user', component: ViewUserModalComponent},
         {path: 'working', component: Working}
     ]},
-
-
 ];

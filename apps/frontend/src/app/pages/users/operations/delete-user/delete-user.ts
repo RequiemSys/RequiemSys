@@ -4,6 +4,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 
 import { DeleteUserModalComponent } from './delete-user-modal/delete-user-modal';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-user',
@@ -38,6 +39,12 @@ export class DeleteUserComponent {
     });
   }
 
-  constructor(private dialog: MatDialog) {
+  back(): void {
+    this.router.navigate(['/main/user-control-panel'])
   }
+
+  constructor(
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
 }
