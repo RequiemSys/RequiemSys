@@ -1,0 +1,62 @@
+.modal-container {
+  border-radius: 5px;
+  padding: 24px;
+  width: 320px;
+}
+
+.modal-content {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.icon-container {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #5c6bc0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.icon-container mat-icon {
+  color: #fff;
+}
+
+.text-content h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.text-content p {
+  color: #555;
+  line-height: 1.4;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+}
+
+.cancel-button {
+  background: #fff;
+  border: 1px solid #ccc;
+}
+
+.confirm-button {
+  background: #5c6bc0;
+  color: #fff;
+}

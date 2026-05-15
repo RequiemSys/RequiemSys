@@ -1,0 +1,45 @@
+<div class="container">
+
+  <div class="header">
+    <h1>{{ title }}</h1>
+    <p>{{ subtitle }}</p>
+  </div>
+
+  <div class="actions-container">
+    <div class="search-container">
+      <mat-icon>search</mat-icon>
+      <input type="text" placeholder="Buscar...">
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table>
+
+      <thead> <!-- Cabeçalho das colunas -->
+        <tr>
+          <!-- Percorre o array de colunas e exibe o texto definido em label -->
+          <th *ngFor="let column of columns">{{ column.label }}</th>
+          <th class="action-column"></th>
+        </tr>
+      </thead>
+
+      <tbody> <!-- Dados da tabela -->
+        <!-- Percorre cada array presente no array de dados -->
+        <tr *ngFor="let item of data">
+          <!--
+            Percorre novamente as colunas para acessar dinamicamente os
+            valores correspondentes atraves da propriedade KEY
+          -->
+          <td *ngFor="let column of columns">{{ item[column.key] }}</td>
+          <td class="action-column">
+            <button class="view-button">
+              <mat-icon>search</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+
+</div>
