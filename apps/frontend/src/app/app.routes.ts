@@ -9,6 +9,10 @@ import { DeleteUserComponent } from './pages/users/operations/delete-user/delete
 import { ViewUserComponent } from './pages/users/operations/view-user/view-user';
 import { UserSearchModalComponent } from './pages/users/operations/update-user/update-user-modal/update-user-modal';
 import { DeceasedComponent } from './pages/deceased/deceased';
+import { ResponsibleComponent } from './pages/responsible/responsible';
+import { BurialComponent } from './pages/burial/burial';
+import { ExhumationComponent } from './pages/exhumation/exhumation';
+import { BurialUnitComponent } from './pages/burial-unit/burial-unit';
 
 export const routes: Routes = [
   { path: '', component: Login },
@@ -23,6 +27,10 @@ export const routes: Routes = [
         {path: 'user-control-panel/delete-user', component: DeleteUserComponent},
         {path: 'user-control-panel/view-user', component: ViewUserComponent},
         {path: 'working', component: Working},
-        {path: 'deceased', component: DeceasedComponent}
+        {path: 'deceased', component: DeceasedComponent},
+        {path: 'responsible', component: ResponsibleComponent},
+        {path: 'burial', component: BurialComponent},
+        {path: 'exhumation', component: ExhumationComponent},
+        {path: 'burial-unit', component: BurialUnitComponent}
     ]},
 ];

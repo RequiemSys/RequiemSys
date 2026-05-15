@@ -22,6 +22,26 @@
         <mat-icon matListItemIcon [style.color]="'white'">person</mat-icon>
         <span matListItemTitle [style.color]="'white'">Falecidos</span>
       </a>
+
+      <a mat-list-item [routerLink]="['/main/responsible']" routerLinkActive="active-link">
+        <mat-icon matListItemIcon [style.color]="'white'">group</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Responsáveis</span>
+      </a>
+
+      <a mat-list-item [routerLink]="['/main/burial']" routerLinkActive="active-link">
+        <mat-icon matListItemIcon [style.color]="'white'">assignment</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Sepultamentos</span>
+      </a>
+
+      <a mat-list-item [routerLink]="['/main/exhumation']" routerLinkActive="active-link">
+        <mat-icon matListItemIcon [style.color]="'white'">history</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Exumações</span>
+      </a>
+
+      <a mat-list-item [routerLink]="['/main/burial-unit']" routerLinkActive="active-link">
+        <mat-icon matListItemIcon [style.color]="'white'">location_on</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Unidades de Sepultamento</span>
+      </a>
     </mat-nav-list>
 
     <mat-nav-list class="exit-option">
