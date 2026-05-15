@@ -17,6 +17,11 @@
         <mat-icon matListItemIcon [style.color]="'white'">folder</mat-icon>
         <span matListItemTitle [style.color]="'white'">Gestão de usuários</span>
       </a>
+
+      <a mat-list-item [routerLink]="['/main/deceased']" routerLinkActive="active-link">
+        <mat-icon matListItemIcon [style.color]="'white'">person</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Falecidos</span>
+      </a>
     </mat-nav-list>
 
     <mat-nav-list class="exit-option">
