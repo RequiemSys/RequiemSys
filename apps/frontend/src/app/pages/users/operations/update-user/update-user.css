@@ -1,0 +1,217 @@
+:host {
+  display: block;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+.registro-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-top: 45px;
+}
+
+.registro-card {
+  background: white;
+  padding: 40px;
+  padding-left: 150px;
+  padding-right: 150px;
+  border-radius: 5px;
+  width: 800px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.registro-card--wide {
+  max-width: 1000px;
+}
+
+.logo {
+  padding-top: 20px;
+  text-align: center;
+  margin-bottom: 28px;
+  padding-bottom: 10px;
+}
+
+.logo h1 {
+  margin: 0 0 8px 0;
+  font-size: 1.5rem;
+  color: #1e293b;
+}
+
+.logo p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.section-title {
+  margin: 0 0 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.registro-form {
+  margin: 0;
+}
+
+.cadastro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.cadastro-grid .form-group {
+  margin-bottom: 0;
+}
+
+.grid-full {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 600px) {
+  .cadastro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .registro-card {
+    padding: 28px 22px;
+  }
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #334155;
+  font-size: 0.875rem;
+}
+
+.req {
+  color: #c62828;
+  font-weight: 700;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.2s;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.phone-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.phone-row .ddd {
+  flex: 0 0 5.5rem;
+  min-width: 0;
+}
+
+.phone-row .phone-num {
+  flex: 1;
+  min-width: 0;
+}
+
+.password-mismatch-msg {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #b91c1c;
+}
+
+.form-error {
+  margin: 0 0 16px;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  background: #ffebee;
+  color: #b71c1c;
+  border: 1px solid #ffcdd2;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.form-actions .btn-registro,
+.form-actions .btn-secundario {
+  margin-top: 20px;
+  flex: 1;
+}
+
+.btn-registro {
+  padding: 12px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  
+}
+
+.btn-registro:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.btn-registro:disabled,
+.btn-secundario:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn-secundario {
+  padding: 12px;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-secundario:hover:not(:disabled) {
+  background: #e2e8f0;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.login-link a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

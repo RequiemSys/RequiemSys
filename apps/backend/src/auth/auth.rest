@@ -1,0 +1,15 @@
+@baseUrl = http://0.0.0.0:8000
+
+
+POST http://0.0.0.0:8000/api/v1/auth/login
+Content-Type: multipart/form-data; boundary=SeparadorDeCampos
+
+--SeparadorDeCampos
+Content-Disposition: form-data; name="username"
+
+lucas97brito@outlook.com
+--SeparadorDeCampos
+Content-Disposition: form-data; name="password"
+
+123123
+--SeparadorDeCampos--

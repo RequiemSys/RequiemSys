@@ -1,0 +1,74 @@
+<div class="registro-container">
+  <div class="registro-card registro-card--wide">
+    <div class="logo">
+      <mat-icon>person_edit</mat-icon>
+      <h1>RequiemSys</h1>
+      <p>Preencha os campos abaixo para alterar as informações do usuário no sistema</p>
+    </div>
+
+    <form [formGroup]="form" class="registro-form">
+
+      <div class="cadastro-grid">
+
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" formControlName="nome" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label>Sexo</label>
+          <select formControlName="sexo" class="form-control">
+            <option value="">Selecione</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+            <option value="O">Outro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Data de Nascimento</label>
+          <input type="date" formControlName="dataNascimento" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" formControlName="email" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+          <label>Senha</label>
+          <input type="password" formControlName="senha" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+          <label>Confirmar senha</label>
+          <input type="password" formControlName="confirmarSenha" class="form-control"/>
+        </div>
+
+        <div class="form-group grid-full">
+          <label>Telefone</label>
+          <div class="phone-row">
+            <select formControlName="ddd" class="form-control ddd">
+              <option value="">DDD</option>
+              <option *ngFor="let d of ddds" [value]="d">{{ d }}</option>
+            </select>
+
+            <input type="text" formControlName="telefone" class="form-control phone-num"/>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-secundario" (click)="back()">
+          Voltar
+        </button>
+
+        <button type="button" class="btn-registro" (click)="onSubmit()">
+          Continuar
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

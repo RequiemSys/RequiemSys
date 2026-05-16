@@ -23,7 +23,4 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class BaseLayout {
   private readonly router = inject(Router);
-
-  nome = 'Lucas'; // TODO: Add lógica para pegar nome de user e injetar no html.
-  
 }

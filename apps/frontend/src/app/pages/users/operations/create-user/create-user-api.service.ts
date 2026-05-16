@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { API_BASE_URL } from './api.config';
+import { API_BASE_URL } from '../../../../core/api.config';
 
 export interface CreateUserPayload {
   name: string;

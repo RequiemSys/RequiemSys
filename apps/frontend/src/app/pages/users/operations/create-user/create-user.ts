@@ -11,16 +11,9 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { finalize } from 'rxjs';
-import { DEFAULT_USER_TYPE } from '../../core/api.config';
-import { CreateUserApiService } from '../../core/create-user-api.service';
-
-/**
- * Tela: Área de Cadastro — Dados do Falecido e Informações de óbito.
- * Componente standalone: importe em uma rota ou declare onde preferir.
- *
- * Exemplo de rota:
- * { path: 'login/login-dois/registro', component: Registro }
- */
+import { DEFAULT_USER_TYPE } from '../../../../core/api.config';
+import { CreateUserApiService } from './create-user-api.service';
+import { MatIcon } from "@angular/material/icon";
 
 const passwordsMatchValidator: ValidatorFn = (
   group: AbstractControl,
@@ -33,22 +26,20 @@ const passwordsMatchValidator: ValidatorFn = (
 };
 
 @Component({
-  selector: 'app-registro',
+  selector: 'create-user',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './registro.html',
-  styleUrls: ['./registro.css']
+  imports: [CommonModule, ReactiveFormsModule, MatIcon],
+  templateUrl: './create-user.html',
+  styleUrls: ['./create-user.css']
 })
 
-export class Registro {
+export class CreateUserComponent {
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
   private readonly createUserApi = inject(CreateUserApiService);
-
   readonly submitting = signal(false);
   readonly submitError = signal<string | null>(null);
 
-  /** DDDs comuns — ajuste ou carregue do backend se precisar. */
   readonly ddds = [
     '11',
     '12',
@@ -119,6 +110,7 @@ export class Registro {
     '99',
   ];
 
+  
   readonly form = this.fb.group(
     {
       nome: ['', Validators.required],
@@ -128,13 +120,34 @@ export class Registro {
       senha: ['', Validators.required],
       confirmarSenha: ['', Validators.required],
       ddd: ['', Validators.required],
-      telefone: ['', Validators.required],
+      telefone: [
+        '',
+        [Validators.required, Validators.pattern(/^9 \d{4}-\d{4}$/)]
+      ], 
     },
     { validators: [passwordsMatchValidator] },
   );
 
-  voltar(): void {
-    void this.router.navigateByUrl('/login');
+  applyPhoneMask(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let valor = input.value.replace(/\D/g, ""); 
+
+    if (valor.length > 0 && valor[0] !== '9') {
+      valor = '9' + valor;
+    }
+
+    if (valor.length > 0) {
+      valor = valor.replace(/^(\d{1})(\d)/g, "$1 $2");
+      valor = valor.replace(/(\d{4})(\d)/, "$1-$2");
+    }
+
+    const resultado = valor.substring(0, 11);
+    input.value = resultado; 
+    this.form.get('telefone')?.setValue(resultado, { emitEvent: false });
+  }
+
+  back(): void {
+    void this.router.navigateByUrl('/main/user-control-panel');
   }
 
   onSubmit(): void {
@@ -162,7 +175,8 @@ export class Registro {
       .pipe(finalize(() => this.submitting.set(false)))
       .subscribe({
         next: () => {
-          void this.router.navigateByUrl('/login');
+          alert("Registrado com sucesso!")
+          void this.router.navigateByUrl('/main/user-control-panel');
         },
         error: (err: unknown) => {
           this.submitError.set(this.formatHttpError(err));
