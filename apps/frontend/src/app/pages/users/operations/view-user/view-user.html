@@ -28,6 +28,7 @@
         <tr>
           <th>usuário</th>
           <th>email</th>
+          <th>status</th>
           <th></th>
         </tr>
       </thead>
@@ -41,6 +42,10 @@
 
           <td>
             {{ user.email }}
+          </td>
+
+          <td>
+            {{ user.is_active ? 'Ativo' : 'Deletado' }}
           </td>
 
           <td>

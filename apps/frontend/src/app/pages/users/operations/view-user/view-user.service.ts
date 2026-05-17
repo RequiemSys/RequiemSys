@@ -11,6 +11,7 @@ export interface User {
   gender: string;
   birth: string;
   phone: string;
+  is_active: boolean;
 }
 
 @Injectable({

@@ -36,19 +36,23 @@ export class DeleteUserModalComponent {
 
     this.loading = true;
 
-    this.deleteUserModalService
-      .deleteUser(this.data.email)
-      .subscribe({
+    if(this.data.is_active){
+        this.deleteUserModalService
+          .deleteUser(this.data.email)
+          .subscribe({
 
-        next: () => {
-          this.loading = false;
-          this.dialogRef.close(true);
-        },
+            next: () => {
+              this.loading = false;
+              this.dialogRef.close(true);
+            },
 
-        error: (error) => {
-          this.loading = false;
-          console.error('Erro ao deletar usuário:', error);
-        }
-      });
+            error: (error) => {
+              this.loading = false;
+              console.error('Erro ao deletar usuário:', error);
+            }
+          });
+          }else{
+            alert(`Usuário ${this.data.email} não está ativo. Selecione um usuário válido.`)
+          }
   }
 }

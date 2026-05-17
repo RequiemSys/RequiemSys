@@ -1,7 +1,7 @@
 import datetime
 
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import String, Integer
+from sqlalchemy import String, Integer, Boolean
 from src.core.database import Base
 
 
@@ -19,4 +19,5 @@ class UserModel(Base):
     birth: Mapped[datetime.date] = mapped_column(String(50))
     email: Mapped[str] = mapped_column(String(100), unique=True, index=True)
     phone: Mapped[str] = mapped_column(String(50), unique=True)
+    is_active: Mapped[bool] = mapped_column(Boolean)
     user_type: Mapped[str] = mapped_column(String(25))

@@ -22,6 +22,7 @@
         <tr>
           <th>usuário</th>
           <th>email</th>
+          <th>status</th>
           <th></th>
         </tr>
       </thead>
@@ -30,6 +31,7 @@
         <tr *ngFor="let user of users">
           <td><strong>{{ user.name }}</strong></td>
           <td>{{ user.email }}</td>
+          <td>{{ user.is_active ? 'Ativo' : 'Deletado' }}</td>
           <td>
             <button (click)="openDeleteModal(user)">
                <mat-icon class="delete-icon">delete</mat-icon>
