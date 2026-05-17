@@ -47,12 +47,3 @@ def update_falecido(
     service = FalecidoService(repository)
     return service.update_falecido(falecido_id, dados)
 
-
-@router.delete("/{falecido_id}")
-def delete_falecido(
-    falecido_id: int,
-    db: Session = Depends(get_db)
-):
-    repository = FalecidoRepository(db)
-    service = FalecidoService(repository)
-    return service.delete_falecido(falecido_id)

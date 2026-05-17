@@ -18,7 +18,9 @@ class FalecidoRepository:
         return falecido_model
 
     def get_all(self) -> list[FalecidoModel]:
-        return self.db.execute(select(FalecidoModel)).scalars().all()
+        stmt = select(FalecidoModel)
+        result = self.db.execute(stmt).scalars().all()
+        return result # type: ignore
 
     def get_by_id(self, falecido_id: int) -> FalecidoModel | None:
         return self.db.execute(

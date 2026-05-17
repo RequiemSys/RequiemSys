@@ -26,3 +26,4 @@ class FalecidoModel(Base):
     nome_pai: Mapped[str] = mapped_column(String(255), nullable=True)
     num_declaracao_obito: Mapped[str] = mapped_column(String(100), nullable=True)
     observacoes: Mapped[str] = mapped_column(Text, nullable=True)
+    status: Mapped[str] = mapped_column(String(100), nullable=True)

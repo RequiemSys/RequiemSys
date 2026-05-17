@@ -1,8 +1,28 @@
 <div class="container">
 
+  <button
+    type="button"
+    class="back-button"
+    [routerLink]="['/main/user-control-panel']"
+  >
+    <mat-icon>arrow_back</mat-icon>
+    Voltar
+  </button>
+
   <div class="header">
-    <h1>{{ title }}</h1>
-    <p>{{ subtitle }}</p>
+
+    <div class="header-top">
+      <div>
+        <h1>{{ title }}</h1>
+        <p>{{ subtitle }}</p>
+      </div>
+
+      <button class="create-button">
+        <mat-icon>add</mat-icon>
+        Novo cadastro
+      </button>
+    </div>
+
   </div>
 
   <div class="actions-container">
@@ -15,29 +35,33 @@
   <div class="table-container">
     <table>
 
-      <thead> <!-- Cabeçalho das colunas -->
+      <thead>
         <tr>
-          <!-- Percorre o array de colunas e exibe o texto definido em label -->
-          <th *ngFor="let column of columns">{{ column.label }}</th>
+          <th *ngFor="let column of columns">
+            {{ column.label }}
+          </th>
+
           <th class="action-column"></th>
         </tr>
       </thead>
 
-      <tbody> <!-- Dados da tabela -->
-        <!-- Percorre cada array presente no array de dados -->
+      <tbody>
         <tr *ngFor="let item of data">
-          <!--
-            Percorre novamente as colunas para acessar dinamicamente os
-            valores correspondentes atraves da propriedade KEY
-          -->
-          <td *ngFor="let column of columns">{{ item[column.key] }}</td>
+
+          <td *ngFor="let column of columns">
+            {{ item[column.key] }}
+          </td>
+
           <td class="action-column">
+
             <button class="view-button">
               <mat-icon>search</mat-icon>
             </button>
+
             <button class="edit-button">
               <mat-icon>edit</mat-icon>
             </button>
+
           </td>
         </tr>
       </tbody>

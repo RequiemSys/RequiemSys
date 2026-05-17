@@ -40,11 +40,3 @@ class FalecidoService:
             )
         return falecido
 
-    def delete_falecido(self, falecido_id: int):
-        deletado = self.repository.delete(falecido_id)
-        if not deletado:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="Falecido não encontrado"
-            )
-        return {"message": "Falecido removido com sucesso"}
