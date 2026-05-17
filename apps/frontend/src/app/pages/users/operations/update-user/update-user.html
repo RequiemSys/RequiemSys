@@ -1,7 +1,16 @@
 <div class="registro-container">
+
+  <div class="back-button">
+    <button type="button" (click)="back()">
+      <mat-icon>arrow_back</mat-icon>
+      Cancelar
+    </button>
+  </div>
+
   <div class="registro-card registro-card--wide">
+
     <div class="logo">
-      <mat-icon>person_edit</mat-icon>
+      <mat-icon>edit</mat-icon>
       <h1>RequiemSys</h1>
       <p>Preencha os campos abaixo para alterar as informações do usuário no sistema</p>
     </div>
@@ -27,48 +36,60 @@
 
         <div class="form-group">
           <label>Data de Nascimento</label>
-          <input type="date" formControlName="dataNascimento" class="form-control"/>
+          <input
+            type="date"
+            formControlName="dataNascimento"
+            class="form-control"
+          />
         </div>
 
         <div class="form-group">
           <label>Email</label>
-          <input type="email" formControlName="email" class="form-control"/>
-        </div>
-
-        <div class="form-group">
-          <label>Senha</label>
-          <input type="password" formControlName="senha" class="form-control"/>
-        </div>
-
-        <div class="form-group">
-          <label>Confirmar senha</label>
-          <input type="password" formControlName="confirmarSenha" class="form-control"/>
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control"
+          />
         </div>
 
         <div class="form-group grid-full">
           <label>Telefone</label>
+
           <div class="phone-row">
+
             <select formControlName="ddd" class="form-control ddd">
               <option value="">DDD</option>
-              <option *ngFor="let d of ddds" [value]="d">{{ d }}</option>
+
+              <option *ngFor="let d of ddds" [value]="d">
+                {{ d }}
+              </option>
             </select>
 
-            <input type="text" formControlName="telefone" class="form-control phone-num"/>
+            <input
+              type="text"
+              formControlName="telefone"
+              class="form-control phone-num"
+            />
+
           </div>
         </div>
 
       </div>
 
       <div class="form-actions">
-        <button type="button" class="btn-secundario" (click)="back()">
-          Voltar
-        </button>
 
-        <button type="button" class="btn-registro" (click)="onSubmit()">
+        <button
+          type="button"
+          class="btn-registro"
+          (click)="onSubmit()"
+        >
           Continuar
         </button>
+
       </div>
 
     </form>
+
   </div>
+
 </div>

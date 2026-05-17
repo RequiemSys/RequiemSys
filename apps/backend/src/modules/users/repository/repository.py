@@ -62,7 +62,9 @@ class UserRepository:
 
     def delete_user(self, user_email: str):
         try:
-            stmt = delete(UserModel).where(UserModel.email.ilike(user_email))
+            stmt = update(UserModel).where(
+                UserModel.email.ilike(user_email)
+                ).values(is_active=False)
             result = self.db.execute(stmt)
             self.db.commit()
 

@@ -11,6 +11,7 @@ class User(BaseModel):
     email: str
     phone: str
     user_type: str
+    is_active: bool
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -23,7 +24,7 @@ class UserCreateInput(BaseModel):
     email: str
     phone: str
     user_type: str = Field(default="employee")
-
+    is_active: bool = Field(default=True)
     model_config = ConfigDict(from_attributes=True)
 
 
@@ -41,6 +42,7 @@ class UserUpdate(BaseModel):
 class UserResponse(BaseModel):
     name: str
     email: str
+    is_active: bool
 
     model_config = ConfigDict(from_attributes=True)
 
@@ -51,3 +53,4 @@ class UserInfosOutput(BaseModel):
     birth: datetime.date
     email: str
     phone: str
+    is_active: bool
