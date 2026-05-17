@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="header" *ngIf="title">
+    <h1>{{ title }}</h1>
+    <p *ngIf="subtitle">{{ subtitle }}</p>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-content">
+      <div *ngFor="let field of config.fields" class="form-group">
+        <!-- Text, Email, Password, Date -->
+        <ng-container *ngIf="['text', 'email', 'password', 'date'].includes(field.type)">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ field.label }}</mat-label>
+            <input
+              matInput
+              [type]="field.type"
+              [formControlName]="field.name"
+              [placeholder]="field.placeholder || ''"
+              [attr.required]="field.required ? true : null"
+            />
+            <mat-error *ngIf="hasError(field.name, 'required')">
+              {{ field.label }} é obrigatório
+            </mat-error>
+            <mat-error *ngIf="hasError(field.name, 'email')">
+              Email inválido
+            </mat-error>
+            <mat-error *ngIf="hasError(field.name, 'minlength')">
+              Mínimo de caracteres não atingido
+            </mat-error>
+          </mat-form-field>
+        </ng-container>
+
+        <!-- Textarea -->
+        <ng-container *ngIf="field.type === 'textarea'">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ field.label }}</mat-label>
+            <textarea
+              matInput
+              [formControlName]="field.name"
+              [placeholder]="field.placeholder || ''"
+              rows="4"
+              [attr.required]="field.required ? true : null"
+            ></textarea>
+            <mat-error *ngIf="hasError(field.name, 'required')">
+              {{ field.label }} é obrigatório
+            </mat-error>
+          </mat-form-field>
+        </ng-container>
+
+        <!-- Select -->
+        <ng-container *ngIf="field.type === 'select'">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ field.label }}</mat-label>
+            <mat-select [formControlName]="field.name" [attr.required]="field.required ? true : null">
+              <mat-option value="">Selecione...</mat-option>
+              <mat-option *ngFor="let opt of field.options" [value]="opt.value">
+                {{ opt.label }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="hasError(field.name, 'required')">
+              {{ field.label }} é obrigatório
+            </mat-error>
+          </mat-form-field>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button
+        type="button"
+        mat-stroked-button
+        (click)="onCancel()"
+        [disabled]="loading"
+      >
+        {{ config.cancelLabel || 'Cancelar' }}
+      </button>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="!form.valid || loading"
+      >
+        <mat-icon *ngIf="loading" class="spinner">
+          <mat-spinner diameter="20"></mat-spinner>
+        </mat-icon>
+        {{ config.submitLabel || 'Enviar' }}
+      </button>
+    </div>
+  </form>
+</div>
+

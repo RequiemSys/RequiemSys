@@ -1,0 +1,21 @@
+<div class="control-panel">
+  <div class="panel-actions">
+    <button mat-raised-button color="primary" (click)="onCreateNew()">
+      <mat-icon>add</mat-icon>
+      Criar Novo Falecido
+    </button>
+    <button mat-icon-button matTooltip="Atualizar" (click)="onRefresh()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </div>
+
+  <app-shared-table
+    [title]="title"
+    [subtitle]="subtitle"
+    [columns]="columns"
+    [data]="deceased"
+    (onView)="onView($event)"
+    (onEdit)="onEdit($event)"
+    (onDelete)="onDelete($event)"
+  ></app-shared-table>
+</div>

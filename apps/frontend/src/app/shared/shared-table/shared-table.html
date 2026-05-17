@@ -19,7 +19,7 @@
         <tr>
           <!-- Percorre o array de colunas e exibe o texto definido em label -->
           <th *ngFor="let column of columns">{{ column.label }}</th>
-          <th class="action-column"></th>
+          <th class="action-column">Ações</th>
         </tr>
       </thead>
 
@@ -32,14 +32,29 @@
           -->
           <td *ngFor="let column of columns">{{ item[column.key] }}</td>
           <td class="action-column">
-            <button class="view-button">
-              <mat-icon>search</mat-icon>
-            </button>
+            <div class="action-buttons">
+              <button
+                *ngFor="let action of actions"
+                mat-icon-button
+                [matTooltip]="action.tooltip"
+                (click)="handleAction(item, action.action)"
+                class="action-button"
+              >
+                <mat-icon>{{ action.icon }}</mat-icon>
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
 
     </table>
+
+    <!-- Mensagem quando não há dados -->
+    <div *ngIf="!data || data.length === 0" class="empty-state">
+      <mat-icon>inbox</mat-icon>
+      <p>Nenhum registro encontrado</p>
+    </div>
   </div>
 
 </div>
+

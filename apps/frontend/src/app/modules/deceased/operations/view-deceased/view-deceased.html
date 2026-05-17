@@ -1,0 +1,45 @@
+<div class="container" *ngIf="!loading && deceased">
+  <div class="header">
+    <h1>{{ deceased.nome }}</h1>
+    <p>Visualizar Falecido</p>
+  </div>
+
+  <div class="content">
+    <div class="info-group">
+      <label>Nome</label>
+      <p>{{ deceased.nome }}</p>
+    </div>
+
+    <div class="info-group">
+      <label>Data de Falecimento</label>
+      <p>{{ deceased.data_falecimento }}</p>
+    </div>
+
+    <div class="info-group">
+      <label>Jazigo</label>
+      <p>{{ deceased.jazigo }}</p>
+    </div>
+
+    <div class="info-group" *ngIf="deceased.responsavel_id">
+      <label>Responsável</label>
+      <p>{{ deceased.responsavel_id }}</p>
+    </div>
+
+    <div class="info-group" *ngIf="deceased.observacoes">
+      <label>Observações</label>
+      <p>{{ deceased.observacoes }}</p>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button mat-stroked-button (click)="onBack()">Voltar</button>
+    <button mat-raised-button color="primary" (click)="onEdit()">
+      <mat-icon>edit</mat-icon>
+      Editar
+    </button>
+  </div>
+</div>
+
+<div class="container loading" *ngIf="loading">
+  <p>Carregando...</p>
+</div>

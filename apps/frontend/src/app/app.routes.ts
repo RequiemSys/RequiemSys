@@ -13,6 +13,11 @@ import { ResponsibleComponent } from './pages/responsible/responsible';
 import { BurialComponent } from './pages/burial/burial';
 import { ExhumationComponent } from './pages/exhumation/exhumation';
 import { BurialUnitComponent } from './pages/burial-unit/burial-unit';
+import { DeceasedControlPanelComponent } from './modules/deceased/control-panel/deceased-control-panel';
+import { CreateDeceasedComponent } from './modules/deceased/operations/create-deceased/create-deceased';
+import { UpdateDeceasedComponent } from './modules/deceased/operations/update-deceased/update-deceased';
+import { ViewDeceasedComponent } from './modules/deceased/operations/view-deceased/view-deceased';
+import { DeleteDeceasedComponent } from './modules/deceased/operations/delete-deceased/delete-deceased';
 
 export const routes: Routes = [
   { path: '', component: Login },
@@ -27,7 +32,11 @@ export const routes: Routes = [
         {path: 'user-control-panel/delete-user', component: DeleteUserComponent},
         {path: 'user-control-panel/view-user', component: ViewUserComponent},
         {path: 'working', component: Working},
-        {path: 'deceased', component: DeceasedComponent},
+        {path: 'deceased', component: DeceasedControlPanelComponent},
+        {path: 'deceased-create', component: CreateDeceasedComponent},
+        {path: 'deceased-update', component: UpdateDeceasedComponent},
+        {path: 'deceased-view', component: ViewDeceasedComponent},
+        {path: 'deceased-delete', component: DeleteDeceasedComponent},
         {path: 'responsible', component: ResponsibleComponent},
         {path: 'burial', component: BurialComponent},
         {path: 'exhumation', component: ExhumationComponent},

@@ -1,0 +1,27 @@
+.control-panel {
+  width: 100%;
+}
+
+.panel-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 2rem;
+  max-width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .panel-actions {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}
