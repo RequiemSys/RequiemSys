@@ -28,7 +28,7 @@ GET {{baseUrl}}/falecidos/
 ###
 
 ### Buscar falecido por ID
-GET {{baseUrl}}/falecidos/1
+GET {{baseUrl}}/falecidos?cpf=...
 
 ###
 

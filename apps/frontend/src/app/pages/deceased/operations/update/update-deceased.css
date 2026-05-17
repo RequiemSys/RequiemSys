@@ -1,0 +1,140 @@
+:host {
+  display: block;
+  width: 100%;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+.page-container {
+  width: 100%;
+  padding: 24px 32px 40px;
+  box-sizing: border-box;
+}
+
+.back-button {
+  margin-bottom: 20px;
+}
+
+.back-button button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: #555;
+}
+
+.back-button button:hover {
+  color: #111;
+}
+
+.registro-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.registro-card {
+  width: 100%;
+  max-width: 1100px;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.logo h1 {
+  font-size: 32px;
+  margin: 0;
+}
+
+.logo p {
+  color: #64748b;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.cadastro-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.grid-full {
+  grid-column: 1 / -1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-control {
+  height: 48px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0 14px;
+}
+
+.textarea-control {
+  height: 140px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.btn-registro,
+.btn-secundario {
+  min-width: 150px;
+  height: 48px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-registro {
+  background: #7b4cc9;
+  color: #fff;
+  border: none;
+}
+
+.btn-secundario {
+  border: 1px solid #d1d5db;
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  .cadastro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-registro,
+  .btn-secundario {
+    width: 100%;
+  }
+}

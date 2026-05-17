@@ -6,14 +6,15 @@ import {
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 
 import { SharedTableComponent } from '../../shared/shared-table/shared-table';
+import { SharedModalViewComponent } from '../../shared/shared-modal-view/shared-modal-view';
 
 import {
   DeceasedService,
   Falecido
 } from './deceased.service';
-
 
 @Component({
   selector: 'app-deceased',
@@ -28,28 +29,17 @@ export class DeceasedComponent implements OnInit {
 
   private deceasedService = inject(DeceasedService);
   private cdr = inject(ChangeDetectorRef);
+  private dialog = inject(MatDialog);
 
   title = 'Falecidos';
 
   subtitle = 'Visualize todos os falecidos cadastrados no sistema';
 
   columns = [
-    {
-      key: 'nome',
-      label: 'Falecido'
-    },
-    {
-      key: 'data',
-      label: 'Data de falecimento'
-    },
-    {
-      key: 'jazigo',
-      label: 'Jazigo'
-    },
-    {
-      key: 'status',
-      label: 'Status'
-    }
+    { key: 'nome', label: 'Falecido' },
+    { key: 'data', label: 'Data de falecimento' },
+    { key: 'jazigo', label: 'Jazigo' },
+    { key: 'status', label: 'Status' }
   ];
 
   data: any[] = [];
@@ -64,26 +54,137 @@ export class DeceasedComponent implements OnInit {
 
       next: (response: Falecido[]) => {
 
-        this.data = response.map(falecido => ({
+        this.data = response.map(f => ({
 
-          nome: falecido.nome_completo,
+          ...f,
 
-          data: new Date(falecido.data_falecimento)
-            .toLocaleDateString('pt-BR'),
+          nome: f.nome_completo,
+
+          data: f.data_falecimento
+            ? new Date(f.data_falecimento)
+              .toLocaleDateString('pt-BR')
+            : '-',
 
           jazigo: '-',
 
-          status: falecido.status
+          editValue: f.cpf
+
         }));
 
         this.cdr.detectChanges();
+
       },
 
-      error: (error) => {
-        console.error('Erro ao buscar falecidos:', error);
-      }
-    });
-  }
-}
+      error: (error) => console.error(error)
 
-// TODO: Lembrar do Enum de status para quando for atualizar o falecido. Passar o enum aqui tambem.
+    });
+
+  }
+
+  openView(item: any): void {
+
+    this.deceasedService.getByCpf(item.cpf).subscribe({
+
+      next: (falecido) => {
+
+        this.dialog.open(
+          SharedModalViewComponent,
+          {
+
+            width: '1000px',
+
+            height: '600px',
+
+            data: {
+
+              title: 'Detalhes do falecido',
+
+              fields: [
+
+                {
+                  label: 'Nome',
+                  value: falecido.nome_completo
+                },
+
+                {
+                  label: 'CPF',
+                  value: falecido.cpf
+                },
+
+                {
+                  label: 'Data de nascimento',
+                  value: falecido.data_nascimento
+                },
+
+                {
+                  label: 'Data de falecimento',
+                  value: falecido.data_falecimento
+                },
+
+                {
+                  label: 'Sexo',
+                  value: falecido.sexo
+                },
+
+                {
+                  label: 'Naturalidade',
+                  value: falecido.naturalidade
+                },
+
+                {
+                  label: 'Nacionalidade',
+                  value: falecido.nacionalidade
+                },
+
+                {
+                  label: 'Estado civil',
+                  value: falecido.estado_civil
+                },
+
+                {
+                  label: 'Causa da morte',
+                  value: falecido.causa_morte
+                },
+
+                {
+                  label: 'Nome da mãe',
+                  value: falecido.nome_mae
+                },
+
+                {
+                  label: 'Nome do pai',
+                  value: falecido.nome_pai
+                },
+
+                {
+                  label: 'Declaração de óbito',
+                  value: falecido.num_declaracao_obito
+                },
+
+                {
+                  label: 'Observações',
+                  value: falecido.observacoes
+                },
+
+                {
+                  label: 'Status',
+                  value: falecido.status
+                }
+
+              ]
+
+            }
+
+          }
+
+        );
+
+      },
+
+      error: (error) => console.error(error)
+
+    });
+
+  }
+
+}

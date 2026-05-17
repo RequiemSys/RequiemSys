@@ -1,7 +1,18 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
+
 import { CommonModule } from '@angular/common';
+
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+
+import {
+  Router,
+  RouterLink
+} from '@angular/router';
 
 @Component({
   selector: 'app-shared-table',
@@ -15,19 +26,62 @@ import { RouterLink } from '@angular/router';
 })
 export class SharedTableComponent {
 
+  constructor(
+    private router: Router
+  ) {}
+
   @Input() title!: string;
   @Input() subtitle!: string;
+  @Input() createRoute!: string;
+  @Input() viewRoute!: string;
+  @Input() editRoute!: string;
 
-  /* Colunas da tabela sendo:
-   KEY o nome da propriedade utilizada para acessar os dados e
-   LABEL o texto exibido visualmente no cabeçalho da tabela
-  */
+  @Input() viewIdKey!: string;
+
+  @Input() queryParamKey: string = '';
+  @Input() queryParamValue: string = '';
+
   @Input() columns!: {
     key: string;
     label: string;
   }[];
 
-  //dados exibidos dinamicamente na tabela
   @Input() data!: any[];
+
+  @Output() view = new EventEmitter<any>();
+
+  openView(item: any): void {
+
+    if (this.viewRoute) {
+
+      this.router.navigate([
+        this.viewRoute,
+        item[this.viewIdKey]
+      ]);
+
+      return;
+    }
+
+    this.view.emit(item);
+
+  }
+
+  openEdit(item: any): void {
+
+    if (!this.editRoute) {
+      return;
+    }
+
+    this.router.navigate(
+      [this.editRoute],
+      {
+        queryParams: {
+          [this.queryParamKey]:
+            item[this.queryParamValue]
+        }
+      }
+    );
+
+  }
 
 }

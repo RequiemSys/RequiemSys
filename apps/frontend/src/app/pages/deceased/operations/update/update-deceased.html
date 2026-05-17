@@ -1,0 +1,293 @@
+<div class="page-container">
+
+  <div class="back-button">
+    <button
+      type="button"
+      [routerLink]="['/main/deceased']"
+    >
+      <mat-icon>arrow_back</mat-icon>
+      Voltar
+    </button>
+  </div>
+
+  <div class="registro-container">
+
+    <div class="registro-card registro-card--wide">
+
+      <div class="logo">
+        <h1>Editar Falecido</h1>
+        <p>Atualize os dados do falecido</p>
+      </div>
+
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        class="registro-form"
+      >
+
+        <div class="section-title">
+          Dados do Falecido
+        </div>
+
+        <div class="cadastro-grid">
+
+          <input
+            type="hidden"
+            formControlName="id"
+          />
+
+          <div class="form-group grid-full">
+
+            <label>Nome Completo</label>
+
+            <input
+              type="text"
+              formControlName="nome_completo"
+              class="form-control"
+              [placeholder]="falecido?.nome_completo || ''"
+            />
+
+          </div>
+
+          <div class="form-group">
+
+            <label>CPF</label>
+
+            <input
+              type="text"
+              formControlName="cpf"
+              class="form-control"
+              [placeholder]="falecido?.cpf || ''"
+            />
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Sexo</label>
+
+            <select
+              formControlName="sexo"
+              class="form-control"
+            >
+
+              <option value="">
+                Selecione
+              </option>
+
+              <option value="M">
+                Masculino
+              </option>
+
+              <option value="F">
+                Feminino
+              </option>
+
+              <option value="O">
+                Outro
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Status</label>
+
+            <select
+              formControlName="status"
+              class="form-control"
+            >
+
+              <option value="">
+                Selecione
+              </option>
+
+              <option
+                *ngFor="let s of statusList"
+                [value]="s"
+              >
+                {{ s }}
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Data de Nascimento</label>
+
+            <input
+              type="date"
+              formControlName="data_nascimento"
+              class="form-control"
+            />
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Data de Falecimento</label>
+
+            <input
+              type="date"
+              formControlName="data_falecimento"
+              class="form-control"
+            />
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Estado Civil</label>
+
+            <select
+              formControlName="estado_civil"
+              class="form-control"
+            >
+
+              <option value="">
+                Selecione
+              </option>
+
+              <option value="Solteiro">
+                Solteiro
+              </option>
+
+              <option value="Casado">
+                Casado
+              </option>
+
+              <option value="Divorciado">
+                Divorciado
+              </option>
+
+              <option value="Viúvo">
+                Viúvo
+              </option>
+
+            </select>
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Naturalidade</label>
+
+            <input
+              type="text"
+              formControlName="naturalidade"
+              class="form-control"
+              [placeholder]="falecido?.naturalidade || ''"
+            />
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Nacionalidade</label>
+
+            <input
+              type="text"
+              formControlName="nacionalidade"
+              class="form-control"
+              [placeholder]="falecido?.nacionalidade || ''"
+            />
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Nome da Mãe</label>
+
+            <input
+              type="text"
+              formControlName="nome_mae"
+              class="form-control"
+              [placeholder]="falecido?.nome_mae || ''"
+            />
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Nome do Pai</label>
+
+            <input
+              type="text"
+              formControlName="nome_pai"
+              class="form-control"
+              [placeholder]="falecido?.nome_pai || ''"
+            />
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Causa da Morte</label>
+
+            <input
+              type="text"
+              formControlName="causa_morte"
+              class="form-control"
+              [placeholder]="falecido?.causa_morte || ''"
+            />
+
+          </div>
+
+          <div class="form-group">
+
+            <label>Nº Declaração de Óbito</label>
+
+            <input
+              type="text"
+              formControlName="num_declaracao_obito"
+              class="form-control"
+              [placeholder]="falecido?.num_declaracao_obito || ''"
+            />
+
+          </div>
+
+          <div class="form-group grid-full">
+
+            <label>Observações</label>
+
+            <textarea
+              formControlName="observacoes"
+              class="form-control textarea-control"
+              [placeholder]="falecido?.observacoes || ''"
+            ></textarea>
+
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+
+          <button
+            type="button"
+            class="btn-secundario"
+            [routerLink]="['/main/deceased']"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            class="btn-registro"
+            [disabled]="submitting()"
+          >
+            {{ submitting() ? 'Atualizando...' : 'Atualizar' }}
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

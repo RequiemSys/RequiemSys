@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 from src.core.database import get_db
 from src.modules.falecidos.service.schemas import FalecidoCreate, FalecidoUpdate, FalecidoResponse
@@ -27,23 +27,23 @@ def get_all_falecidos(
     return service.get_all_falecidos()
 
 
-@router.get("/{falecido_id}", response_model=FalecidoResponse)
+@router.get("", response_model=FalecidoResponse)
 def get_falecido(
-    falecido_id: int,
+    cpf: str = Query(),
     db: Session = Depends(get_db)
 ):
     repository = FalecidoRepository(db)
     service = FalecidoService(repository)
-    return service.get_falecido_by_id(falecido_id)
+    return service.get_falecido_by_cpf(cpf)
 
 
-@router.put("/{falecido_id}", response_model=FalecidoResponse)
+@router.put("", response_model=FalecidoResponse)
 def update_falecido(
-    falecido_id: int,
     dados: FalecidoUpdate,
+    cpf: str = Query(),
     db: Session = Depends(get_db)
 ):
     repository = FalecidoRepository(db)
     service = FalecidoService(repository)
-    return service.update_falecido(falecido_id, dados)
+    return service.update_falecido(cpf, dados)
 

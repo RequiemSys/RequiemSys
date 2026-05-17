@@ -22,8 +22,8 @@ class FalecidoService:
     def get_all_falecidos(self):
         return self.repository.get_all()
 
-    def get_falecido_by_id(self, falecido_id: int):
-        falecido = self.repository.get_by_id(falecido_id)
+    def get_falecido_by_cpf(self, cpf: str):
+        falecido = self.repository.get_by_cpf(cpf)
         if not falecido:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -31,8 +31,8 @@ class FalecidoService:
             )
         return falecido
 
-    def update_falecido(self, falecido_id: int, dados: FalecidoUpdate):
-        falecido = self.repository.update(falecido_id, dados)
+    def update_falecido(self, cpf: str, dados: FalecidoUpdate):
+        falecido = self.repository.update(cpf, dados)
         if not falecido:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
