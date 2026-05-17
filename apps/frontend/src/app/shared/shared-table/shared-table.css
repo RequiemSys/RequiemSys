@@ -116,6 +116,8 @@ th, td {
 }
 
 .action-column {
+  display: flex;
+  flex-direction: row;
   width: 60px;
   min-width: 60px;
   max-height: 60px;
@@ -139,4 +141,24 @@ th, td {
 .view-button:hover mat-icon {
   color: #000;
   transform: scale(1.1);
+}
+
+.edit-button:hover mat-icon {
+  color: #145386;
+  transform: scale(1.1);
+}
+
+.edit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.edit-button {
+  color: #145386;
+  font-size: 24px;
+  transition: 0.2s ease;
 }

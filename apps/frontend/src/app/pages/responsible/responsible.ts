@@ -28,10 +28,11 @@ export class ResponsibleComponent {
       key: 'email',
       label: 'E-mail'
     },
-    {
-      key: 'falecidos',
-      label: 'Qtd. Falecidos'
-    }
+        {
+      key: '',
+      label: ''
+    },
+
   ];
 
   data = [
@@ -39,7 +40,6 @@ export class ResponsibleComponent {
       responsavel: 'Gabriel Martins',
       telefone: '(11) 91234-5678',
       email: 'gabriel.martins@gmail.com',
-      falecidos: '1'
     }
   ];
 
