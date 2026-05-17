@@ -4,9 +4,10 @@
 }
 
 .registro-container {
-  padding-left: 19%;
+  display: flex;
+  justify-content: center;
   box-sizing: border-box;
-  padding-top: 45px;
+  padding-top: 0px;
 }
 
 .registro-card {
@@ -27,6 +28,10 @@
   text-align: center;
   margin-bottom: 28px;
   padding-bottom: 10px;
+}
+
+.icon{
+  margin-bottom: 15px;
 }
 
 .logo h1 {
@@ -90,7 +95,7 @@
 }
 
 .req {
-  color: #c62828;
+  color: rgba(238, 83, 83, 0.479);
   font-weight: 700;
 }
 
@@ -128,19 +133,15 @@
 }
 
 .password-mismatch-msg {
-  margin: 0;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #b91c1c;
+  margin: 0px;
+  color: rgba(238, 83, 83, 0.479);
 }
 
 .form-error {
-  margin: 0 0 16px;
-  padding: 0.65rem 0.75rem;
   border-radius: 8px;
   font-size: 0.875rem;
   background: #ffebee;
-  color: #b71c1c;
+  color: rgba(238, 83, 83, 0.479);
   border: 1px solid #ffcdd2;
 }
 
@@ -216,6 +217,9 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+  margin-left: 30px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -227,3 +231,15 @@
   color: #000;
 }
 
+#confirmarSenha{
+  margin-bottom: 0px;
+}
+
+#senha{
+    margin-bottom: 0px;
+
+}
+
+.registro-card[_ngcontent-ng-c4147521539]{
+  padding-top: 15px;
+}

@@ -5,9 +5,10 @@
 }
 
 .registro-container {
-  padding-left: 19%;
+  display: flex;
+  justify-content: center;
   box-sizing: border-box;
-  padding-top: 45px;
+  padding-top: 0px;
 }
 
 .registro-card {
@@ -28,6 +29,10 @@
   text-align: center;
   margin-bottom: 28px;
   padding-bottom: 10px;
+}
+
+.icon{
+  margin-bottom: 15px;
 }
 
 .logo h1 {
@@ -215,6 +220,9 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  margin-top: 30px;
+  margin-bottom: 0px;
+  margin-left: 30px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -226,3 +234,6 @@
   color: #000;
 }
 
+.registro-card[_ngcontent-ng-c4147521539]{
+  padding-top: 15px;
+}
