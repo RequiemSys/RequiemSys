@@ -1,24 +1,21 @@
+
 :host {
   display: block;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
 .registro-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding-left: 19%;
   box-sizing: border-box;
   padding-top: 45px;
 }
 
 .registro-card {
-  background: white;
   padding: 40px;
   padding-left: 150px;
   padding-right: 150px;
   border-radius: 5px;
   width: 800px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 }
 
@@ -82,7 +79,6 @@
 
 .form-group {
   margin-bottom: 20px;
-
 }
 
 .form-group label {
@@ -170,7 +166,6 @@
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s;
-  
 }
 
 .btn-registro:hover:not(:disabled) {
@@ -215,3 +210,19 @@
 .login-link a:hover {
   text-decoration: underline;
 }
+
+.back-button button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
+}
+
+.back-button button:hover {
+  color: #000;
+}
+

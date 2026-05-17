@@ -22,7 +22,6 @@
         <tr>
           <th>usuário</th>
           <th>email</th>
-          <th>perfil de acesso</th>
           <th></th>
         </tr>
       </thead>
@@ -31,8 +30,6 @@
         <tr *ngFor="let user of users">
           <td><strong>{{ user.name }}</strong></td>
           <td>{{ user.email }}</td>
-          <td>{{ user.acess }}</td>
-
           <td>
             <button (click)="openDeleteModal(user)">
                <mat-icon class="delete-icon">delete</mat-icon>

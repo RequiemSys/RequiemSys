@@ -6,12 +6,12 @@
 
     <div class="text-content">
       <h2>Deletar usuário</h2>
-      <p>Tem certeza que deseja deletar <strong>{{ data.name }}</strong> do sistema?</p>
+      <p>Tem certeza que deseja deletar <strong>{{ data.email }}</strong> do sistema?</p>
     </div>
   </div>
 
   <div class="buttons">
     <button class="cancel-button" (click)="close()">Cancelar</button>
-    <button class="confirm-button">Confirmar</button>
+    <button class="confirm-button" (click)="deleteUser()">Confirmar</button>
   </div>
 </div>

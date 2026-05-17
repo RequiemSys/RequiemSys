@@ -1,11 +1,11 @@
 <div class="container">
   <div class="back-button">
-    <button type="button" (click)="back()" >
+    <button type="button" (click)="back()">
       <mat-icon>arrow_back</mat-icon>
       Voltar
     </button>
   </div>
-  
+
   <div class="header">
     <h1>RequiemSys</h1>
     <p>Visualize todos os usuários cadastrados no sistema</p>
@@ -13,31 +13,42 @@
 
   <div class="search-container">
     <mat-icon>search</mat-icon>
-    <input type="text" placeholder="Buscar por nome ou email...">
+
+    <input
+      type="text"
+      placeholder="Buscar por nome ou email..."
+      (input)="filterUsers($event)"
+    >
   </div>
 
   <div class="table-container">
     <table>
+
       <thead>
         <tr>
           <th>usuário</th>
           <th>email</th>
-          <th>perfil de acesso</th>
           <th></th>
         </tr>
       </thead>
 
       <tbody>
-        <tr *ngFor="let user of users">
-          <td><strong>{{ user.nome }}</strong></td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.access }}</td>
+        <tr *ngFor="let user of filteredUsers">
+
+          <td>
+            {{ user.name }}
+          </td>
+
+          <td>
+            {{ user.email }}
+          </td>
 
           <td>
             <button (click)="openViewModal(user)">
-               <mat-icon class="search-icon">search</mat-icon>
+              <mat-icon class="search-icon">search</mat-icon>
             </button>
           </td>
+
         </tr>
       </tbody>
 

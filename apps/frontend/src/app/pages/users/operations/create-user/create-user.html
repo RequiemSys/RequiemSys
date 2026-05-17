@@ -1,14 +1,20 @@
+
 <div class="registro-container">
- 
+  <div class="back-button">
+    <button type="button" (click)="back()" >
+      <mat-icon>arrow_back</mat-icon>
+      Voltar
+    </button>
+  </div>
   <div class="registro-card registro-card--wide">
     <div class="logo">
       <mat-icon>person_add</mat-icon>
       <h1>RequiemSys</h1>
       <p>Preencha os campos abaixo para criar um novo usuário no sistema</p>
     </div>
-
+    
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="registro-form">
-
+      
       <div class="cadastro-grid">
         <div class="form-group">
           <label for="nome">Nome<span class="req">*</span></label>
@@ -132,14 +138,7 @@
       }
 
       <div class="form-actions">
-        <button
-          type="button"
-          class="btn-secundario"
-          (click)="back()"
-          [disabled]="submitting()"
-        >
-          Voltar
-        </button>
+
         <button 
         type="submit"
         class="btn-registro" 
