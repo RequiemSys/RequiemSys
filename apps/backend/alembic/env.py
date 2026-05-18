@@ -7,6 +7,8 @@ from alembic import context
 from src.core.database import Base
 from src.modules.users.repository.models import UserModel
 from src.modules.falecidos.repository.models import FalecidoModel
+from src.modules.responsible.repository.models import ResponsibleModel
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
