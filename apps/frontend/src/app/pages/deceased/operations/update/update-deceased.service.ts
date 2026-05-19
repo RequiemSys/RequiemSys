@@ -5,10 +5,7 @@ import {
   HttpParams
 } from '@angular/common/http';
 
-import {
-  map,
-  Observable
-} from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { API_BASE_URL } from '../../../../core/api.config';
 
@@ -37,46 +34,21 @@ export class FalecidoService {
 
   private http = inject(HttpClient);
 
-  private apiUrl = `${API_BASE_URL}/api/v1/falecidos`;
+  private apiUrl = `${API_BASE_URL}/api/v1/falecidos/`;
 
   getByCpf(cpf: string): Observable<Falecido> {
+    const params = new HttpParams().set('cpf', cpf);
 
-    const params = new HttpParams()
-      .set('cpf', cpf);
-
-    return this.http.get<any>(
-      this.apiUrl,
-      { params }
-    ).pipe(
-
-      map((response: any) => {
-
-        if (Array.isArray(response)) {
-          return response[0];
-        }
-
-        return response;
-
-      })
-
-    );
-
+    return this.http.get<Falecido>(this.apiUrl, { params });
   }
 
   update(
     cpf: string,
     payload: Falecido
   ): Observable<Falecido> {
+    const params = new HttpParams().set('cpf', cpf);
 
-    const params = new HttpParams()
-      .set('cpf', cpf);
-
-    return this.http.put<Falecido>(
-      this.apiUrl,
-      payload,
-      { params }
-    );
-
+    return this.http.put<Falecido>(this.apiUrl, payload, { params });
   }
 
 }

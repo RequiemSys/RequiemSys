@@ -59,6 +59,8 @@ export class FalecidoUpdateComponent implements OnInit {
 
   falecido: Falecido | null = null;
 
+  private cpfOriginal = '';
+
   form = this.fb.group({
     id: [0],
     nome_completo: [''],
@@ -83,17 +85,15 @@ export class FalecidoUpdateComponent implements OnInit {
 
       const cpf = params['cpf'];
 
-      console.log('CPF RECEBIDO:', cpf);
-
       if (!cpf) {
         return;
       }
 
+      this.cpfOriginal = cpf;
+
       this.service.getByCpf(cpf).subscribe({
 
         next: (data: Falecido) => {
-
-          console.log('DADOS BACKEND:', data);
 
           this.falecido = data;
 
@@ -119,13 +119,9 @@ export class FalecidoUpdateComponent implements OnInit {
             status: data.status ?? ''
           });
 
-          console.log('FORM:', this.form.value);
-
         },
 
-        error: (err) => {
-
-          console.log('ERRO GET:', err);
+        error: () => {
 
           this.submitError.set(
             'Erro ao carregar dados'
@@ -145,13 +141,9 @@ export class FalecidoUpdateComponent implements OnInit {
 
     const value = this.form.getRawValue() as Falecido;
 
-    console.log('PAYLOAD UPDATE:', value);
+    this.service.update(this.cpfOriginal, value).subscribe({
 
-    this.service.update(value.cpf, value).subscribe({
-
-      next: (response) => {
-
-        console.log('UPDATE SUCCESS:', response);
+      next: () => {
 
         this.submitting.set(false);
 
@@ -161,9 +153,7 @@ export class FalecidoUpdateComponent implements OnInit {
 
       },
 
-      error: (err) => {
-
-        console.log('ERRO UPDATE:', err);
+      error: () => {
 
         this.submitting.set(false);
 

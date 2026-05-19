@@ -8,42 +8,43 @@ from src.modules.falecidos.repository.repository import FalecidoRepository
 router = APIRouter(prefix="/falecidos", tags=["falecidos"])
 
 
+def _service(db: Session) -> FalecidoService:
+    return FalecidoService(FalecidoRepository(db))
+
+
 @router.post("/", response_model=FalecidoResponse, status_code=201)
 def create_falecido(
     falecido: FalecidoCreate,
     db: Session = Depends(get_db)
 ):
-    repository = FalecidoRepository(db)
-    service = FalecidoService(repository)
-    return service.create_falecido(falecido)
+    return _service(db).create_falecido(falecido)
 
 
-@router.get("/", response_model=list[FalecidoResponse])
-def get_all_falecidos(
+@router.get("/")
+def get_falecidos(
+    cpf: str | None = Query(default=None),
     db: Session = Depends(get_db)
 ):
-    repository = FalecidoRepository(db)
-    service = FalecidoService(repository)
+    service = _service(db)
+
+    if cpf:
+        return service.get_falecido_by_cpf(cpf)
+
     return service.get_all_falecidos()
 
 
-@router.get("", response_model=FalecidoResponse)
-def get_falecido(
-    cpf: str = Query(),
-    db: Session = Depends(get_db)
-):
-    repository = FalecidoRepository(db)
-    service = FalecidoService(repository)
-    return service.get_falecido_by_cpf(cpf)
-
-
-@router.put("", response_model=FalecidoResponse)
+@router.put("/", response_model=FalecidoResponse)
 def update_falecido(
     dados: FalecidoUpdate,
     cpf: str = Query(),
     db: Session = Depends(get_db)
 ):
-    repository = FalecidoRepository(db)
-    service = FalecidoService(repository)
-    return service.update_falecido(cpf, dados)
+    return _service(db).update_falecido(cpf, dados)
 
+
+@router.delete("/")
+def delete_falecido(
+    cpf: str = Query(),
+    db: Session = Depends(get_db)
+):
+    return _service(db).delete_falecido(cpf)

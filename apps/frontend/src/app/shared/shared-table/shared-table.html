@@ -85,6 +85,17 @@
               <mat-icon>edit</mat-icon>
             </button>
 
+            @if (showDelete) {
+              <button
+                class="delete-button"
+                type="button"
+                (click)="openDelete(item)"
+                title="Excluir"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            }
+
           </td>
         </tr>
       </tbody>

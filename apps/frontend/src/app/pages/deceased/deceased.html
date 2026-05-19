@@ -7,6 +7,8 @@
   [editRoute]="'/main/edit-deceased'"
   [queryParamKey]="'cpf'"
   [queryParamValue]="'cpf'"
+  [showDelete]="true"
   (view)="openView($event)"
+  (delete)="onDelete($event)"
 >
 </app-shared-table>

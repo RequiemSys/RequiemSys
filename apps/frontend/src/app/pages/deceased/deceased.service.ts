@@ -40,35 +40,19 @@ export class DeceasedService {
   private apiUrl = `${API_BASE_URL}/api/v1/falecidos/`;
 
   listAll(): Observable<Falecido[]> {
+    return this.http.get<Falecido[]>(this.apiUrl);
+  }
 
-    return this.http.get<Falecido[]>(
-      this.apiUrl
-    );
+  deleteByCpf(cpf: string): Observable<{ message: string }> {
+    const params = new HttpParams().set('cpf', cpf);
 
+    return this.http.delete<{ message: string }>(this.apiUrl, { params });
   }
 
   getByCpf(cpf: string): Observable<Falecido> {
+    const params = new HttpParams().set('cpf', cpf);
 
-    const params = new HttpParams()
-      .set('cpf', cpf);
-
-    return this.http.get<any>(
-      this.apiUrl,
-      { params }
-    ).pipe(
-
-      map((response: any) => {
-
-        if (Array.isArray(response)) {
-          return response[0];
-        }
-
-        return response;
-
-      })
-
-    );
-
+    return this.http.get<Falecido>(this.apiUrl, { params });
   }
 
 }

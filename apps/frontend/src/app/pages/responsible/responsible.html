@@ -3,6 +3,11 @@
   [subtitle]="subtitle"
   [columns]="columns"
   [data]="data"
-  [createRoute]="'/main/create-deceased'"
+  [createRoute]="'/main/create-responsible'"
+  [editRoute]="'/main/edit-responsible'"
+  [queryParamKey]="'email'"
+  [queryParamValue]="'email'"
+  [showDelete]="true"
+  (delete)="onDelete($event)"
 >
 </app-shared-table>

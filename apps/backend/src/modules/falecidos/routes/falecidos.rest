@@ -27,13 +27,13 @@ GET {{baseUrl}}/falecidos/
 
 ###
 
-### Buscar falecido por ID
-GET {{baseUrl}}/falecidos?cpf=...
+### Buscar falecido por CPF
+GET {{baseUrl}}/falecidos/?cpf=12345678900
 
 ###
 
 ### Atualizar falecido
-PUT {{baseUrl}}/falecidos/1
+PUT {{baseUrl}}/falecidos/?cpf=12345678900
 Content-Type: application/json
 
 {
@@ -52,3 +52,8 @@ Content-Type: application/json
   "observacoes": "Atualização cadastral",
   "status": "sepultado"
 }
+
+###
+
+### Excluir falecido
+DELETE {{baseUrl}}/falecidos/?cpf=12345678900

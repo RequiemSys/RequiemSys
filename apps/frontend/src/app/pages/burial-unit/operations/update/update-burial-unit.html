@@ -1,0 +1,127 @@
+<div class="page-container">
+
+  <div class="back-button">
+    <button type="button" [routerLink]="['/main/burial-unit']">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar
+    </button>
+  </div>
+
+  <div class="registro-container">
+
+    <div class="registro-card registro-card--wide">
+
+      <div class="logo">
+        <h1>Editar Unidade de Sepultamento</h1>
+        <p>Atualize os dados do jazigo</p>
+      </div>
+
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        class="registro-form"
+      >
+
+        <div class="section-title">
+          Dados do Jazigo
+        </div>
+
+        <div class="cadastro-grid">
+
+          <input type="hidden" formControlName="id" />
+
+          <div class="form-group">
+            <label for="tipo">Tipo de Jazigo</label>
+            <select
+              id="tipo"
+              formControlName="tipo"
+              class="form-control"
+            >
+              <option value="">Selecione</option>
+              @for (tipo of typeOptions; track tipo) {
+                <option [value]="tipo">{{ tipo }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="codigo">Código</label>
+            <input
+              id="codigo"
+              type="text"
+              formControlName="codigo"
+              class="form-control"
+              [placeholder]="burialUnit?.codigo || ''"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="localizacao">Localização</label>
+            <select
+              id="localizacao"
+              formControlName="localizacao"
+              class="form-control"
+            >
+              <option value="">Selecione</option>
+              @for (local of locationOptions; track local) {
+                <option [value]="local">{{ local }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select
+              id="status"
+              formControlName="status"
+              class="form-control"
+            >
+              @for (item of statusOptions; track item.value) {
+                <option [value]="item.value">{{ item.label }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="form-group grid-full">
+            <label for="observacoes">Observações</label>
+            <textarea
+              id="observacoes"
+              formControlName="observacoes"
+              class="form-control textarea-control"
+              [placeholder]="burialUnit?.observacoes || ''"
+            ></textarea>
+          </div>
+
+        </div>
+
+        @if (submitError()) {
+          <p class="form-error">{{ submitError() }}</p>
+        }
+
+        <div class="form-actions">
+
+          <button
+            type="button"
+            class="btn-secundario"
+            [routerLink]="['/main/burial-unit']"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            class="btn-registro"
+            [disabled]="submitting()"
+          >
+            {{ submitting() ? 'Atualizando...' : 'Atualizar' }}
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

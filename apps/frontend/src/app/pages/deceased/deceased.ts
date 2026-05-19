@@ -81,6 +81,31 @@ export class DeceasedComponent implements OnInit {
 
   }
 
+  onDelete(item: any): void {
+    const cpf = item.cpf;
+    const nome = item.nome ?? item.nome_completo ?? 'este registro';
+
+    if (!cpf) {
+      return;
+    }
+
+    const confirmed = confirm(
+      `Deseja excluir o falecido "${nome}"? Esta ação não pode ser desfeita.`
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    this.deceasedService.deleteByCpf(cpf).subscribe({
+      next: () => this.loadFalecidos(),
+      error: (error) => {
+        console.error(error);
+        alert('Erro ao excluir falecido.');
+      },
+    });
+  }
+
   openView(item: any): void {
 
     this.deceasedService.getByCpf(item.cpf).subscribe({

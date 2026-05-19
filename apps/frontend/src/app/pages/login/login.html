@@ -19,18 +19,13 @@
         <input type="email" formControlName="usuario" placeholder="E-mail de Usuário">
       </div>
 
-      <div class="card">
-        <div class="card-icon">&#128101;</div>
-        <h2>Administrador</h2>
-        <button class="admin-button" type="button" (click)="irParaLogin()">Entrar</button>
-        <div class="input-group" [class.error]="loginForm.get('senha')?.invalid && loginForm.get('senha')?.touched">
+      <div class="input-group" [class.error]="loginForm.get('senha')?.invalid && loginForm.get('senha')?.touched">
         <span class="icon">
           <svg width="20" height="20" viewBox="0 0 34 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M16.6667 25C15.5208 25 14.5399 25.408 13.724 26.224C12.908 27.0399 12.5 28.0208 12.5 29.1667C12.5 30.3125 12.908 31.2934 13.724 32.1094C14.5399 32.9253 15.5208 33.3333 16.6667 33.3333C17.8125 33.3333 18.7934 32.9253 19.6094 32.1094C20.4253 31.2934 20.8333 30.3125 20.8333 29.1667C20.8333 28.0208 20.4253 27.0399 19.6094 26.224C18.7934 25.408 17.8125 25 16.6667 25ZM4.16667 39.5833V18.75H29.1667V39.5833H4.16667ZM16.6667 4.16667C18.4028 4.16667 19.8785 4.77431 21.0938 5.98958C22.309 7.20486 22.9167 8.68056 22.9167 10.4167V14.5833H10.4167V10.4167C10.4167 8.68056 11.0243 7.20486 12.2396 5.98958C13.4549 4.77431 14.9306 4.16667 16.6667 4.16667Z" fill="currentColor"/>
           </svg>
         </span>
         <input type="password" formControlName="senha" placeholder="Senha">
-
       </div>
 
       <button type="submit" class="btn-primary" [disabled]="loginForm.invalid">Entrar</button>

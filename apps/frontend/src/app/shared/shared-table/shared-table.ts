@@ -40,6 +40,7 @@ export class SharedTableComponent {
 
   @Input() queryParamKey: string = '';
   @Input() queryParamValue: string = '';
+  @Input() showDelete: boolean = false;
 
   @Input() columns!: {
     key: string;
@@ -49,6 +50,7 @@ export class SharedTableComponent {
   @Input() data!: any[];
 
   @Output() view = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<any>();
 
   openView(item: any): void {
 
@@ -82,6 +84,10 @@ export class SharedTableComponent {
       }
     );
 
+  }
+
+  openDelete(item: any): void {
+    this.delete.emit(item);
   }
 
 }

@@ -28,16 +28,13 @@ export class CreateDeceasedService {
 
   private http = inject(HttpClient);
 
-  private apiUrl = `${API_BASE_URL}/api/v1/falecidos`;
+  private apiUrl = `${API_BASE_URL}/api/v1/falecidos/`;
 
   createFalecido(
     payload: CreateFalecidoPayload
   ): Observable<any> {
 
-    return this.http.post(
-      `${this.apiUrl}/`,
-      payload
-    );
+    return this.http.post(this.apiUrl, payload);
   }
 
 }
