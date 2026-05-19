@@ -1,0 +1,150 @@
+  <div class="back-button">
+    <button type="button" (click)="back()" >
+      <mat-icon>arrow_back</mat-icon>
+      Voltar
+    </button>
+  </div>
+<div class="registro-container">
+
+  <div class="registro-card registro-card--wide">
+    <div class="logo">
+      <mat-icon class="icon">person_add</mat-icon>
+      <h1>RequiemSys</h1>
+      <p>Registro de Usuário</p>
+      <p>Preencha os campos abaixo para criar um novo usuário no sistema</p>
+    </div>
+    
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="registro-form">
+      
+      <div class="cadastro-grid">
+        <div class="form-group">
+          <label for="nome">Nome<span class="req">*</span></label>
+          <input
+            id="nome"
+            type="text"
+            formControlName="nome"
+            class="form-control"
+            placeholder="Nome completo"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="sexo">Sexo <span class="req">*</span></label>
+          <select id="sexo" formControlName="sexo" class="form-control">
+            <option value="" disabled selected hidden>Selecione</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+            <option value="O">Outro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="dataNascimento">Data de Nascimento <span class="req">*</span></label>
+          <input
+            id="dataNascimento"
+            type="date"
+            formControlName="dataNascimento"
+            min="1900-01-01" 
+            max="2099-12-31"
+            class="form-control"
+          />
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email <span class="req">*</span></label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            class="form-control"
+            placeholder="Digite seu email"
+          />
+         @if (form.get('email')?.errors?.['email'] && form.get('email')?.touched) {
+          <span style="color: rgba(238, 83, 83, 0.479);">Formato de e-mail inválido.</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="senha">Senha <span class="req">*</span></label>
+          <input
+            id="senha"
+            type="password"
+            formControlName="senha"
+            autocomplete="new-password"
+            class="form-control"
+            placeholder="••••••"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="confirmarSenha">Confirmar senha <span class="req">*</span></label>
+          <input
+            id="confirmarSenha"
+            type="password"
+            formControlName="confirmarSenha"
+            autocomplete="new-password"
+            class="form-control"
+            placeholder="••••••"
+          />
+          @if (
+            form.hasError('passwordMismatch') &&
+            (form.get('senha')?.touched || form.get('confirmarSenha')?.touched)
+          ) {
+            <span p class="password-mismatch-msg grid-full">Senhas não coincidem.</span>
+          }
+        </div>
+
+        <div class="form-group grid-full">
+          <label for="telefone">Telefone <span class="req">*</span></label>
+          <div class="phone-row">
+            <select
+              id="ddd"
+              formControlName="ddd"
+              class="form-control ddd"
+              aria-label="DDD"
+            >
+              <option value="" disabled selected hidden>DDD</option>
+              @for (d of ddds; track d) {
+                <option [value]="d">{{ d }}</option>
+              }
+            </select>
+            <input
+              id="telefone"
+              type="text"
+              formControlName="telefone"
+              class="form-control phone-num"
+              placeholder="9 9999-9999"
+              (input)="applyPhoneMask($event)" 
+              maxlength="11"
+            >
+          </div>
+          <div class="error-messages">
+      
+          @if (form.get('telefone')?.hasError('required') && form.get('telefone')?.touched) {
+            <small style="color:  rgba(238, 83, 83, 0.479);">Telefone é obrigatório.</small>
+          }
+          @if (form.get('telefone')?.hasError('pattern') && form.get('telefone')?.touched){
+            <small style="color:  rgba(238, 83, 83, 0.479);">Insira um formato válido (9 9999-9999)</small>
+          }
+        </div>
+        </div>
+      </div>
+
+      @if (submitError()) {
+        <p class="form-error" role="alert">{{ submitError() }}</p>
+      }
+
+      <div class="form-actions">
+
+        <button 
+        type="submit"
+        class="btn-registro" 
+        [disabled]="form.invalid"
+        >
+          {{ submitting() ? 'Enviando…' : 'Continuar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

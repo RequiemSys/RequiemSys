@@ -1,0 +1,12 @@
+<app-shared-table
+  [title]="title"
+  [subtitle]="subtitle"
+  [columns]="columns"
+  [data]="data"
+  [createRoute]="'/main/create-deceased'"
+  [editRoute]="'/main/edit-deceased'"
+  [queryParamKey]="'cpf'"
+  [queryParamValue]="'cpf'"
+  (view)="openView($event)"
+>
+</app-shared-table>

@@ -1,0 +1,30 @@
+<div class="overlay">
+  <div class="modal">
+    <div class="header">
+      <mat-icon>search</mat-icon>
+      <h2>Buscar usuário</h2>
+    </div>
+
+    <p class="subtitle">
+      Informe o e-mail do usuário que deseja editar.
+    </p>
+
+    <label for="email">
+      E-mail <span class="required">*</span>
+    </label>
+    <input
+      id="email"
+      type="email"
+      [(ngModel)]="email"
+      placeholder=""
+    />
+    <div class="actions">
+      <button class="btn cancel" [routerLink]="['/main/user-control-panel']">
+        Cancelar
+      </button>
+      <button class="btn primary" (click)="onSearch()">
+        Buscar
+      </button>
+    </div>
+  </div>
+</div>

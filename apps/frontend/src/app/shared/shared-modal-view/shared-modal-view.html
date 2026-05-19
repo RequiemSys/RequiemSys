@@ -1,0 +1,11 @@
+<div class="header">
+  <h2>{{ data.title }}</h2>
+  <mat-icon class="close" (click)="close()">close</mat-icon>
+</div>
+
+<div class="content">
+  <div class="row" *ngFor="let field of data.fields">
+    <strong>{{ field.label }}</strong>
+    <span>{{ field.value }}</span>
+  </div>
+</div>

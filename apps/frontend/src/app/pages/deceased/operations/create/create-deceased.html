@@ -1,0 +1,287 @@
+<div class="page-container">
+
+  <div class="back-button">
+    <button type="button" [routerLink]="['/main/deceased']">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar
+    </button>
+  </div>
+
+  <div class="registro-container">
+
+    <div class="registro-card registro-card--wide">
+
+      <div class="logo">
+        <h1>Novo Cadastro de Falecido</h1>
+        <p>Preencha os dados do falecido</p>
+      </div>
+
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        class="registro-form"
+      >
+
+        <div class="section-title">
+          Dados do Falecido
+        </div>
+
+        <div class="cadastro-grid">
+
+          <div class="form-group grid-full">
+            <label for="nome_completo">
+              Nome Completo
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="nome_completo"
+              type="text"
+              formControlName="nome_completo"
+              class="form-control"
+              placeholder="Digite o nome completo"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="cpf">
+              CPF
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="cpf"
+              type="text"
+              formControlName="cpf"
+              class="form-control"
+              placeholder="000.000.000-00"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="sexo">
+              Sexo
+              <span class="req">*</span>
+            </label>
+
+            <select
+              id="sexo"
+              formControlName="sexo"
+              class="form-control"
+            >
+              <option value="" disabled selected hidden>
+                Selecione
+              </option>
+
+              <option value="M">
+                Masculino
+              </option>
+
+              <option value="F">
+                Feminino
+              </option>
+
+              <option value="O">
+                Outro
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="data_nascimento">
+              Data de Nascimento
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="data_nascimento"
+              type="date"
+              formControlName="data_nascimento"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="data_falecimento">
+              Data de Falecimento
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="data_falecimento"
+              type="date"
+              formControlName="data_falecimento"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="estado_civil">
+              Estado Civil
+              <span class="req">*</span>
+            </label>
+
+            <select
+              id="estado_civil"
+              formControlName="estado_civil"
+              class="form-control"
+            >
+              <option value="" disabled selected hidden>
+                Selecione
+              </option>
+
+              <option value="Solteiro">
+                Solteiro
+              </option>
+
+              <option value="Casado">
+                Casado
+              </option>
+
+              <option value="Divorciado">
+                Divorciado
+              </option>
+
+              <option value="Viúvo">
+                Viúvo
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="naturalidade">
+              Naturalidade
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="naturalidade"
+              type="text"
+              formControlName="naturalidade"
+              class="form-control"
+              placeholder="Cidade de origem"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="nacionalidade">
+              Nacionalidade
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="nacionalidade"
+              type="text"
+              formControlName="nacionalidade"
+              class="form-control"
+              placeholder="Nacionalidade"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="nome_mae">
+              Nome da Mãe
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="nome_mae"
+              type="text"
+              formControlName="nome_mae"
+              class="form-control"
+              placeholder="Nome da mãe"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="nome_pai">
+              Nome do Pai
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="nome_pai"
+              type="text"
+              formControlName="nome_pai"
+              class="form-control"
+              placeholder="Nome do pai"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="causa_morte">
+              Causa da Morte
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="causa_morte"
+              type="text"
+              formControlName="causa_morte"
+              class="form-control"
+              placeholder="Informe a causa da morte"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="num_declaracao_obito">
+              Nº Declaração de Óbito
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="num_declaracao_obito"
+              type="text"
+              formControlName="num_declaracao_obito"
+              class="form-control"
+              placeholder="Número da declaração"
+            />
+          </div>
+
+          <div class="form-group grid-full">
+            <label for="observacoes">
+              Observações
+            </label>
+
+            <textarea
+              id="observacoes"
+              formControlName="observacoes"
+              class="form-control textarea-control"
+              placeholder="Observações adicionais"
+            ></textarea>
+          </div>        
+      </div>
+
+        @if (submitError()) {
+          <p class="form-error">
+            {{ submitError() }}
+          </p>
+        }
+
+        <div class="form-actions">
+
+          <button
+            type="button"
+            class="btn-secundario"
+            [routerLink]="['/main/deceased']"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            class="btn-registro"
+            [disabled]="form.invalid || submitting()"
+          >
+            {{ submitting() ? 'Cadastrando...' : 'Cadastrar' }}
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

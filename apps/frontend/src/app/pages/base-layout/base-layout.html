@@ -1,0 +1,65 @@
+<header class="header-top" [class.header-full]="!drawer.opened">
+    <button mat-icon-button (click)="drawer.toggle()" class="menu-button" [disableRipple]="true">
+      <mat-icon class="icon-menu">menu</mat-icon>
+    </button>
+  <img src="./requiem-logo.png" alt="Requiem-sys-logo" class='requiem-logo'>
+</header>
+
+
+
+<mat-sidenav-container class="main-container">
+
+  <mat-sidenav #drawer mode="side" opened class="sidebar">
+    <p class="perfil-name">Olá!</p>
+    <hr class="divider">
+    <mat-nav-list class="sidebar-icon">
+      <a mat-list-item [routerLink]="['user-control-panel']" routerLinkActive="active-link">
+        <mat-icon matListItemIcon [style.color]="'white'">folder</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Gestão de usuários</span>
+      </a>
+
+      <a mat-list-item [routerLink]="['/main/deceased']" routerLinkActive="active-link">
+        <mat-icon matListItemIcon [style.color]="'white'">person</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Falecidos</span>
+      </a>
+
+      <a mat-list-item [routerLink]="['/main/responsible']" routerLinkActive="active-link">
+        <mat-icon matListItemIcon [style.color]="'white'">group</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Responsáveis</span>
+      </a>
+
+      <a mat-list-item [routerLink]="['/main/burial']" routerLinkActive="active-link">
+        <mat-icon matListItemIcon [style.color]="'white'">assignment</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Sepultamentos</span>
+      </a>
+
+      <a mat-list-item [routerLink]="['/main/exhumation']" routerLinkActive="active-link">
+        <mat-icon matListItemIcon [style.color]="'white'">history</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Exumações</span>
+      </a>
+
+      <a mat-list-item [routerLink]="['/main/burial-unit']" routerLinkActive="active-link">
+        <mat-icon matListItemIcon [style.color]="'white'">location_on</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Unidades de Sepultamento</span>
+      </a>
+    </mat-nav-list>
+
+    <mat-nav-list class="exit-option">
+      <hr class="divider">
+      <a mat-list-item [routerLink]="['']">
+        <mat-icon [style.color]="'white'" matListItemIcon>exit_to_app</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Sair</span>
+      </a>
+      <a mat-list-item [routerLink]="['/main/working']">
+        <mat-icon [style.color]="'white'" matListItemIcon>settings</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Configurações</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content">
+    <main class="main-box">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
