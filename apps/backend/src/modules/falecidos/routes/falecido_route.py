@@ -42,7 +42,7 @@ def update_falecido(
     return _service(db).update_falecido(cpf, dados)
 
 
-@router.delete("/")
+@router.delete("/delete")
 def delete_falecido(
     cpf: str = Query(),
     db: Session = Depends(get_db)

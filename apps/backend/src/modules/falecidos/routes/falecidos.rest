@@ -56,4 +56,5 @@ Content-Type: application/json
 ###
 
 ### Excluir falecido
-DELETE {{baseUrl}}/falecidos/?cpf=12345678900
+DELETE {{baseUrl}}/falecidos/delete?cpf=123.123.123-23
+
