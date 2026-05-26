@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 export interface DialogField {
   label: string;
   value: any;
+  type?: 'boolean';
 }
 
 export interface SharedModalViewData {

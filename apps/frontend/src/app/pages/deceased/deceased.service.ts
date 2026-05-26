@@ -46,7 +46,7 @@ export class DeceasedService {
   deleteByCpf(cpf: string): Observable<{ message: string }> {
     const params = new HttpParams().set('cpf', cpf);
 
-    return this.http.delete<{ message: string }>(this.apiUrl, { params });
+    return this.http.delete<{ message: string }>(this.apiUrl+ "delete", { params });
   }
 
   getByCpf(cpf: string): Observable<Falecido> {
