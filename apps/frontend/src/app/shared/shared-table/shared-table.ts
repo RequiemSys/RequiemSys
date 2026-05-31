@@ -41,6 +41,7 @@ export class SharedTableComponent {
   @Input() queryParamKey: string = '';
   @Input() queryParamValue: string = '';
   @Input() showDelete: boolean = false;
+  @Input() showCreateButton: boolean = true;
 
   @Input() columns!: {
     key: string;
