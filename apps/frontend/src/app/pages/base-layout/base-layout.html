@@ -11,6 +11,7 @@
 
   <mat-sidenav #drawer mode="side" opened class="sidebar">
     <p class="perfil-name">Olá!</p>
+
     <hr class="divider">
     <mat-nav-list class="sidebar-icon">
       <a mat-list-item [routerLink]="['user-control-panel']" routerLinkActive="active-link">
@@ -19,12 +20,12 @@
       </a>
 
       <a mat-list-item [routerLink]="['/main/deceased']" routerLinkActive="active-link">
-        <mat-icon matListItemIcon [style.color]="'white'">person</mat-icon>
+        <mat-icon matListItemIcon svgIcon="tombstone" [style.color]="'white'"></mat-icon>
         <span matListItemTitle [style.color]="'white'">Falecidos</span>
       </a>
 
       <a mat-list-item [routerLink]="['/main/responsible']" routerLinkActive="active-link">
-        <mat-icon matListItemIcon [style.color]="'white'">group</mat-icon>
+        <mat-icon matListItemIcon [style.color]="'white'">diversity_3</mat-icon>
         <span matListItemTitle [style.color]="'white'">Responsáveis</span>
       </a>
 
