@@ -51,13 +51,14 @@
 
     <mat-nav-list class="exit-option">
       <hr class="divider">
-      <a mat-list-item [routerLink]="['']">
-        <mat-icon [style.color]="'white'" matListItemIcon>exit_to_app</mat-icon>
-        <span matListItemTitle [style.color]="'white'">Sair</span>
-      </a>
       <a mat-list-item [routerLink]="['/main/working']">
         <mat-icon [style.color]="'white'" matListItemIcon>settings</mat-icon>
         <span matListItemTitle [style.color]="'white'">Configurações</span>
+      </a>
+
+      <a mat-list-item [routerLink]="['']">
+        <mat-icon [style.color]="'white'" matListItemIcon>exit_to_app</mat-icon>
+        <span matListItemTitle [style.color]="'white'">Sair</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
