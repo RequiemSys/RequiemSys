@@ -20,6 +20,7 @@ import { ResponsibleUpdateComponent } from './pages/responsible/operations/updat
 import { CreateBurialUnitComponent } from './pages/burial-unit/operations/create/create-burial-unit';
 import { BurialUnitUpdateComponent } from './pages/burial-unit/operations/update/update-burial-unit';
 import { NotificationComponent } from './pages/notifications/notification';
+import { HomeComponent } from './pages/home/home';
 
 export const routes: Routes = [
   { path: '', component: Login },
@@ -45,6 +46,7 @@ export const routes: Routes = [
         {path: 'edit-responsible', component: ResponsibleUpdateComponent},
         {path: 'create-burial-unit', component: CreateBurialUnitComponent},
         {path: 'edit-burial-unit', component: BurialUnitUpdateComponent},
-        {path: 'notifications', component: NotificationComponent}
+        {path: 'notifications', component: NotificationComponent},
+        {path: 'home', component: HomeComponent}
     ]},
 ];
