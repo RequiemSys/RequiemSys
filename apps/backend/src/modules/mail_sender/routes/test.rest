@@ -2,8 +2,6 @@ POST http://localhost:8000/api/v1/notificate/send
 Content-Type: application/json
 
 {
-  "email_from": "requiem.proj.fatec@gmail.com",
-  "email_to": "lucas97brito@outlook.com",
-  "subject": "Teste de envio do RequiemSys",
-  "message": "Esta é uma mensagem de teste enviada pela rota de notificação."
+  "email_to": "biancavitoria.106.bv@gmail.com",
+  "subject": "Teste de envio do RequiemSys"
 }

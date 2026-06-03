@@ -36,7 +36,7 @@ export class NotificationComponent {
 
   data = [
     {
-      responsavel: 'Renato Martins',
+      responsavel: 'Mortinho da silva',
       envio: '08/08/2028',
       exumacao: '08/08/2028',
       status: 'Enviado'

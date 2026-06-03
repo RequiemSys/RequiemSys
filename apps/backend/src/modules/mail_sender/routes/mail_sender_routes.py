@@ -23,4 +23,4 @@ def send_notification(
 ):
     repository = EmailRepository(db)
     service = SendMailService(repository)
-    return service.send_notification(email_mesasge)
+    return service._smtp_client(email_mesasge)
