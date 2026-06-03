@@ -53,6 +53,22 @@
   margin-top: 50px;
 }
 
+.option-add .option-icon {
+  background-color: #8054c4;
+}
+
+.option-update .option-icon {
+  background-color: #8F67CC;
+}
+
+.option-delete .option-icon {
+  background-color: #A584D7;
+}
+
+.option-get .option-icon {
+  background-color: #b79edd;
+}
+
 .option-link {
   color: rgb(102, 100, 100);
   background-color: rgb(242, 242, 242);
