@@ -37,7 +37,7 @@ export class DeceasedService {
 
   private http = inject(HttpClient);
 
-  private apiUrl = `${API_BASE_URL}/api/v1/falecidos/`;
+  private apiUrl = `${API_BASE_URL}/api/v1/falecidos`;
 
   listAll(): Observable<Falecido[]> {
     return this.http.get<Falecido[]>(this.apiUrl);
@@ -46,7 +46,7 @@ export class DeceasedService {
   deleteByCpf(cpf: string): Observable<{ message: string }> {
     const params = new HttpParams().set('cpf', cpf);
 
-    return this.http.delete<{ message: string }>(this.apiUrl+ "delete", { params });
+    return this.http.delete<{ message: string }>(this.apiUrl + "delete", { params });
   }
 
   getByCpf(cpf: string): Observable<Falecido> {

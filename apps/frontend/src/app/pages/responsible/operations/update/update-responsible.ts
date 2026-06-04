@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, ElementRef, inject, OnInit, signal, ViewChild, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +29,7 @@ import {
   ]
 })
 export class ResponsibleUpdateComponent implements OnInit {
+  @ViewChild('modalFalecidos') modal!: ElementRef<HTMLDialogElement>;
 
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
@@ -40,8 +41,22 @@ export class ResponsibleUpdateComponent implements OnInit {
   submitError = signal<string | null>(null);
   deceasedOptions = signal<Falecido[]>([]);
 
-  responsible: Responsible | null = null;
+  falecidos = signal<Falecido[]>([]);
+  carregandoFalecidos = signal<boolean>(false);
+  nomeFalecidoSelecionado = signal<string>('');
+  filtroNome = signal<string>('');
 
+  falecidosFiltrados = computed(() => {
+    const termo = this.filtroNome().toLowerCase().trim();
+    if (!termo) {
+      return this.falecidos();
+    }
+    return this.falecidos().filter(f => 
+      f.nome_completo?.toLowerCase().includes(termo)
+    );
+  });
+
+  responsible: Responsible | null = null;
   private emailOriginal = '';
 
   form = this.fb.group({
@@ -56,7 +71,22 @@ export class ResponsibleUpdateComponent implements OnInit {
     deceased_id: [''],
   });
 
+  constructor() {
+    effect(() => {
+      const lista = this.falecidos();
+      const resp = this.responsible;
+      
+      if (lista.length > 0 && resp && resp.deceased_id) {
+        const vinculado = lista.find(f => f.id === resp.deceased_id);
+        if (vinculado) {
+          this.nomeFalecidoSelecionado.set(vinculado.nome_completo || '');
+        }
+      }
+    });
+  }
+
   ngOnInit(): void {
+    // Carrega a lista de falecidos primeiro
     this.loadDeceasedOptions();
 
     this.route.queryParams.subscribe((params) => {
@@ -92,10 +122,50 @@ export class ResponsibleUpdateComponent implements OnInit {
   }
 
   loadDeceasedOptions(): void {
+    this.carregandoFalecidos.set(true);
     this.deceasedService.listAll().subscribe({
-      next: (response) => this.deceasedOptions.set(response),
-      error: (error) => console.error(error),
+      next: (response) => {
+        this.falecidos.set(response);
+        this.carregandoFalecidos.set(false);
+      },
+      error: (error) => {
+        console.error(error);
+        this.carregandoFalecidos.set(false);
+      },
     });
+  }
+
+  abrirModal(): void {
+    this.filtroNome.set('');
+    this.modal.nativeElement.showModal();
+  }
+
+  fecharModal(): void {
+    this.modal.nativeElement.close();
+  }
+
+  atualizarFiltro(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.filtroNome.set(input.value);
+  }
+
+  selecionarFalecido(falecido: Falecido): void {
+    this.form.patchValue({ deceased_id: String(falecido.id) });
+    this.nomeFalecidoSelecionado.set(falecido.nome_completo || '');
+    this.fecharModal();
+  }
+
+  fecharPorFora(event: MouseEvent): void {
+    const rect = this.modal.nativeElement.getBoundingClientRect();
+    const clicouDentro = (
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom &&
+      event.clientX >= rect.left &&
+      event.clientX <= rect.right
+    );
+    if (!clicouDentro) {
+      this.fecharModal();
+    }
   }
 
   onSubmit(): void {
@@ -129,5 +199,4 @@ export class ResponsibleUpdateComponent implements OnInit {
       },
     });
   }
-
 }
