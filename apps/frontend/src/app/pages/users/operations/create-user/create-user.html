@@ -1,14 +1,21 @@
+  <div class="back-button">
+    <button type="button" (click)="back()" >
+      <mat-icon>arrow_back</mat-icon>
+      Voltar
+    </button>
+  </div>
 <div class="registro-container">
- 
+
   <div class="registro-card registro-card--wide">
     <div class="logo">
-      <mat-icon>person_add</mat-icon>
+      <mat-icon class="icon">person_add</mat-icon>
       <h1>RequiemSys</h1>
+      <p>Registro de Usuário</p>
       <p>Preencha os campos abaixo para criar um novo usuário no sistema</p>
     </div>
-
+    
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="registro-form">
-
+      
       <div class="cadastro-grid">
         <div class="form-group">
           <label for="nome">Nome<span class="req">*</span></label>
@@ -80,16 +87,13 @@
             class="form-control"
             placeholder="••••••"
           />
+          @if (
+            form.hasError('passwordMismatch') &&
+            (form.get('senha')?.touched || form.get('confirmarSenha')?.touched)
+          ) {
+            <span p class="password-mismatch-msg grid-full">Senhas não coincidem.</span>
+          }
         </div>
-
-        @if (
-          form.hasError('passwordMismatch') &&
-          (form.get('senha')?.touched || form.get('confirmarSenha')?.touched)
-        ) {
-          <p class="password-mismatch-msg grid-full" role="alert">
-            As senhas precisam ser exatamente iguais.
-          </p>
-        }
 
         <div class="form-group grid-full">
           <label for="telefone">Telefone <span class="req">*</span></label>
@@ -132,14 +136,7 @@
       }
 
       <div class="form-actions">
-        <button
-          type="button"
-          class="btn-secundario"
-          (click)="back()"
-          [disabled]="submitting()"
-        >
-          Voltar
-        </button>
+
         <button 
         type="submit"
         class="btn-registro" 

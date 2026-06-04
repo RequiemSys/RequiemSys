@@ -2,5 +2,13 @@
   [title]="title"
   [subtitle]="subtitle"
   [columns]="columns"
-  [data]="data">
+  [data]="data"
+  [createRoute]="'/main/create-deceased'"
+  [editRoute]="'/main/edit-deceased'"
+  [queryParamKey]="'cpf'"
+  [queryParamValue]="'cpf'"
+  [showDelete]="true"
+  (view)="openView($event)"
+  (delete)="onDelete($event)"
+>
 </app-shared-table>

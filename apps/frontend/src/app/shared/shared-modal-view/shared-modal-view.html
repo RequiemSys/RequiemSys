@@ -1,0 +1,31 @@
+<div class="modal-container">
+  <div class="header">
+    <div class="icon-container">
+      <mat-icon>description</mat-icon>
+    </div>
+
+    <h2>{{ data.title }}</h2>
+
+  </div>
+
+  <div class="content">
+    <div class="row" *ngFor="let field of data.fields">
+      <p>
+        <strong>{{ field.label }}:</strong>
+        <span>
+          {{
+            field.type === 'boolean'
+              ? (field.value ? 'Ativo' : 'Deletado')
+              : field.value
+          }}
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="close-button" (click)="close()">
+      Fechar
+    </button>
+  </div>
+</div>

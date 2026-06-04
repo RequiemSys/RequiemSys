@@ -1,45 +1,52 @@
 <main class="main-container">
+
   <div class="top-text">
     <p style="font-size: 20px;">Escolha uma das opções abaixo para gerenciar os usuários do sistema.</p>
   </div>
+
   <div class="container">
+
     <div class="option-add">
       <mat-icon class="option-icon" [style.color]="'white'" matListItemIcon>person_add</mat-icon>
-      <h1>Registrar Usuário</h1>
+      <h2>Registrar Usuário</h2>
       <p>Cadastre novos usuários no sistema</p>
       <a class="option-link" mat-list-item [routerLink]="['create-user']">
-        <span matListItemTitle>Registrar</span>
+        <span class="link-text">Registrar</span>
+        <mat-icon class="arrow-icon">keyboard_arrow_right</mat-icon>
       </a>
     </div>
+
     <div class="option-update">
-      <mat-icon class="option-icon" [style.color]="'white'" matListItemIcon>edit</mat-icon>
-      <h1>Editar Usuário</h1>
+      <mat-icon class="option-icon" [style.color]="'white'" matListItemIcon>manage_accounts</mat-icon>
+      <h2>Editar Usuário</h2>
       <p>Edite as informações dos usuários existentes no sistema</p>
       <a class="option-link" mat-list-item [routerLink]="['search-user']">
-        <span matListItemTitle>Editar</span>
+        <span class="link-text">Editar</span>
+        <mat-icon class="arrow-icon">keyboard_arrow_right</mat-icon>
       </a>
     </div>
+
     <div class="option-delete">
       <mat-icon class="option-icon" [style.color]="'white'" matListItemIcon>person_remove</mat-icon>
-      <h1>Deletar Usuário</h1>
-      <p>
-        <br>
-        Remova usuários do sistema
-      </p>
+      <h2>Deletar Usuário</h2>
+      <p>Remova usuários do sistema</p>
       <a class="option-link" mat-list-item [routerLink]="['delete-user']">
-        <span matListItemTitle>Deletar</span>
+        <span class="link-text">Deletar</span>
+        <mat-icon class="arrow-icon">keyboard_arrow_right</mat-icon>
       </a>
     </div>
+
     <div class="option-get">
       <mat-icon class="option-icon" [style.color]="'white'" matListItemIcon>person_search</mat-icon>
-      <h1>Obter Informações</h1>
+      <h2>Obter Informações</h2>
       <p>Consulte informações dos usuários</p>
       <a class="option-link" mat-list-item [routerLink]="['view-user']">
-        <span matListItemTitle>Consultar</span>
+        <span class="link-text">Consultar</span>
+        <mat-icon class="arrow-icon">keyboard_arrow_right</mat-icon>
       </a>
     </div>
+
   </div>
     <main class="main-box">
   </main>
 </main>
-
