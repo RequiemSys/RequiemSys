@@ -1,23 +1,44 @@
 <div class="container">
   <section class="data-container">
-    <div class="data-card">
-      <h2>0</h2>
-      <p>Total de Falecidos</p>
+
+    <div class="data-card card-purple">
+      <div class="card-icon">
+        <mat-icon matListItemIcon svgIcon="tombstone"></mat-icon>
+      </div>
+      <div class="card-info">
+        <h2>0</h2>
+        <p>Total de Falecidos</p>
+      </div>
     </div>
 
-    <div class="data-card">
-      <h2>0</h2>
-      <p>Jazigos Disponíveis</p>
+    <div class="data-card card-blue">
+      <div class="card-icon">
+        <mat-icon>location_on</mat-icon>
+      </div>
+      <div class="card-info">
+        <h2>0</h2>
+        <p>Jazigos Disponíveis</p>
+      </div>
     </div>
 
-    <div class="data-card">
-      <h2>0</h2>
-      <p>Sepultamentos Hoje</p>
+    <div class="data-card card-green">
+      <div class="card-icon">
+        <mat-icon>assignment</mat-icon>
+      </div>
+      <div class="card-info">
+        <h2>0</h2>
+        <p>Sepultamentos Hoje</p>
+      </div>
     </div>
 
-    <div class="data-card">
-      <h2>0</h2>
-      <p>Usuários Cadastrados</p>
+    <div class="data-card card-orange">
+      <div class="card-icon">
+        <mat-icon>person</mat-icon>
+      </div>
+      <div class="card-info">
+        <h2>0</h2>
+        <p>Usuários Cadastrados</p>
+      </div>
     </div>
   </section>
 
@@ -29,9 +50,13 @@
       </div>
 
       <div class="body-card">
-        <ul class="activity-list">
-          <li class="activity-item"></li>
-        </ul>
+        <div class="activity-item" *ngFor="let item of atividadesRecentes">
+          <mat-icon class="activity-icon">check_circle</mat-icon>
+          <div class="activity-content">
+            <span class="activity-text">{{ item.descricao }}</span>
+            <small class="activity-time">{{ item.horario }}</small>
+          </div>
+        </div>
       </div>
 
       <div class="footer-card">
@@ -46,9 +71,13 @@
       </div>
 
       <div class="body-card">
-        <ul class="activity-list">
-          <li class="activity-item"></li>
-        </ul>
+        <div class="activity-item" *ngFor="let item of notificacoesRecentes">
+          <mat-icon class="activity-icon">check_circle</mat-icon>
+          <div class="activity-content">
+            <span class="activity-text">{{ item.descricao }}</span>
+            <small class="activity-time">{{ item.horario }}</small>
+          </div>
+        </div>
       </div>
 
       <div class="footer-card">
@@ -63,9 +92,13 @@
       </div>
 
       <div class="body-card">
-        <ul class="activity-list">
-          <li class="activity-item"></li>
-        </ul>
+        <div class="activity-item" *ngFor="let item of atividadesUsuarios">
+          <mat-icon class="activity-icon">check_circle</mat-icon>
+          <div class="activity-content">
+            <span class="activity-text">{{ item.descricao }}</span>
+            <small class="activity-time">{{ item.horario }}</small>
+          </div>
+        </div>
       </div>
 
       <div class="footer-card">
