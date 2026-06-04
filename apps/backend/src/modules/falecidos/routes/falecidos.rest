@@ -1,0 +1,60 @@
+@baseUrl = http://0.0.0.0:8000/api/v1
+
+### Criar falecido
+POST {{baseUrl}}/falecidos/
+Content-Type: application/json
+
+{
+  "nome_completo": "João da Silva",
+  "cpf": "12345678900",
+  "data_nascimento": "1950-05-10",
+  "data_falecimento": "2025-01-15",
+  "sexo": "M",
+  "naturalidade": "São Paulo",
+  "nacionalidade": "Brasileira",
+  "estado_civil": "Casado",
+  "causa_morte": "Causa natural",
+  "nome_mae": "Maria da Silva",
+  "nome_pai": "José da Silva",
+  "num_declaracao_obito": "DO123456789",
+  "observacoes": "Nenhuma observação"
+}
+
+###
+
+### Listar todos os falecidos
+GET {{baseUrl}}/falecidos/
+
+###
+
+### Buscar falecido por CPF
+GET {{baseUrl}}/falecidos/?cpf=12345678900
+
+###
+
+### Atualizar falecido
+PUT {{baseUrl}}/falecidos/?cpf=12345678900
+Content-Type: application/json
+
+{
+  "nome_completo": "João da Silva Atualizado",
+  "cpf": "12345678900",
+  "data_nascimento": "1950-05-10",
+  "data_falecimento": "2025-02-20",
+  "sexo": "M",
+  "naturalidade": "São Paulo",
+  "nacionalidade": "Brasileira",
+  "estado_civil": "Viúvo",
+  "causa_morte": "Parada cardíaca",
+  "nome_mae": "Maria da Silva",
+  "nome_pai": "José da Silva",
+  "num_declaracao_obito": "DO987654321",
+  "observacoes": "Atualização cadastral",
+  "status": "sepultado"
+}
+
+###
+
+### Excluir falecido
+DELETE {{baseUrl}}/falecidos/delete?cpf=123.123.123-23
+

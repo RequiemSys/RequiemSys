@@ -13,6 +13,14 @@ import { ResponsibleComponent } from './pages/responsible/responsible';
 import { BurialComponent } from './pages/burial/burial';
 import { ExhumationComponent } from './pages/exhumation/exhumation';
 import { BurialUnitComponent } from './pages/burial-unit/burial-unit';
+import { CreateDeceasedComponent } from './pages/deceased/operations/create/create-deceased';
+import { FalecidoUpdateComponent } from './pages/deceased/operations/update/update-deceased';
+import { CreateResponsibleComponent } from './pages/responsible/operations/create/create-responsible';
+import { ResponsibleUpdateComponent } from './pages/responsible/operations/update/update-responsible';
+import { CreateBurialUnitComponent } from './pages/burial-unit/operations/create/create-burial-unit';
+import { BurialUnitUpdateComponent } from './pages/burial-unit/operations/update/update-burial-unit';
+import { NotificationComponent } from './pages/notifications/notification';
+import { HomeComponent } from './pages/home/home';
 
 export const routes: Routes = [
   { path: '', component: Login },
@@ -31,6 +39,14 @@ export const routes: Routes = [
         {path: 'responsible', component: ResponsibleComponent},
         {path: 'burial', component: BurialComponent},
         {path: 'exhumation', component: ExhumationComponent},
-        {path: 'burial-unit', component: BurialUnitComponent}
+        {path: 'burial-unit', component: BurialUnitComponent},
+        {path: 'create-deceased', component: CreateDeceasedComponent},
+        {path: 'edit-deceased', component: FalecidoUpdateComponent},
+        {path: 'create-responsible', component: CreateResponsibleComponent},
+        {path: 'edit-responsible', component: ResponsibleUpdateComponent},
+        {path: 'create-burial-unit', component: CreateBurialUnitComponent},
+        {path: 'edit-burial-unit', component: BurialUnitUpdateComponent},
+        {path: 'notifications', component: NotificationComponent},
+        {path: 'home', component: HomeComponent}
     ]},
 ];

@@ -1,0 +1,91 @@
+::ng-deep .mat-mdc-dialog-panel {
+  max-width: 700px !important;
+  width: 700px !important;
+  height: 715px !important;
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+}
+
+.modal-container {
+  width: 100%;
+  max-height: 100vh;
+  padding: 28px 30px;
+  background: white;
+  border-radius: 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.icon-container {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #eef0ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.icon-container mat-icon {
+  color: #5b5bd6;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  color: #1f1f1f;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.content p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #1f1f1f;
+}
+
+.content strong {
+  font-weight: 700;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end !important;
+  margin-top: 32px;
+}
+
+.close-button {
+  width: 130px;
+  height: 46px;
+  border: 1px solid #d7d7d7;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.close-button:hover {
+  background: #f5f5f5;
+}

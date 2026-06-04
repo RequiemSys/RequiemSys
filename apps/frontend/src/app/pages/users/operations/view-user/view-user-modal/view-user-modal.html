@@ -3,17 +3,16 @@
     <div class="icon-container">
       <mat-icon>description</mat-icon>
     </div>
-    <h2>Informações de {{ data.nome }} </h2>
+    <h2>Informações de {{ data.name }} </h2>
   </div>
 
     <div class="content">
-      <p><strong>Nome Completo:</strong> {{ data.nome }}</p>
-      <p><strong>Sexo:</strong> {{ data.sexo }}</p>
-      <p><strong>Data de nascimento:</strong> {{ data.nascimento }}</p>
+      <p><strong>Nome Completo:</strong> {{ data.name }}</p>
+      <p><strong>Sexo:</strong> {{ data.gender }}</p>
+      <p><strong>Data de nascimento:</strong> {{ data.birth }}</p>
       <p><strong>E-mail:</strong> {{ data.email }}</p>
-      <p><strong>CPF:</strong> {{ data.cpf }}</p>
-      <p><strong>Telefone:</strong> {{ data.tel }}</p>
-      <p><strong>Perfil de acesso:</strong> {{ data.access }}</p>
+      <p><strong>Telefone:</strong> {{ data.phone }}</p>
+      <p><strong>Status:</strong> {{ data.is_active ? 'Ativo' : 'Deletado' }}</p>
     </div>
 
     <div class="buttons">

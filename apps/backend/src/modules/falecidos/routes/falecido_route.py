@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 from src.core.database import get_db
 from src.modules.falecidos.service.schemas import FalecidoCreate, FalecidoUpdate, FalecidoResponse
@@ -8,51 +8,43 @@ from src.modules.falecidos.repository.repository import FalecidoRepository
 router = APIRouter(prefix="/falecidos", tags=["falecidos"])
 
 
+def _service(db: Session) -> FalecidoService:
+    return FalecidoService(FalecidoRepository(db))
+
+
 @router.post("/", response_model=FalecidoResponse, status_code=201)
 def create_falecido(
     falecido: FalecidoCreate,
     db: Session = Depends(get_db)
 ):
-    repository = FalecidoRepository(db)
-    service = FalecidoService(repository)
-    return service.create_falecido(falecido)
+    return _service(db).create_falecido(falecido)
 
 
-@router.get("/", response_model=list[FalecidoResponse])
-def get_all_falecidos(
+@router.get("/")
+def get_falecidos(
+    cpf: str | None = Query(default=None),
     db: Session = Depends(get_db)
 ):
-    repository = FalecidoRepository(db)
-    service = FalecidoService(repository)
+    service = _service(db)
+
+    if cpf:
+        return service.get_falecido_by_cpf(cpf)
+
     return service.get_all_falecidos()
 
 
-@router.get("/{falecido_id}", response_model=FalecidoResponse)
-def get_falecido(
-    falecido_id: int,
-    db: Session = Depends(get_db)
-):
-    repository = FalecidoRepository(db)
-    service = FalecidoService(repository)
-    return service.get_falecido_by_id(falecido_id)
-
-
-@router.put("/{falecido_id}", response_model=FalecidoResponse)
+@router.put("/", response_model=FalecidoResponse)
 def update_falecido(
-    falecido_id: int,
     dados: FalecidoUpdate,
+    cpf: str = Query(),
     db: Session = Depends(get_db)
 ):
-    repository = FalecidoRepository(db)
-    service = FalecidoService(repository)
-    return service.update_falecido(falecido_id, dados)
+    return _service(db).update_falecido(cpf, dados)
 
 
-@router.delete("/{falecido_id}")
+@router.delete("/delete")
 def delete_falecido(
-    falecido_id: int,
+    cpf: str = Query(),
     db: Session = Depends(get_db)
 ):
-    repository = FalecidoRepository(db)
-    service = FalecidoService(repository)
-    return service.delete_falecido(falecido_id)
+    return _service(db).delete_falecido(cpf)

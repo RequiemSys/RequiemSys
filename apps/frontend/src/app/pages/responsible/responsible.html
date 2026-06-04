@@ -2,5 +2,12 @@
   [title]="title"
   [subtitle]="subtitle"
   [columns]="columns"
-  [data]="data">
+  [data]="data"
+  [createRoute]="'/main/create-responsible'"
+  [editRoute]="'/main/edit-responsible'"
+  [queryParamKey]="'email'"
+  [queryParamValue]="'email'"
+  [showDelete]="true"
+  (delete)="onDelete($event)"
+>
 </app-shared-table>

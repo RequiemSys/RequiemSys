@@ -2,5 +2,12 @@
   [title]="title"
   [subtitle]="subtitle"
   [columns]="columns"
-  [data]="data">
+  [data]="data"
+  [createRoute]="'/main/create-burial-unit'"
+  [editRoute]="'/main/edit-burial-unit'"
+  [queryParamKey]="'id'"
+  [queryParamValue]="'id'"
+  [showDelete]="true"
+  (delete)="onDelete($event)"
+>
 </app-shared-table>

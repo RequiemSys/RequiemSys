@@ -1,26 +1,45 @@
 .top-text {
-  display: flex;
-  justify-content: center;
   margin-top: 60px;
-  margin-bottom: 15px;
+  margin-bottom: 40px;
   color: rgb(141, 145, 145);
+  text-align: center;
+}
+
+.top-text p {
+  margin: 0;
+  padding: 0;
+  max-width: none;
 }
 
 .container {
   display: flex;
-  direction: row;
-  column-gap: 20px;
+  flex-direction: row;
+  gap: 20px;
   justify-content: center;
 }
 
-.option-add, .option-update, .option-delete, .option-get {
+.option-add,
+.option-update,
+.option-delete,
+.option-get {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   border: 1px solid rgb(192, 191, 191);
   border-radius: 5px;
   width: 230px;
   background-color: rgb(253, 253, 253);
+}
+
+.option-add p,
+.option-update p,
+.option-delete p,
+.option-get p {
+  max-width: 180px;
+  text-align: center;
+  padding: 0 15px 40px 15px;
+  font-size: 14px;
+  margin: 0;
 }
 
 .option-icon {
@@ -30,14 +49,31 @@
   align-items: center;
   background-color: #8054c4;
   border-radius: 100%;
-  padding: 25px;
+  padding: 32px;
   margin-top: 50px;
+}
+
+.option-add .option-icon {
+  background-color: #8054c4;
+}
+
+.option-update .option-icon {
+  background-color: #8F67CC;
+}
+
+.option-delete .option-icon {
+  background-color: #A584D7;
+}
+
+.option-get .option-icon {
+  background-color: #b79edd;
 }
 
 .option-link {
   color: rgb(102, 100, 100);
   background-color: rgb(242, 242, 242);
   text-decoration: none;
+  margin-top: auto;
   margin-bottom: 50px;
   border: 1px rgb(196, 196, 196) solid;
   border-radius: 10px;
@@ -47,33 +83,32 @@
   box-shadow: 1px 3px 3px rgba(107, 106, 106, 0.5);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 8px;
 }
 
-.option-link::after {
-  content: "→";
-  font-weight: bold;
-  transition: transform 0.2s;
+.link-text {
+  flex: 1;
+  text-align: center;
 }
 
-.option-link:hover::after {
-  transform: translateX(3px);
+.arrow-icon {
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+.option-link:hover .arrow-icon {
+  transform: translateX(4px);
 }
 
 .option-link:hover {
   box-shadow: inset 2px 2px 1px rgba(129, 128, 128, 0.5);
 }
 
-h1 {
-  padding: 30px;
-  font-size: medium;
-}
-
-p {
+h2 {
+  padding: 20px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #2f2f2f;
   text-align: center;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 40px;
-  font-size: small;
 }

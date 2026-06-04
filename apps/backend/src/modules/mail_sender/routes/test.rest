@@ -1,0 +1,7 @@
+POST http://localhost:8000/api/v1/notificate/send
+Content-Type: application/json
+
+{
+  "email_to": "biancavitoria.106.bv@gmail.com",
+  "subject": "Teste de envio do RequiemSys"
+}
