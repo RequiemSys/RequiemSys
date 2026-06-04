@@ -47,6 +47,6 @@ export const routes: Routes = [
         {path: 'create-burial-unit', component: CreateBurialUnitComponent},
         {path: 'edit-burial-unit', component: BurialUnitUpdateComponent},
         {path: 'notifications', component: NotificationComponent},
-        {path: 'home', component: HomeComponent}
+        {path: '', component: HomeComponent}
     ]},
 ];
