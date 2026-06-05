@@ -1,5 +1,8 @@
 from typing import Protocol
-from src.modules.falecidos.service.schemas import FalecidoCreate, FalecidoUpdate
+from src.modules.falecidos.service.schemas import (
+    FalecidoCreate,
+    FalecidoUpdate
+    )
 from src.modules.falecidos.repository.repository import FalecidoRepository
 from fastapi import HTTPException, status
 
@@ -48,4 +51,3 @@ class FalecidoService:
                 detail="Falecido não encontrado"
             )
         return {"message": "Falecido removido com sucesso"}
-

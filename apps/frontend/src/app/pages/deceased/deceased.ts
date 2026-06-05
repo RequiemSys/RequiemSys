@@ -116,10 +116,6 @@ export class DeceasedComponent implements OnInit {
           SharedModalViewComponent,
           {
 
-            width: '1000px',
-
-            height: '600px',
-
             data: {
 
               title: 'Detalhes do falecido',

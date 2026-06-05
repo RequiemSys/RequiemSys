@@ -1,7 +1,12 @@
+from typing import Any
+
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 from src.modules.falecidos.repository.models import FalecidoModel
-from src.modules.falecidos.service.schemas import FalecidoCreate, FalecidoUpdate
+from src.modules.falecidos.service.schemas import (
+    FalecidoCreate,
+    FalecidoUpdate
+    )
 
 
 class FalecidoRepository:
@@ -20,11 +25,16 @@ class FalecidoRepository:
     def get_all(self) -> list[FalecidoModel]:
         stmt = select(FalecidoModel)
         result = self.db.execute(stmt).scalars().all()
-        return result # type: ignore
+        return result  # type: ignore
 
     def get_by_cpf(self, cpf: str) -> FalecidoModel | None:
         return self.db.execute(
             select(FalecidoModel).where(FalecidoModel.cpf == cpf)
+        ).scalars().first()
+
+    def get_by_id(self, id: Any) -> FalecidoModel | None:
+        return self.db.execute(
+            select(FalecidoModel).where(FalecidoModel.id == id)
         ).scalars().first()
 
     def update(self, cpf: str, dados: FalecidoUpdate) -> FalecidoModel | None:

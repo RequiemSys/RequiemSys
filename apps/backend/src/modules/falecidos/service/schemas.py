@@ -32,7 +32,9 @@ class FalecidoCreate(BaseModel):
     num_declaracao_obito: str
     cpf: str
     observacoes: str
-    status: StatusFalecido = Field(default=StatusFalecido.SEPULTAMENTO_PENDENTE)
+    status: StatusFalecido = Field(
+        default=StatusFalecido.SEPULTAMENTO_PENDENTE
+        )
 
 
 class FalecidoUpdate(BaseModel):
