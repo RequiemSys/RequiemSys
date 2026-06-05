@@ -23,7 +23,7 @@ export class ResponsibleService {
 
   private http = inject(HttpClient);
 
-  private apiUrl = `${API_BASE_URL}/api/v1/responsaveis/`;
+  private apiUrl = `${API_BASE_URL}/api/v1/responsaveis`;
 
   listAll(): Observable<Responsible[]> {
     return this.http.get<Responsible[]>(this.apiUrl);
