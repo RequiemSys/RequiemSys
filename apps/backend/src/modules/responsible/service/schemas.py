@@ -19,7 +19,7 @@ class ResponsibleBase(BaseModel):
 
 
 class ResponsibleCreate(ResponsibleBase):
-    pass
+    deceased: FalecidoResponse | None = Field(default=None)
 
 
 class ResponsibleUpdate(ResponsibleBase):
