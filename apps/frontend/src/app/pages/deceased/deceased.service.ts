@@ -28,6 +28,12 @@ export interface Falecido {
   cpf?: string;
   observacoes?: string;
   status?: string;
+  jazigo?: {
+    identificacao: string;
+    localizacao?: string;
+    status?: string;
+    nome?: string;
+  } | string | null;
 }
 
 @Injectable({
