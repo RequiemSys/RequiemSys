@@ -65,7 +65,7 @@ export class DeceasedComponent implements OnInit {
               .toLocaleDateString('pt-BR')
             : '-',
 
-          jazigo: '-',
+          jazigo: f.jazigo || '-',
 
           editValue: f.cpf
 
@@ -206,6 +206,22 @@ export class DeceasedComponent implements OnInit {
 
     });
 
+  }
+
+  onViewJazigo(jazigo: any): void {
+    const dialogData = {
+      title: 'Detalhes do Jazigo',
+      fields: [
+        { label: 'Identificação', value: jazigo?.identificacao || jazigo?.nome || 'Não informado' },
+        { label: 'Localização', value: jazigo?.localizacao || 'Não informada' },
+        { label: 'Status', value: jazigo?.status || 'Não informado' }
+      ]
+    };
+
+    this.dialog.open(SharedModalViewComponent, {
+      data: dialogData,
+      width: '500px'
+    });
   }
 
 }

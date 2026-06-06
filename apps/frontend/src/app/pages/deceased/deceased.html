@@ -8,7 +8,14 @@
   [queryParamKey]="'cpf'"
   [queryParamValue]="'cpf'"
   [showDelete]="true"
+  [customCellTemplate]="jazigoTemplate"
   (delete)="onDelete($event)"
   (view)="openView($event)"
 >
 </app-shared-table>
+
+<ng-template #jazigoTemplate let-item>
+  <span class="jazigo-link" (click)="onViewJazigo(item.jazigo)">
+    {{ item.jazigo?.identificacao || item.jazigo?.nome || item.jazigo || 'Não informado' }}
+  </span>
+</ng-template>

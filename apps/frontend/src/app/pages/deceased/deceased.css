@@ -10,3 +10,15 @@
   margin-top: 60px;
   margin-left: 150px;
 }
+
+.jazigo-link {
+  color: #1976d2;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.jazigo-link:hover {
+  color: #0d47a1;
+  text-decoration-style: solid;
+}
