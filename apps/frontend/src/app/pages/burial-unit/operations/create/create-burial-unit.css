@@ -1,0 +1,206 @@
+:host {
+  display: block;
+  width: 100%;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+.page-container {
+  width: 100%;
+  padding: 24px 32px 40px;
+  box-sizing: border-box;
+}
+
+.back-button {
+  margin-bottom: 20px;
+}
+
+.back-button button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: #555;
+  transition: 0.2s ease;
+}
+
+.back-button button:hover {
+  color: #111;
+}
+
+.registro-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.registro-card {
+  width: 100%;
+  max-width: 1100px;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.logo h1 {
+  margin: 0 0 10px;
+  font-size: 34px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.logo p {
+  margin: 0;
+  font-size: 15px;
+  color: #64748b;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.registro-form {
+  width: 100%;
+}
+
+.cadastro-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.grid-full {
+  grid-column: 1 / -1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.req {
+  color: #ef4444;
+}
+
+.form-control {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0 14px;
+  font-size: 14px;
+  background: #fff;
+  transition: 0.2s ease;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #7b4cc9;
+  box-shadow: 0 0 0 3px rgba(123, 76, 201, 0.12);
+}
+
+.textarea-control {
+  height: 140px;
+  resize: vertical;
+  padding-top: 14px;
+}
+
+.form-error {
+  margin-top: 24px;
+  padding: 14px;
+  border-radius: 10px;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.btn-registro,
+.btn-secundario {
+  min-width: 150px;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-registro {
+  border: none;
+  background: #7b4cc9;
+  color: #fff;
+}
+
+.btn-registro:hover:not(:disabled) {
+  background: #6938c2;
+}
+
+.btn-secundario {
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #374151;
+}
+
+.btn-secundario:hover {
+  background: #f8fafc;
+}
+
+.btn-registro:disabled,
+.btn-secundario:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+
+  .page-container {
+    padding: 20px;
+  }
+
+  .registro-card {
+    padding: 28px;
+  }
+
+  .cadastro-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-registro,
+  .btn-secundario {
+    width: 100%;
+  }
+}

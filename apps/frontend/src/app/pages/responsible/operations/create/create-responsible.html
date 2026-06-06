@@ -1,0 +1,241 @@
+<div class="page-container">
+
+  <div class="back-button">
+    <button type="button" [routerLink]="['/main/responsible']">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar
+    </button>
+  </div>
+
+  <div class="registro-container">
+
+    <div class="registro-card registro-card--wide">
+
+      <div class="logo">
+        <h1>Novo Cadastro de Responsável</h1>
+        <p>Preencha os dados do responsável</p>
+      </div>
+
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        class="registro-form"
+      >
+
+        <div class="section-title">
+          Dados do Responsável
+        </div>
+
+        <div class="cadastro-grid">
+
+          <div class="form-group">
+            <label for="name">
+              Nome Completo
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              class="form-control"
+              placeholder="Digite o nome completo"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="birth">
+              Data de Nascimento
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="birth"
+              type="date"
+              formControlName="birth"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="kinship">
+              Parentesco
+              <span class="req">*</span>
+            </label>
+
+            <select
+              id="kinship"
+              formControlName="kinship"
+              class="form-control"
+            >
+              <option value="" disabled selected hidden>
+                Selecione
+              </option>
+
+              <option value="Pai">Pai</option>
+              <option value="Mãe">Mãe</option>
+              <option value="Filho(a)">Filho(a)</option>
+              <option value="Cônjuge">Cônjuge</option>
+              <option value="Irmão(ã)">Irmão(ã)</option>
+              <option value="Avô/Avó">Avô/Avó</option>
+              <option value="Neto(a)">Neto(a)</option>
+              <option value="Tio(a)">Tio(a)</option>
+              <option value="Sobrinho(a)">Sobrinho(a)</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="cpf">
+              CPF
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="cpf"
+              type="text"
+              formControlName="cpf"
+              class="form-control"
+              placeholder="000.000.000-00"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">
+              Telefone
+            </label>
+
+            <input
+              id="phone"
+              type="text"
+              formControlName="phone"
+              class="form-control"
+              placeholder="(00) 00000-0000"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">
+              E-mail
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              class="form-control"
+              placeholder="email@exemplo.com"
+            />
+          </div>
+
+          <div class="form-group grid-span-2">
+            <label for="address">
+              Endereço
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="address"
+              type="text"
+              formControlName="address"
+              class="form-control"
+              placeholder="Digite o endereço completo"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="deceased_id">
+              Falecido
+              <span class="req">*</span>
+            </label>
+
+            <button
+              id="deceased_id"
+              type="button"
+              class="form-control btn-busca-modal"
+              (click)="abrirModal()"
+            >
+              <div class="modal-button">
+                <mat-icon>{{ nomeFalecidoSelecionado() ? 'check_circle' : 'search' }}</mat-icon>
+                <p>{{ nomeFalecidoSelecionado() || 'Selecione um falecido' }}</p>
+              </div>
+            </button>
+          </div>
+
+        </div>
+
+        @if (submitError()) {
+          <p class="form-error">
+            {{ submitError() }}
+          </p>
+        }
+
+        <div class="form-actions">
+
+          <button
+            type="button"
+            class="btn-secundario"
+            [routerLink]="['/main/responsible']"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            class="btn-registro"
+            [disabled]="form.invalid || submitting()"
+          >
+            {{ submitting() ? 'Cadastrando...' : 'Cadastrar' }}
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <dialog #modalFalecidos class="modal-dialog" (click)="fecharPorFora($event)">
+    <div class="modal-header">
+      <h2>Selecionar Falecido</h2>
+      <button type="button" class="btn-fechar-x" (click)="fecharModal()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="modal-search-container">
+      <div class="search-input-wrapper">
+        <mat-icon>search</mat-icon>
+        <input 
+          type="text" 
+          placeholder="Pesquisar por nome..." 
+          class="modal-search-input"
+          [value]="filtroNome()"
+          (input)="atualizarFiltro($event)"
+        />
+      </div>
+    </div>
+
+    <div class="modal-body">
+      @if (carregandoFalecidos()) {
+        <div class="modal-loading">Carregando lista...</div>
+      } @else {
+        <ul class="lista-falecidos">
+          @for (falecido of falecidosFiltrados(); track falecido.id) {
+            <li class="item-falecido" (click)="selecionarFalecido(falecido)">
+              <mat-icon>person</mat-icon>
+              <div class="item-info">
+                <span class="item-nome">{{ falecido.nome_completo }}</span>
+                <span class="item-detalhe">CPF: {{ falecido.cpf || 'Não informado' }}</span>
+              </div>
+            </li>
+          } @empty {
+            <li class="lista-vazia">Nenhum falecido encontrado.</li>
+          }
+        </ul>
+      }
+    </div>
+  </dialog>
+
+</div>

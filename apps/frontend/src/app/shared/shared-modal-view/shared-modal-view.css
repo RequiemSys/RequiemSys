@@ -1,0 +1,89 @@
+::ng-deep .mat-mdc-dialog-panel {
+  max-width: 800px !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+::ng-deep .mat-mdc-dialog-surface {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+}
+
+.modal-container {
+  width: 100%;
+  height: auto;
+  padding: 32px;
+  background: white;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.icon-container {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #eef0ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.icon-container mat-icon {
+  color: #5b5bd6;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
+}
+
+.header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  color: #1f1f1f;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px;
+}
+
+.content p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #1f1f1f;
+}
+
+.content strong {
+  font-weight: 700;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32px;
+}
+
+.close-button {
+  width: 130px;
+  height: 46px;
+  border: 1px solid #d7d7d7;
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.close-button:hover {
+  background: #f5f5f5;
+}

@@ -1,76 +1,94 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
+
 import { CommonModule } from '@angular/common';
+
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { RouterLink } from '@angular/router';
 
-export interface TableColumn {
-  key: string;
-  label: string;
-}
-
-export interface TableAction {
-  icon: string;
-  tooltip: string;
-  action: 'view' | 'edit' | 'delete' | 'custom';
-}
+import {
+  Router,
+  RouterLink
+} from '@angular/router';
 
 @Component({
   selector: 'app-shared-table',
-  standalone: true,
   imports: [
     CommonModule,
     MatIconModule,
-    MatButtonModule,
-    MatTooltipModule,
-    RouterLink,
+    RouterLink
   ],
   templateUrl: './shared-table.html',
   styleUrl: './shared-table.css',
 })
 export class SharedTableComponent {
+
+  constructor(
+    private router: Router
+  ) {}
+
   @Input() title!: string;
   @Input() subtitle!: string;
+  @Input() createRoute!: string;
+  @Input() viewRoute!: string;
+  @Input() editRoute!: string;
 
-  /* Colunas da tabela sendo:
-   KEY o nome da propriedade utilizada para acessar os dados e
-   LABEL o texto exibido visualmente no cabeçalho da tabela
-  */
-  @Input() columns!: TableColumn[];
+  @Input() viewIdKey!: string;
 
-  // Dados exibidos dinamicamente na tabela
+  @Input() queryParamKey: string = '';
+  @Input() queryParamValue: string = '';
+  @Input() showDelete: boolean = false;
+  @Input() showCreateButton: boolean = true;
+
+  @Input() columns!: {
+    key: string;
+    label: string;
+  }[];
+
   @Input() data!: any[];
 
-  // Ações disponíveis na tabela
-  @Input() actions: TableAction[] = [
-    { icon: 'search', tooltip: 'Visualizar', action: 'view' },
-    { icon: 'edit', tooltip: 'Editar', action: 'edit' },
-    { icon: 'delete', tooltip: 'Deletar', action: 'delete' },
-  ];
+  @Output() view = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<any>();
 
-  // Propriedade identificadora do item (ex: 'id')
-  @Input() idProperty: string = 'id';
+  openView(item: any): void {
 
-  // Eventos de ação
-  @Output() onView = new EventEmitter<any>();
-  @Output() onEdit = new EventEmitter<any>();
-  @Output() onDelete = new EventEmitter<any>();
-  @Output() onCustomAction = new EventEmitter<{ item: any; action: string }>();
+    if (this.viewRoute) {
 
-  handleAction(item: any, action: string) {
-    switch (action) {
-      case 'view':
-        this.onView.emit(item);
-        break;
-      case 'edit':
-        this.onEdit.emit(item);
-        break;
-      case 'delete':
-        this.onDelete.emit(item);
-        break;
-      default:
-        this.onCustomAction.emit({ item, action });
+      this.router.navigate([
+        this.viewRoute,
+        item[this.viewIdKey]
+      ]);
+
+      return;
     }
+
+    this.view.emit(item);
+
   }
+
+  openEdit(item: any): void {
+
+    if (!this.editRoute) {
+      return;
+    }
+
+    this.router.navigate(
+      [this.editRoute],
+      {
+        queryParams: {
+          [this.queryParamKey]:
+            item[this.queryParamValue]
+        }
+      }
+    );
+
+  }
+
+  openDelete(item: any): void {
+    this.delete.emit(item);
+  }
+
 }

@@ -7,6 +7,10 @@ from alembic import context
 from src.core.database import Base
 from src.modules.users.repository.models import UserModel
 from src.modules.falecidos.repository.models import FalecidoModel
+from src.modules.responsible.repository.models import ResponsibleModel
+from src.modules.jazigos.repository.models import JazigoModel
+from src.modules.mail_sender.repository.models import EmailLogInfo
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

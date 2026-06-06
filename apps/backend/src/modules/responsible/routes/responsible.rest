@@ -1,0 +1,40 @@
+@baseUrl = http://localhost:8000/api/v1
+
+### CREATE RESPONSAVEL
+POST {{baseUrl}}/responsaveis/
+Content-Type: application/json
+
+{
+  "name": "Maria Silva",
+  "birth": "1985-10-15",
+  "cpf": "12345678900",
+  "kinship": "Mãe",
+  "phone": "11999999999",
+  "email": "maria@email.com",
+  "address": "Rua A, 123",
+  "deceased_id": 1
+}
+
+### GET ALL RESPONSAVEIS
+GET {{baseUrl}}/responsaveis/
+
+### GET RESPONSAVEL BY EMAIL
+GET {{baseUrl}}/responsaveis/?by-email=picamolenga@123
+
+### UPDATE RESPONSAVEL
+PUT {{baseUrl}}/responsaveis/?email=maria@email.com
+Content-Type: application/json
+
+{
+  "name": "Maria Oliveira",
+  "birth": "1985-10-15",
+  "cpf": "12345678900",
+  "kinship": "Mãe",
+  "phone": "11988888888",
+  "email": "mariaoliveira@email.com",
+  "address": "Rua B, 456",
+  "deceased_id": 1
+}
+
+### DELETE RESPONSAVEL
+DELETE {{baseUrl}}/responsaveis/?email=mariaoliveira@email.com

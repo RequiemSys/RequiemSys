@@ -1,0 +1,81 @@
+<div class="container">
+  <section class="data-container">
+
+    <div class="data-card card-purple">
+      <div class="card-icon">
+        <mat-icon matListItemIcon svgIcon="tombstone"></mat-icon>
+      </div>
+      <div class="card-info">
+        <h2>0</h2>
+        <p>Total de Falecidos</p>
+      </div>
+    </div>
+
+    <div class="data-card card-blue">
+      <div class="card-icon">
+        <mat-icon>location_on</mat-icon>
+      </div>
+      <div class="card-info">
+        <h2>0</h2>
+        <p>Jazigos Disponíveis</p>
+      </div>
+    </div>
+
+    <div class="data-card card-green">
+      <div class="card-icon">
+        <mat-icon>assignment</mat-icon>
+      </div>
+      <div class="card-info">
+        <h2>0</h2>
+        <p>Sepultamentos Hoje</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="activity-container">
+    <!--CARD 01 ATIVIDADES RECENTES-->
+    <div class="activity-card">
+      <div class="header-card">
+        <h3>Atividades Recentes</h3>
+      </div>
+
+      <div class="body-card">
+        <div class="activity-item" *ngFor="let item of atividadesRecentes">
+          <mat-icon class="activity-icon">check_circle</mat-icon>
+          <div class="activity-content">
+            <span class="activity-text">{{ item.descricao }}</span>
+            <small class="activity-time">{{ item.horario }}</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-card">
+        <a href="#">Ver todas as atividades</a>
+      </div>
+    </div>
+
+    <!--CARD 02 NOTIFICAÇÕES RECENTES-->
+    <div class="activity-card">
+      <div class="header-card">
+        <h3>Notificações Recentes</h3>
+      </div>
+
+      <div class="body-card">
+        <div class="activity-item" *ngFor="let item of notificacoesRecentes">
+          <mat-icon class="activity-icon">check_circle</mat-icon>
+          <div class="activity-content">
+            <span class="activity-text">{{ item.descricao }}</span>
+            <small class="activity-time">{{ item.horario }}</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-card">
+        <a href="#">Ver todas as atividades</a>
+      </div>
+    </div>
+
+  </section>
+
+</div>

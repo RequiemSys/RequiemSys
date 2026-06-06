@@ -1,7 +1,12 @@
+from typing import Any
+
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 from src.modules.falecidos.repository.models import FalecidoModel
-from src.modules.falecidos.service.schemas import FalecidoCreate, FalecidoUpdate
+from src.modules.falecidos.service.schemas import (
+    FalecidoCreate,
+    FalecidoUpdate
+    )
 
 
 class FalecidoRepository:
@@ -18,15 +23,22 @@ class FalecidoRepository:
         return falecido_model
 
     def get_all(self) -> list[FalecidoModel]:
-        return self.db.execute(select(FalecidoModel)).scalars().all()
+        stmt = select(FalecidoModel)
+        result = self.db.execute(stmt).scalars().all()
+        return result  # type: ignore
 
-    def get_by_id(self, falecido_id: int) -> FalecidoModel | None:
+    def get_by_cpf(self, cpf: str) -> FalecidoModel | None:
         return self.db.execute(
-            select(FalecidoModel).where(FalecidoModel.id == falecido_id)
+            select(FalecidoModel).where(FalecidoModel.cpf == cpf)
         ).scalars().first()
 
-    def update(self, falecido_id: int, dados: FalecidoUpdate) -> FalecidoModel | None:
-        falecido_model = self.get_by_id(falecido_id)
+    def get_by_id(self, id: Any) -> FalecidoModel | None:
+        return self.db.execute(
+            select(FalecidoModel).where(FalecidoModel.id == id)
+        ).scalars().first()
+
+    def update(self, cpf: str, dados: FalecidoUpdate) -> FalecidoModel | None:
+        falecido_model = self.get_by_cpf(cpf)
         if not falecido_model:
             return None
         for campo, valor in dados.model_dump(exclude_unset=True).items():
@@ -35,8 +47,8 @@ class FalecidoRepository:
         self.db.refresh(falecido_model)
         return falecido_model
 
-    def delete(self, falecido_id: int) -> bool:
-        falecido_model = self.get_by_id(falecido_id)
+    def delete(self, cpf: str) -> bool:
+        falecido_model = self.get_by_cpf(cpf)
         if not falecido_model:
             return False
         self.db.delete(falecido_model)

@@ -1,5 +1,9 @@
 from typing import Protocol
-from src.modules.falecidos.service.schemas import FalecidoCreate, FalecidoUpdate
+from src.modules.responsible.repository.repository import ResponsibleRepository
+from src.modules.falecidos.service.schemas import (
+    FalecidoCreate,
+    FalecidoUpdate
+    )
 from src.modules.falecidos.repository.repository import FalecidoRepository
 from fastapi import HTTPException, status
 
@@ -13,8 +17,13 @@ class IFalecidoService(Protocol):
 
 
 class FalecidoService:
-    def __init__(self, repository: FalecidoRepository):
+    def __init__(
+            self,
+            repository: FalecidoRepository,
+            responsible_repo: ResponsibleRepository
+            ):
         self.repository = repository
+        self.responsible_repo = responsible_repo
 
     def create_falecido(self, falecido: FalecidoCreate):
         return self.repository.create(falecido)
@@ -22,8 +31,8 @@ class FalecidoService:
     def get_all_falecidos(self):
         return self.repository.get_all()
 
-    def get_falecido_by_id(self, falecido_id: int):
-        falecido = self.repository.get_by_id(falecido_id)
+    def get_falecido_by_cpf(self, cpf: str):
+        falecido = self.repository.get_by_cpf(cpf)
         if not falecido:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -31,8 +40,8 @@ class FalecidoService:
             )
         return falecido
 
-    def update_falecido(self, falecido_id: int, dados: FalecidoUpdate):
-        falecido = self.repository.update(falecido_id, dados)
+    def update_falecido(self, cpf: str, dados: FalecidoUpdate):
+        falecido = self.repository.update(cpf, dados)
         if not falecido:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
@@ -40,9 +49,17 @@ class FalecidoService:
             )
         return falecido
 
-    def delete_falecido(self, falecido_id: int):
-        deletado = self.repository.delete(falecido_id)
-        if not deletado:
+    def delete_falecido(self, cpf: str):
+        falecido = self.repository.get_by_cpf(cpf)
+
+        if falecido:
+            responsible = self.responsible_repo.get_by_parent_id(
+                parent_id=falecido.id
+                )
+            self.responsible_repo.delete(responsible.email) if responsible else None
+            deleted = self.repository.delete(falecido.cpf)
+
+        if not deleted:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Falecido não encontrado"
