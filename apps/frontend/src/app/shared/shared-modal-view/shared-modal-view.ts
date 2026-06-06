@@ -19,7 +19,7 @@ export interface SharedModalViewData {
   standalone: true,
   imports: [CommonModule, MatIconModule],
   templateUrl: './shared-modal-view.html',
-  styleUrl: './shared-modal-view.css'
+  styleUrls: ['./shared-modal-view.css']
 })
 export class SharedModalViewComponent {
   constructor(
