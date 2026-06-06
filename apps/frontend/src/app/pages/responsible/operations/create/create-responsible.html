@@ -149,21 +149,17 @@
               <span class="req">*</span>
             </label>
 
-            <select
+            <button
               id="deceased_id"
-              formControlName="deceased_id"
-              class="form-control"
+              type="button"
+              class="form-control btn-busca-modal"
+              (click)="abrirModal()"
             >
-              <option value="" disabled selected hidden>
-                Selecione
-              </option>
-
-              @for (falecido of deceasedOptions(); track falecido.id) {
-                <option [value]="falecido.id">
-                  {{ falecido.nome_completo }}
-                </option>
-              }
-            </select>
+              <div class="modal-button">
+                <mat-icon>{{ nomeFalecidoSelecionado() ? 'check_circle' : 'search' }}</mat-icon>
+                <p>{{ nomeFalecidoSelecionado() || 'Selecione um falecido' }}</p>
+              </div>
+            </button>
           </div>
 
         </div>
@@ -199,5 +195,47 @@
     </div>
 
   </div>
+
+  <dialog #modalFalecidos class="modal-dialog" (click)="fecharPorFora($event)">
+    <div class="modal-header">
+      <h2>Selecionar Falecido</h2>
+      <button type="button" class="btn-fechar-x" (click)="fecharModal()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="modal-search-container">
+      <div class="search-input-wrapper">
+        <mat-icon>search</mat-icon>
+        <input 
+          type="text" 
+          placeholder="Pesquisar por nome..." 
+          class="modal-search-input"
+          [value]="filtroNome()"
+          (input)="atualizarFiltro($event)"
+        />
+      </div>
+    </div>
+
+    <div class="modal-body">
+      @if (carregandoFalecidos()) {
+        <div class="modal-loading">Carregando lista...</div>
+      } @else {
+        <ul class="lista-falecidos">
+          @for (falecido of falecidosFiltrados(); track falecido.id) {
+            <li class="item-falecido" (click)="selecionarFalecido(falecido)">
+              <mat-icon>person</mat-icon>
+              <div class="item-info">
+                <span class="item-nome">{{ falecido.nome_completo }}</span>
+                <span class="item-detalhe">CPF: {{ falecido.cpf || 'Não informado' }}</span>
+              </div>
+            </li>
+          } @empty {
+            <li class="lista-vazia">Nenhum falecido encontrado.</li>
+          }
+        </ul>
+      }
+    </div>
+  </dialog>
 
 </div>

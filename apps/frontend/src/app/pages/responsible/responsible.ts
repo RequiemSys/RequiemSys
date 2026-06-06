@@ -13,6 +13,8 @@ import {
   Responsible,
   ResponsibleService
 } from './responsible.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SharedModalViewComponent } from '../../shared/shared-modal-view/shared-modal-view';
 
 @Component({
   selector: 'app-responsible',
@@ -27,6 +29,7 @@ export class ResponsibleComponent implements OnInit {
 
   private responsibleService = inject(ResponsibleService);
   private cdr = inject(ChangeDetectorRef);
+  private dialog = inject(MatDialog);
 
   title = 'Responsáveis';
   subtitle = 'Visualize todos os responsáveis cadastrados no sistema';
@@ -86,4 +89,64 @@ export class ResponsibleComponent implements OnInit {
     });
   }
 
+  openView(item: any): void {
+    if (!item?.email && !item?.emailExibicao) {
+      console.error('E-mail não encontrado no item fornecido.');
+      return;
+    }
+
+    const emailBusca = item.email || item.emailExibicao;
+
+    this.responsibleService.getByEmail(emailBusca).subscribe({
+      next: (responsible) => {
+        console.log('Dados recebidos da API:', responsible);
+
+        if (!responsible) {
+          console.warn('API retornou um valor vazio.');
+          return;
+        }
+
+        this.dialog.open(SharedModalViewComponent, {
+          data: {
+            title: 'Detalhes do responsável',
+            fields: [
+              { 
+                label: 'Nome', 
+                value: responsible.name ?? 'Não informado' 
+              },
+              { 
+                label: 'Falecido', 
+                value: responsible.deceased_parent ?? 'Não' 
+              },
+              { 
+                label: 'CPF', 
+                value: responsible.cpf ?? 'Não informado' 
+              },
+              { 
+                label: 'Data de nascimento', 
+                value: responsible.birth ?? responsible.birth ?? 'Não informado' 
+              },
+              { 
+                label: 'Endereço', 
+                value: responsible.address ?? 'Não informado' 
+              },
+              { 
+                label: 'Email', 
+                value: responsible.email ?? 'Não informado' 
+              },
+              { 
+                label: 'Telefone', 
+                value: responsible.phone ?? 'Não informado' 
+              },
+              { 
+                label: 'Parentesco', 
+                value: responsible.kinship ?? 'Não informado' 
+              }
+            ]
+          }
+        });
+      },
+      error: (error) => console.error('Erro ao buscar detalhes:', error)
+    });
+  }
 }

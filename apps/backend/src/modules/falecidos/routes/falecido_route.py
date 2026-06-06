@@ -1,7 +1,10 @@
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
+from src.modules.responsible.repository.repository import ResponsibleRepository
 from src.core.database import get_db
-from src.modules.falecidos.service.schemas import FalecidoCreate, FalecidoUpdate, FalecidoResponse
+from src.modules.falecidos.service.schemas import (
+    FalecidoCreate, FalecidoUpdate, FalecidoResponse
+    )
 from src.modules.falecidos.service.service import FalecidoService
 from src.modules.falecidos.repository.repository import FalecidoRepository
 
@@ -9,7 +12,7 @@ router = APIRouter(prefix="/falecidos", tags=["falecidos"])
 
 
 def _service(db: Session) -> FalecidoService:
-    return FalecidoService(FalecidoRepository(db))
+    return FalecidoService(FalecidoRepository(db), ResponsibleRepository(db))
 
 
 @router.post("/", response_model=FalecidoResponse, status_code=201)

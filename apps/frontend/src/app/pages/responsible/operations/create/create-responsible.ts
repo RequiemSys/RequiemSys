@@ -1,8 +1,11 @@
 import {
   Component,
+  ElementRef,
   inject,
   OnInit,
-  signal
+  signal,
+  ViewChild,
+  computed
 } from '@angular/core';
 
 import {
@@ -40,6 +43,8 @@ import {
 })
 export class CreateResponsibleComponent implements OnInit {
 
+  @ViewChild('modalFalecidos') modal!: ElementRef<HTMLDialogElement>;
+
   private fb = inject(FormBuilder);
 
   private router = inject(Router);
@@ -52,7 +57,23 @@ export class CreateResponsibleComponent implements OnInit {
 
   submitError = signal<string | null>(null);
 
-  deceasedOptions = signal<Falecido[]>([]);
+  falecidos = signal<Falecido[]>([]);
+
+  carregandoFalecidos = signal<boolean>(false);
+
+  nomeFalecidoSelecionado = signal<string>('');
+
+  filtroNome = signal<string>('');
+
+  falecidosFiltrados = computed(() => {
+    const termo = this.filtroNome().toLowerCase().trim();
+    if (!termo) {
+      return this.falecidos();
+    }
+    return this.falecidos().filter(f => 
+      f.nome_completo?.toLowerCase().includes(termo)
+    );
+  });
 
   form = this.fb.group({
     name: ['', Validators.required],
@@ -70,10 +91,50 @@ export class CreateResponsibleComponent implements OnInit {
   }
 
   loadDeceasedOptions(): void {
+    this.carregandoFalecidos.set(true);
     this.deceasedService.listAll().subscribe({
-      next: (response) => this.deceasedOptions.set(response),
-      error: (error) => console.error(error),
+      next: (response) => {
+        this.falecidos.set(response);
+        this.carregandoFalecidos.set(false);
+      },
+      error: (error) => {
+        console.error(error);
+        this.carregandoFalecidos.set(false);
+      },
     });
+  }
+
+  abrirModal(): void {
+    this.filtroNome.set('');
+    this.modal.nativeElement.showModal();
+  }
+
+  fecharModal(): void {
+    this.modal.nativeElement.close();
+  }
+
+  atualizarFiltro(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.filtroNome.set(input.value);
+  }
+
+  selecionarFalecido(falecido: Falecido): void {
+    this.form.patchValue({ deceased_id: String(falecido.id) });
+    this.nomeFalecidoSelecionado.set(falecido.nome_completo || '');
+    this.fecharModal();
+  }
+
+  fecharPorFora(event: MouseEvent): void {
+    const rect = this.modal.nativeElement.getBoundingClientRect();
+    const clicouDentro = (
+      event.clientY >= rect.top &&
+      event.clientY <= rect.bottom &&
+      event.clientX >= rect.left &&
+      event.clientX <= rect.right
+    );
+    if (!clicouDentro) {
+      this.fecharModal();
+    }
   }
 
   onSubmit(): void {

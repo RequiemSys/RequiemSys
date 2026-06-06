@@ -29,7 +29,20 @@ class ResponsibleRepository:
             .first()
         )
 
-    def update(self, email: str, dados: ResponsibleModel) -> ResponsibleModel | None:
+    def get_by_parent_id(self, parent_id: int) -> ResponsibleModel | None:
+        return (
+            self.db.execute(
+                select(ResponsibleModel).where(
+                    ResponsibleModel.deceased_id == parent_id
+                    )
+            )
+            .scalars()
+            .first()
+        )
+
+    def update(
+            self, email: str, dados: ResponsibleModel
+            ) -> ResponsibleModel | None:
 
         payload_dict = ResponsibleBase.model_validate(dados).model_dump()
         stmt = (

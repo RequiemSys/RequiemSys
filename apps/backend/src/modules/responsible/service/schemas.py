@@ -1,6 +1,8 @@
 import datetime
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+from src.modules.falecidos.service.schemas import FalecidoResponse
 
 
 class ResponsibleBase(BaseModel):
@@ -12,12 +14,12 @@ class ResponsibleBase(BaseModel):
     email: str | None = None
     address: str | None = None
     deceased_id: int
-
-    model_config = ConfigDict(from_attributes=True) 
+    deceased: FalecidoResponse
+    model_config = ConfigDict(from_attributes=True)
 
 
 class ResponsibleCreate(ResponsibleBase):
-    pass
+    deceased: FalecidoResponse | None = Field(default=None)
 
 
 class ResponsibleUpdate(ResponsibleBase):
@@ -25,7 +27,10 @@ class ResponsibleUpdate(ResponsibleBase):
 
 
 class ResponsibleResponse(ResponsibleBase):
-    pass
+    model_config = ConfigDict(from_attributes=True)
+    deceased_parent: str | None = Field(default=None)
 
-    class Config:
-        from_attributes = True
+    @model_validator(mode='after')
+    def _fill_deceased_parent(self):
+        self.deceased_parent = self.deceased.nome_completo
+        return self

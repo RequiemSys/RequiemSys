@@ -1,5 +1,5 @@
 import datetime
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 from enum import StrEnum
 from typing import Optional
 
@@ -32,7 +32,9 @@ class FalecidoCreate(BaseModel):
     num_declaracao_obito: str
     cpf: str
     observacoes: str
-    status: StatusFalecido = Field(default=StatusFalecido.SEPULTAMENTO_PENDENTE)
+    status: StatusFalecido = Field(
+        default=StatusFalecido.SEPULTAMENTO_PENDENTE
+        )
 
 
 class FalecidoUpdate(BaseModel):
@@ -68,3 +70,4 @@ class FalecidoResponse(BaseModel):
     cpf: Optional[str] = None
     observacoes: Optional[str] = None
     status: Optional[StatusFalecido] = None
+    model_config = ConfigDict(from_attributes=True)

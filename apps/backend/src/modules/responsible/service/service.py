@@ -1,6 +1,5 @@
 from sqlalchemy.orm import Session
-
-
+from src.modules.falecidos.repository.repository import FalecidoRepository
 from src.modules.responsible.repository.models import ResponsibleModel
 from src.modules.responsible.repository.repository import ResponsibleRepository
 from src.modules.responsible.service.schemas import (
@@ -14,12 +13,19 @@ class ResponsibleService:
 
     def __init__(self, db: Session):
         self.repository = ResponsibleRepository(db)
+        self.deceased_repo = FalecidoRepository(db)
 
     def create(
         self,
         data: ResponsibleCreate
     ) -> ResponsibleResponse:
-        schema_to_model = ResponsibleModel(**data.model_dump())
+        responsible_dict = data.model_dump()
+
+        deceased = self.deceased_repo.get_by_id(id=data.deceased_id)
+
+        responsible_dict["deceased"] = deceased
+
+        schema_to_model = ResponsibleModel(**responsible_dict)
         responsible = self.repository.create(schema_to_model)
 
         return ResponsibleResponse.model_validate(
@@ -45,7 +51,6 @@ class ResponsibleService:
     ) -> ResponsibleResponse | None:
 
         responsible = self.repository.get_by_email(email)
-
         if not responsible:
             return None
 
@@ -59,7 +64,7 @@ class ResponsibleService:
         email: str,
         data: ResponsibleUpdate
     ) -> ResponsibleResponse | None:
-        
+
         schema_to_model = ResponsibleModel(**data.model_dump())
 
         responsible = self.repository.update(

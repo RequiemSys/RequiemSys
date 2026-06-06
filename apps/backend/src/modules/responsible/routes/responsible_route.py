@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from src.core.database import get_db
@@ -49,7 +49,7 @@ def get_all_responsibles(
     response_model=ResponsibleResponse
 )
 def get_responsible_by_email(
-    email: str,
+    email: str = Query(),
     db: Session = Depends(get_db)
 ):
 

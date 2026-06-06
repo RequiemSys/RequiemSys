@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { API_BASE_URL } from '../../core/api.config';
 
@@ -14,6 +14,7 @@ export interface Responsible {
   email?: string;
   address?: string;
   deceased_id?: number;
+  deceased_parent?: string;
 }
 
 @Injectable({
@@ -23,7 +24,7 @@ export class ResponsibleService {
 
   private http = inject(HttpClient);
 
-  private apiUrl = `${API_BASE_URL}/api/v1/responsaveis/`;
+  private apiUrl = `${API_BASE_URL}/api/v1/responsaveis`;
 
   listAll(): Observable<Responsible[]> {
     return this.http.get<Responsible[]>(this.apiUrl);
@@ -34,5 +35,13 @@ export class ResponsibleService {
 
     return this.http.delete<{ message: string }>(this.apiUrl, { params });
   }
+
+  getByEmail(email: string): Observable<Responsible> {
+      const params = new HttpParams().set('by-email', email);
+  
+      return this.http.get<Responsible[]>(this.apiUrl, { params }).pipe(
+           map(response => response[0])
+      );
+    }
 
 }

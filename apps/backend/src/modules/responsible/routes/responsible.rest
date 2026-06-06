@@ -19,7 +19,7 @@ Content-Type: application/json
 GET {{baseUrl}}/responsaveis/
 
 ### GET RESPONSAVEL BY EMAIL
-GET {{baseUrl}}/responsaveis/by-email?email=maria@email.com
+GET {{baseUrl}}/responsaveis/?by-email=picamolenga@123
 
 ### UPDATE RESPONSAVEL
 PUT {{baseUrl}}/responsaveis/?email=maria@email.com
