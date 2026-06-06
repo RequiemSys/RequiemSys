@@ -8,16 +8,13 @@
 </button>
 
 <div class="container">
-
   <div class="header">
-
     <div class="header-top">
-
       <div>
         <h1>{{ title }}</h1>
         <p>{{ subtitle }}</p>
       </div>
-      @if (showCreateButton) {
+      <ng-container *ngIf="showCreateButton">
         <button
           class="create-button"
           [routerLink]="[createRoute]"
@@ -25,50 +22,44 @@
           <mat-icon>add</mat-icon>
           Novo cadastro
         </button>
-      }
+      </ng-container>
     </div>
   </div>
 
   <div class="actions-container">
     <div class="search-container">
       <mat-icon>search</mat-icon>
-
       <input
         type="text"
         placeholder="Buscar..."
       >
     </div>
-
   </div>
 
   <div class="table-container">
-
     <table>
-
       <thead>
-
         <tr>
-
           <th *ngFor="let column of columns">
             {{ column.label }}
           </th>
-
           <th class="action-column"></th>
-
         </tr>
-
       </thead>
-
       <tbody>
-
         <tr *ngFor="let item of data">
-
-          <td *ngFor="let column of columns">
-            {{ item[column.key] }}
-          </td>
-
+          <!-- Colunas dinâmicas com suporte a template customizado -->
+          <ng-container *ngFor="let column of columns">
+            <td>
+              <ng-container *ngIf="column.key === 'jazigo' && customCellTemplate; else normalCell">
+                <ng-container *ngTemplateOutlet="customCellTemplate; context: { $implicit: item }"></ng-container>
+              </ng-container>
+              <ng-template #normalCell>{{ item[column.key] }}</ng-template>
+            </td>
+          </ng-container>
+          
+          <!-- Coluna de ações -->
           <td class="action-column">
-
             <button
               class="view-button"
               type="button"
@@ -85,7 +76,7 @@
               <mat-icon>edit</mat-icon>
             </button>
 
-            @if (showDelete) {
+            <ng-container *ngIf="showDelete">
               <button
                 class="delete-button"
                 type="button"
@@ -94,13 +85,10 @@
               >
                 <mat-icon>delete</mat-icon>
               </button>
-            }
-
+            </ng-container>
           </td>
         </tr>
       </tbody>
-
     </table>
   </div>
-
 </div>
