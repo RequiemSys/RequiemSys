@@ -22,10 +22,6 @@ export class HomeComponent {
     { descricao: 'Aviso de Teste enviado', horario: 'Hoje 16:58' }
   ];
 
-  atividadesUsuarios = [
-    { descricao: 'Usuário Teste logou', horario: 'Hoje 09:00' }
-  ];
-
   constructor (
     private MatIconRegistry: MatIconRegistry,
     private DomSanitizer: DomSanitizer

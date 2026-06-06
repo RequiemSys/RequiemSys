@@ -18,7 +18,7 @@ body {
 
 .data-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-bottom: 50px;
 }
@@ -36,7 +36,6 @@ body {
 .card-purple { border-top: 4px solid #7c3aed}
 .card-blue { border-top: 4px solid #2563eb}
 .card-green { border-top: 4px solid #16a34a}
-.card-orange { border-top: 4px solid #ea580c}
 
 .card-icon {
   width: 44px;
@@ -52,7 +51,6 @@ body {
 .card-purple .card-icon { background: #ede9fe;}
 .card-blue .card-icon { background: #dbeafe; color: #2563eb;}
 .card-green .card-icon { background: #dcfce7; color: #16a34a;}
-.card-orange .card-icon { background: #ffedd5; color: #ea580c;}
 
 .card-purple .card-icon ::ng-deep svg path {
   fill: #7c3aed;
@@ -79,7 +77,7 @@ body {
 
 .activity-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
 

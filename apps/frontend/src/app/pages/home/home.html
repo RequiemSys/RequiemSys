@@ -31,15 +31,6 @@
       </div>
     </div>
 
-    <div class="data-card card-orange">
-      <div class="card-icon">
-        <mat-icon>person</mat-icon>
-      </div>
-      <div class="card-info">
-        <h2>0</h2>
-        <p>Usuários Cadastrados</p>
-      </div>
-    </div>
   </section>
 
   <section class="activity-container">
@@ -85,26 +76,6 @@
       </div>
     </div>
 
-    <!--CARD 03 ATIVIDADES DOS USUARIOS-->
-    <div class="activity-card">
-      <div class="header-card">
-        <h3>Atividades dos Usuários</h3>
-      </div>
-
-      <div class="body-card">
-        <div class="activity-item" *ngFor="let item of atividadesUsuarios">
-          <mat-icon class="activity-icon">check_circle</mat-icon>
-          <div class="activity-content">
-            <span class="activity-text">{{ item.descricao }}</span>
-            <small class="activity-time">{{ item.horario }}</small>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-card">
-        <a href="#">Ver todas as atividades</a>
-      </div>
-    </div>
   </section>
 
 </div>
