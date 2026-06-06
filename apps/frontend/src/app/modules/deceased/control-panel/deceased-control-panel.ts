@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { Deceased } from '../deceased.model';
+import { MatDialog } from '@angular/material/dialog';
+import { SharedModalViewComponent, SharedModalViewData } from '../../../shared/shared-modal-view/shared-modal-view';
 
 @Component({
   selector: 'app-deceased-control-panel',
@@ -21,18 +23,20 @@ import { Deceased } from '../deceased.model';
     MatSnackBarModule,
   ],
   templateUrl: './deceased-control-panel.html',
-  styleUrl: './deceased-control-panel.css',
+  styleUrls: ['./deceased-control-panel.css'],
 })
 export class DeceasedControlPanelComponent implements OnInit {
   private router = inject(Router);
   private deceasedService = inject(DeceasedService);
   private snackBar = inject(MatSnackBar);
+  private dialog = inject(MatDialog);
 
   loading$ = this.deceasedService.loading$;
   deceased: Deceased[] = [];
 
   title = 'Falecidos';
   subtitle = 'Gerenciar todos os falecidos cadastrados no sistema';
+  showCreateButton = true;  // 👈 ADICIONADO
 
   columns: TableColumn[] = [
     { key: 'nome', label: 'Falecido' },
@@ -44,6 +48,41 @@ export class DeceasedControlPanelComponent implements OnInit {
     this.loadDeceased();
   }
 
+  onCreateNew() {
+    this.router.navigate(['/main/deceased-create']);
+  }
+
+  onView(item: Deceased) {
+    this.router.navigate(['/main/deceased-view'], { queryParams: { id: item.id } });
+  }
+
+  onEdit(item: Deceased) {
+    this.router.navigate(['/main/deceased-update'], { queryParams: { id: item.id } });
+  }
+
+  onDelete(item: Deceased) {
+    this.router.navigate(['/main/deceased-delete'], { queryParams: { id: item.id } });
+  }
+
+  onRefresh() {
+    this.loadDeceased();
+  }
+
+  onViewJazigo(jazigo: any) {
+    const dialogData: SharedModalViewData = {
+      title: 'Detalhes do Jazigo',
+      fields: [
+        { label: 'Identificação', value: jazigo.identificacao },
+        { label: 'Localização', value: jazigo.localizacao },
+        { label: 'Status', value: jazigo.status },
+      ]
+    };
+    this.dialog.open(SharedModalViewComponent, {
+      data: dialogData,
+      width: '500px'
+    });
+  }
+
   private loadDeceased() {
     this.deceasedService.listAll().subscribe({
       next: (response) => {
@@ -51,37 +90,11 @@ export class DeceasedControlPanelComponent implements OnInit {
       },
       error: (error) => {
         this.snackBar.open(
-          'Erro ao carregar falecidos: ' + error.message,
+          `Erro ao carregar falecidos: ${error?.message || 'Erro desconhecido'}`,
           'Fechar',
           { duration: 5000, panelClass: ['error-snackbar'] }
         );
       },
     });
-  }
-
-  onCreateNew() {
-    this.router.navigate(['/main/deceased-create']);
-  }
-
-  onView(item: Deceased) {
-    this.router.navigate(['/main/deceased-view'], {
-      queryParams: { id: item.id },
-    });
-  }
-
-  onEdit(item: Deceased) {
-    this.router.navigate(['/main/deceased-update'], {
-      queryParams: { id: item.id },
-    });
-  }
-
-  onDelete(item: Deceased) {
-    this.router.navigate(['/main/deceased-delete'], {
-      queryParams: { id: item.id },
-    });
-  }
-
-  onRefresh() {
-    this.loadDeceased();
   }
 }
