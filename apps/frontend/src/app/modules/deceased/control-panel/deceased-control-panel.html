@@ -14,8 +14,15 @@
     [subtitle]="subtitle"
     [columns]="columns"
     [data]="deceased"
-    (onView)="onView($event)"
-    (onEdit)="onEdit($event)"
-    (onDelete)="onDelete($event)"
+    [customCellTemplate]="jazigoTemplate"
+    (view)="onView($event)"
+    (delete)="onDelete($event)"
   ></app-shared-table>
+
+  <!-- Template para o jazigo -->
+  <ng-template #jazigoTemplate let-item>
+    <span class="jazigo-link" (click)="onViewJazigo(item.jazigo)">
+      {{ item.jazigo?.identificacao || item.jazigo?.nome || item.jazigo || 'Não informado' }}
+    </span>
+  </ng-template>
 </div>
