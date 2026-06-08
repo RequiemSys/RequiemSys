@@ -32,7 +32,7 @@ export class UpdateBurialComponent implements OnInit {
 
   form = this.fb.group({
     id: [0],
-    falecido_id: ['', Validators.required],
+    falecido_id: [null as number | null, Validators.required],
     data_sepultamento: ['', Validators.required],
     status: ['', Validators.required]
   });
@@ -52,7 +52,7 @@ export class UpdateBurialComponent implements OnInit {
           this.burial = data;
           this.form.patchValue({
             id: data.id ?? 0,
-            falecido_id: data.falecido_id ?? '',
+            falecido_id: data.falecido_id ?? null,
             data_sepultamento: data.data_sepultamento ?? '',
             status: data.status ?? 'Agendamento pendente'
           });
@@ -73,7 +73,13 @@ export class UpdateBurialComponent implements OnInit {
     this.submitting.set(true);
     this.submitError.set(null);
 
-    const payload = this.form.getRawValue() as BurialPayload;
+    const rawValue = this.form.getRawValue();
+    const payload: BurialPayload = {
+      id: rawValue.id ?? undefined,
+      falecido_id: rawValue.falecido_id as number,
+      data_sepultamento: rawValue.data_sepultamento as string,
+      status: rawValue.status as string
+    };
 
     this.service.update(this.idOriginal, payload).subscribe({
       next: () => {
@@ -82,9 +88,8 @@ export class UpdateBurialComponent implements OnInit {
       },
       error: (error) => {
         this.submitting.set(false);
-        this.submitError.set(
-          error?.error?.detail || 'Erro ao atualizar sepultamento.'
-        );
+        this.submitError.set('Erro ao atualizar sepultamento. Tente novamente.');
+        console.error(error);
       }
     });
   }

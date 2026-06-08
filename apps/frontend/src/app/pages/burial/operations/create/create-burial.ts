@@ -27,7 +27,7 @@ export class CreateBurialComponent {
   submitError = signal<string | null>(null);
 
   form = this.fb.group({
-    falecido_id: [null, Validators.required],
+    falecido_id: [null as number | null, Validators.required],
     data_sepultamento: ['', Validators.required],
     status: ['Agendamento pendente', Validators.required]
   });
@@ -41,7 +41,12 @@ export class CreateBurialComponent {
     this.submitting.set(true);
     this.submitError.set(null);
 
-    const payload = this.form.getRawValue() as CreateBurialPayload;
+    const rawValue = this.form.getRawValue();
+    const payload: CreateBurialPayload = {
+      falecido_id: rawValue.falecido_id as number,
+      data_sepultamento: rawValue.data_sepultamento as string,
+      status: rawValue.status as string
+    };
 
     this.createBurialService.createBurial(payload).subscribe({
       next: () => {
@@ -50,9 +55,8 @@ export class CreateBurialComponent {
       },
       error: (error) => {
         this.submitting.set(false);
-        this.submitError.set(
-          error?.error?.detail || 'Erro ao cadastrar sepultamento.'
-        );
+        this.submitError.set('Erro ao criar sepultamento. Tente novamente.');
+        console.error(error);
       }
     });
   }

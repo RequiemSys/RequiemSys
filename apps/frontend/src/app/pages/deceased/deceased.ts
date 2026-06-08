@@ -38,7 +38,7 @@ export class DeceasedComponent implements OnInit {
   columns = [
     { key: 'nome', label: 'Falecido' },
     { key: 'data', label: 'Data de falecimento' },
-    { key: 'jazigo', label: 'Jazigo' },
+   // { key: 'jazigo', label: 'Jazigo' },
     { key: 'status', label: 'Status' }
   ];
 
@@ -65,7 +65,7 @@ export class DeceasedComponent implements OnInit {
               .toLocaleDateString('pt-BR')
             : '-',
 
-          jazigo: f.jazigo || '-',
+          jazigo: (f as any).responsible?.name || '-',
 
           editValue: f.cpf
 
