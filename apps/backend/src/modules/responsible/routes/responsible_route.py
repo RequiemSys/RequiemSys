@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
+from src.modules.falecidos.service.schemas import FalecidoResponse
 from src.core.database import get_db
 
 from src.modules.responsible.service.service import ResponsibleService
@@ -10,6 +11,11 @@ from src.modules.responsible.service.schemas import (
     ResponsibleUpdate,
     ResponsibleResponse
 )
+
+ResponsibleCreate.model_rebuild()
+FalecidoResponse.model_rebuild()
+ResponsibleResponse.model_rebuild()
+ResponsibleUpdate.model_rebuild()
 
 router = APIRouter(
     prefix='/responsaveis',

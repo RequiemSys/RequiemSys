@@ -8,6 +8,7 @@
   [queryParamKey]="'id'"
   [queryParamValue]="'id'"
   [showDelete]="true"
+  (view)="openView($event)"
   (delete)="onDelete($event)"
 >
 </app-shared-table>

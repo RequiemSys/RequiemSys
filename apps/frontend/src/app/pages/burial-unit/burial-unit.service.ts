@@ -33,4 +33,8 @@ export class BurialUnitService {
     return this.http.delete<{ message: string }>(`${this.apiUrl}${id}`);
   }
 
+  getById(id: number): Observable<BurialUnit> {
+    return this.http.get<BurialUnit>(`${this.apiUrl}${id}`);
+  }
+
 }

@@ -23,7 +23,10 @@ class ResponsibleModel(Base):
     email: Mapped[str] = mapped_column(String(100), nullable=True)
     address: Mapped[str] = mapped_column(String(100), nullable=True)
     deceased_id: Mapped[int] = mapped_column(
-        ForeignKey('falecidos.id'),
+        ForeignKey('falecidos.id', ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False
     )
-    deceased: Mapped["FalecidoModel"] = relationship()
+    deceased: Mapped["FalecidoModel"] = relationship(
+        back_populates="responsible",
+
+        )

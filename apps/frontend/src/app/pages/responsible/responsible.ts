@@ -38,6 +38,7 @@ export class ResponsibleComponent implements OnInit {
     { key: 'responsavel', label: 'Responsável' },
     { key: 'telefone', label: 'Telefone' },
     { key: 'emailExibicao', label: 'E-mail' },
+    { key: 'deceasedParent', label: 'Responsável por' },
   ];
 
   data: any[] = [];
@@ -80,6 +81,7 @@ export class ResponsibleComponent implements OnInit {
           responsavel: item.name ?? '-',
           telefone: item.phone ?? '-',
           emailExibicao: item.email ?? '-',
+          deceasedParent: item.deceased_parent ?? '-',
         }));
         this.cdr.detectChanges();
       },

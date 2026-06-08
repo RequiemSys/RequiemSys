@@ -5,7 +5,7 @@ from modules.falecidos.routes import falecido_route
 from modules.jazigos.routes import jazigo_route
 from modules.mail_sender.routes import mail_sender_routes
 
-#incluir todas as rotas aqui
+# incluir todas as rotas aqui
 
 api_router = APIRouter()
 

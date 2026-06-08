@@ -28,6 +28,7 @@ export interface Falecido {
   cpf?: string;
   observacoes?: string;
   status?: string;
+  responsible?: any | null;
 }
 
 @Injectable({

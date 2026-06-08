@@ -13,14 +13,16 @@ import {
   BurialUnit,
   BurialUnitService
 } from './burial-unit.service';
+import { SharedModalViewComponent } from '../../shared/shared-modal-view/shared-modal-view';
 
 import { formatBurialUnitStatus } from './operations/burial-unit-options';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-burial-unit',
   imports: [
     CommonModule,
-    SharedTableComponent
+    SharedTableComponent,
   ],
   templateUrl: './burial-unit.html',
   styleUrl: './burial-unit.css',
@@ -36,12 +38,12 @@ export class BurialUnitComponent implements OnInit {
   columns = [
     { key: 'jazigo', label: 'Jazigo' },
     { key: 'falecido', label: 'Falecido' },
-    { key: 'responsavel', label: 'Responsável' },
     { key: 'status', label: 'Status' },
     { key: 'concessao', label: 'Concessão até' },
   ];
 
   data: any[] = [];
+  private dialog = inject(MatDialog);
 
   ngOnInit(): void {
     this.loadBurialUnits();
@@ -89,5 +91,58 @@ export class BurialUnitComponent implements OnInit {
       error: (error) => console.error(error),
     });
   }
+  openView(item: any): void {
+    if (!item?.id) {
+      console.error('ID não encontrado no item fornecido.');
+      return;
+    }
 
+    const id = item.id
+
+    this.burialUnitService.getById(id).subscribe({
+      next: (burialUnit) => {
+        if (!burialUnit) {
+          console.warn('API retornou um valor vazio.')
+          return;
+        }
+
+        this.dialog.open(SharedModalViewComponent, {
+          data: {
+            title: 'Detalhes do jazigo',
+            fields: [
+              { 
+                label: 'Código', 
+                value: burialUnit.codigo ?? 'Não informado' 
+              },
+              { 
+                label: 'Tipo', 
+                value: burialUnit.tipo ?? 'Não informado' 
+              },
+              { 
+                label: 'Falecido', 
+                value: burialUnit.falecido ?? 'Não informado' 
+              },
+              { 
+                label: 'Localização', 
+                value: burialUnit.localizacao ?? 'Não informado' 
+              },
+              { 
+                label: 'Estado', 
+                value: burialUnit.status ?? 'Não informado' 
+              },
+              { 
+                label: 'Responsável', 
+                value: burialUnit.responsavel ?? 'Não informado' 
+              },
+              { 
+                label: 'Período concessivo', 
+                value: burialUnit.concessao ? `Até: ${burialUnit.concessao}` : 'Não informado' 
+              },
+            ]
+          }
+        });
+      },
+      error: (error) => console.error('Erro ao buscar detalhes:', error)
+    });
+  }
 }

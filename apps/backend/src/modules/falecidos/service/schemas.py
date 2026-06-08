@@ -3,6 +3,8 @@ from pydantic import BaseModel, ConfigDict, Field
 from enum import StrEnum
 from typing import Optional
 
+from src.modules.responsible.service.schemas import ResponsibleOutput
+
 
 class StatusFalecido(StrEnum):
     SEPULTAMENTO_PENDENTE = "sepultamento pendente"
@@ -52,6 +54,7 @@ class FalecidoUpdate(BaseModel):
     cpf: Optional[str] = None
     observacoes: Optional[str] = None
     status: Optional[StatusFalecido] = None
+    responsible: Optional[ResponsibleOutput] = None
 
 
 class FalecidoResponse(BaseModel):
@@ -70,4 +73,6 @@ class FalecidoResponse(BaseModel):
     cpf: Optional[str] = None
     observacoes: Optional[str] = None
     status: Optional[StatusFalecido] = None
+    responsible: Optional[ResponsibleOutput] = None
+
     model_config = ConfigDict(from_attributes=True)

@@ -1,7 +1,9 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from src.core.database import get_db
-from src.modules.jazigos.service.schemas import JazigoCreate, JazigoUpdate, JazigoResponse
+from src.modules.jazigos.service.schemas import (
+    JazigoCreate, JazigoUpdate, JazigoResponse
+    )
 from src.modules.jazigos.service.service import JazigoService
 from src.modules.jazigos.repository.repository import JazigoRepository
 

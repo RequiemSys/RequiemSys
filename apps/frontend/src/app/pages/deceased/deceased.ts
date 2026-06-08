@@ -181,6 +181,10 @@ export class DeceasedComponent implements OnInit {
                   label: 'Declaração de óbito',
                   value: falecido.num_declaracao_obito
                 },
+                               {
+                  label: 'Responsável',
+                  value: falecido.responsible.name ?? "Nenhum responsável associado"
+                },
 
                 {
                   label: 'Observações',
