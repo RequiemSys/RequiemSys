@@ -102,6 +102,31 @@
             </select>
           </div>
 
+          <div class="form-group">
+            <label for="periodoConcessivo">
+              Período Concessivo
+              <span class="req">*</span>
+            </label>
+            
+            <div class="datepicker-wrapper" style="position: relative; display: flex; align-items: center;">
+              <input
+                id="periodoConcessivo"
+                [matDatepicker]="picker"
+                formControlName="periodoConcessivo"
+                class="form-control"
+                placeholder="DD/MM/AAAA"
+              />
+              <mat-datepicker-toggle 
+                matSuffix 
+                [for]="picker"
+                style="position: absolute; right: 8px;"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </div>
+          </div>
+
+          <div class="form-group hidden-on-mobile"></div>
+
           <div class="form-group grid-full">
             <label for="observacoes">
               Observações

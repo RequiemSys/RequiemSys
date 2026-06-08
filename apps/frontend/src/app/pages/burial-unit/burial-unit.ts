@@ -84,7 +84,7 @@ export class BurialUnitComponent implements OnInit {
           falecido: item.falecido ?? '-',
           responsavel: item.responsavel ?? '-',
           status: formatBurialUnitStatus(item.status),
-          concessao: item.concessao ?? '-',
+          concessao: item.data_final_concessao ?? '-',
         }));
         this.cdr.detectChanges();
       },
@@ -136,7 +136,7 @@ export class BurialUnitComponent implements OnInit {
               },
               { 
                 label: 'Período concessivo', 
-                value: burialUnit.concessao ? `Até: ${burialUnit.concessao}` : 'Não informado' 
+                value: burialUnit.data_final_concessao ? `${burialUnit.data_final_concessao}` : 'Não informado' 
               },
             ]
           }

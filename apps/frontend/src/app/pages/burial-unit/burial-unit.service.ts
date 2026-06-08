@@ -13,7 +13,7 @@ export interface BurialUnit {
   observacoes?: string;
   falecido?: string;
   responsavel?: string;
-  concessao?: string;
+  data_final_concessao?: string;
 }
 
 @Injectable({

@@ -3,10 +3,10 @@ import smtplib
 from typing import Any
 
 from jinja2 import Template
-from src.modules.mail_sender.repository.repository import (
+from src.modules.notification.repository.repository import (
     EmailRepository
     )
-from src.modules.mail_sender.service.schemas import (
+from src.modules.notification.service.schemas import (
     EmailOutput,
     SendMail
     )

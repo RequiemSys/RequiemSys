@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from src.modules.mail_sender.repository.repository import (
+from src.modules.notification.repository.repository import (
     EmailRepository
     )
-from src.modules.mail_sender.service.schemas import (
+from src.modules.notification.service.schemas import (
     EmailOutput,
     SendMail
     )
-from src.modules.mail_sender.service.service import (
+from src.modules.notification.service.service import (
     SendMailService
     )
 from src.core.database import get_db

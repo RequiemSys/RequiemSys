@@ -1,0 +1,46 @@
+@baseUrl = http://0.0.0.0:8000/api/v1
+### Configuração de Variáveis
+@contentType = application/json
+
+###
+
+###
+
+### 1. Criar um novo registro de sepultamento (POST)
+# O status pode ser omitido se quiser usar o default (AGENDAMENTO_PENDENTE)
+POST {{baseUrl}}/burial/
+Content-Type: {{contentType}}
+
+{
+  "falecido_id": 1,
+  "data_sepultamento": "2026-06-08",
+  "status": "Agendamento pendente"
+}
+
+###
+
+### 2. Listar todos os sepultamentos (GET)
+GET {{baseUrl}}/burial/
+
+###
+
+### 3. Buscar um sepultamento por ID (GET com Query)
+GET {{baseUrl}}/burial/?id=1
+
+###
+
+### 4. Atualizar dados de um sepultamento (PUT com Query)
+# O ID do registro que será atualizado vai na URL (?id=1)
+# Os novos dados vão no corpo da requisição
+PUT {{baseUrl}}/burial/?id=1
+Content-Type: {{contentType}}
+
+{
+  "data_sepultamento": "2026-06-09",
+  "status": "CONFIRMADO"
+}
+
+###
+
+### 5. Deletar um sepultamento (DELETE com Query)
+DELETE {{baseUrl}}/burial/delete?id=1

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from src.modules.mail_sender.repository.models import EmailLogInfo
-from src.modules.mail_sender.service.schemas import SendMail
+from src.modules.notification.repository.models import EmailLogInfo
+from src.modules.notification.service.schemas import SendMail
 
 
 class EmailRepository:

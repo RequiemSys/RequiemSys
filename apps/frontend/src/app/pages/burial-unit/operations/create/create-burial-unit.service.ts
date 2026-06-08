@@ -10,6 +10,7 @@ export interface CreateBurialUnitPayload {
   localizacao: string;
   status: string;
   observacoes: string;
+  data_final_concessao: string;
 }
 
 @Injectable({
