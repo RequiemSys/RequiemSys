@@ -36,6 +36,7 @@ export class BurialComponent {
 
   data = [
     {
+      id: 1,
       falecido: 'Renato Martins',
       data: '08/08/2025',
       jazigo: '03A',

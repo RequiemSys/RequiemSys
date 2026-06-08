@@ -39,6 +39,7 @@ export class ExhumationComponent {
       falecido: 'Renato Martins',
       sepultamento: '08/08/2028',
       exumacao: '08/08/2028',
+      cpf: '000.000.000-00',
       status: 'Pendente'
     }
   ];
