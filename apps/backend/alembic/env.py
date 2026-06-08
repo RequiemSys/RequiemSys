@@ -9,7 +9,8 @@ from src.modules.users.repository.models import UserModel
 from src.modules.falecidos.repository.models import FalecidoModel
 from src.modules.responsible.repository.models import ResponsibleModel
 from src.modules.jazigos.repository.models import JazigoModel
-from src.modules.mail_sender.repository.models import EmailLogInfo
+from src.modules.notification.repository.models import EmailLogInfo
+from src.modules.burial.repository.models import BurialModel
 
 
 # this is the Alembic Config object, which provides

@@ -22,10 +22,13 @@ class ResponsibleService:
         responsible_dict = data.model_dump()
 
         deceased = self.deceased_repo.get_by_id(id=data.deceased_id)
+        if not deceased:
+            raise ValueError("Falecido não encontrado")
 
         responsible_dict["deceased"] = deceased
 
         schema_to_model = ResponsibleModel(**responsible_dict)
+
         responsible = self.repository.create(schema_to_model)
 
         return ResponsibleResponse.model_validate(

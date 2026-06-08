@@ -19,10 +19,10 @@ export const BURIAL_UNIT_LOCATIONS = [
 ];
 
 export const BURIAL_UNIT_STATUS = [
-  { value: 'disponivel', label: 'Disponível' },
-  { value: 'ocupado', label: 'Ocupado' },
-  { value: 'reservado', label: 'Reservado' },
-  { value: 'manutencao', label: 'Em manutenção' },
+  { value: 'Disponível', label: 'Disponível' },
+  { value: 'Ocupado', label: 'Ocupado' },
+  { value: 'Reservado', label: 'Reservado' },
+  { value: 'Em manutenção', label: 'Em manutenção' },
 ];
 
 export function formatBurialUnitStatus(status?: string): string {

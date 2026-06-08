@@ -1,5 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import {
   FormBuilder,
   ReactiveFormsModule,
@@ -29,8 +30,10 @@ import {
     CommonModule,
     ReactiveFormsModule,
     MatIconModule,
-    RouterLink
+    RouterLink,
+    MatDatepickerModule
   ],
+  providers: [provideNativeDateAdapter()],
   templateUrl: './create-burial-unit.html',
   styleUrl: './create-burial-unit.css',
 })
@@ -52,6 +55,7 @@ export class CreateBurialUnitComponent {
     codigo: ['', Validators.required],
     localizacao: ['', Validators.required],
     status: ['disponivel', Validators.required],
+    periodoConcessivo: [null, Validators.required],
     observacoes: [''],
   });
 
@@ -61,6 +65,17 @@ export class CreateBurialUnitComponent {
       return;
     }
 
+  const formatDateOnly = (date: Date | null | undefined): string => {
+    if (!date) return '';
+    
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    
+    return `${year}-${month}-${day}`;
+  };
+
     const raw = this.form.getRawValue();
     const payload: CreateBurialUnitPayload = {
       tipo: raw.tipo!,
@@ -68,6 +83,7 @@ export class CreateBurialUnitComponent {
       localizacao: raw.localizacao!,
       status: raw.status!,
       observacoes: raw.observacoes ?? '',
+      data_final_concessao: formatDateOnly(raw.periodoConcessivo),
     };
 
     this.submitting.set(true);

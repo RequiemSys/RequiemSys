@@ -10,8 +10,6 @@ from src.core.database import Base
 
 if TYPE_CHECKING:
     from src.modules.responsible.repository.models import ResponsibleModel
-    from src.modules.burial.repository.models import BurialModel
-    from src.modules.jazigos.repository.models import JazigoModel
 
 
 class FalecidoModel(Base):
@@ -45,16 +43,6 @@ class FalecidoModel(Base):
     status: Mapped[str] = mapped_column(String(100), nullable=True)
     responsible: Mapped[Optional["ResponsibleModel"]] = relationship(
         back_populates="deceased",
-        cascade="all, delete-orphan",
-        passive_deletes=True
-    )
-    burial: Mapped[Optional["BurialModel"]] = relationship(
-        back_populates="falecido",
-        cascade="all, delete-orphan",
-        passive_deletes=True
-    )
-    jazigo: Mapped[Optional["JazigoModel"]] = relationship(
-        back_populates="falecido",
         cascade="all, delete-orphan",
         passive_deletes=True
     )

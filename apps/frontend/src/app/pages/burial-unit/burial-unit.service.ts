@@ -13,7 +13,7 @@ export interface BurialUnit {
   observacoes?: string;
   falecido?: string;
   responsavel?: string;
-  concessao?: string;
+  data_final_concessao?: string;
 }
 
 @Injectable({
@@ -31,6 +31,10 @@ export class BurialUnitService {
 
   deleteById(id: number): Observable<{ message: string }> {
     return this.http.delete<{ message: string }>(`${this.apiUrl}${id}`);
+  }
+
+  getById(id: number): Observable<BurialUnit> {
+    return this.http.get<BurialUnit>(`${this.apiUrl}${id}`);
   }
 
 }

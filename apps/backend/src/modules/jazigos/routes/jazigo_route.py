@@ -1,9 +1,19 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
+from src.modules.burial.service.schemas import BurialOutput
 from src.core.database import get_db
-from src.modules.jazigos.service.schemas import JazigoCreate, JazigoUpdate, JazigoResponse
+from src.modules.jazigos.service.schemas import (
+    JazigoCreate, JazigoUpdate, JazigoResponse
+    )
 from src.modules.jazigos.service.service import JazigoService
 from src.modules.jazigos.repository.repository import JazigoRepository
+from src.modules.falecidos.service.schemas import FalecidoResponse
+
+FalecidoResponse.model_rebuild()
+JazigoCreate.model_rebuild()
+JazigoUpdate.model_rebuild()
+JazigoResponse.model_rebuild()
+BurialOutput.model_rebuild()
 
 router = APIRouter(prefix="/jazigos", tags=["jazigos"])
 
