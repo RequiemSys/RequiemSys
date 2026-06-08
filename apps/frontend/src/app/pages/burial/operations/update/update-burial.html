@@ -1,0 +1,53 @@
+<div class="page-container">
+  <div class="back-button">
+    <button type="button" [routerLink]="['/main/burial']">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar
+    </button>
+  </div>
+
+  <div class="registro-container">
+    <div class="registro-card registro-card--wide">
+      <div class="logo">
+        <h1>Editar Sepultamento</h1>
+        <p>Atualize os dados do sepultamento.</p>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="registro-form">
+        <div class="section-title">Dados do Sepultamento</div>
+
+        <div class="cadastro-grid">
+          <input type="hidden" formControlName="id" />
+
+          <div class="form-group">
+            <label for="falecido_id">ID do Falecido</label>
+            <input id="falecido_id" type="number" formControlName="falecido_id" class="form-control" [placeholder]="burial?.falecido_id?.toString() || ''" />
+          </div>
+
+          <div class="form-group">
+            <label for="data_sepultamento">Data do Sepultamento</label>
+            <input id="data_sepultamento" type="date" formControlName="data_sepultamento" class="form-control" />
+          </div>
+
+          <div class="form-group grid-full">
+            <label for="status">Status</label>
+            <select id="status" formControlName="status" class="form-control">
+              <option value="Agendamento pendente">Agendamento pendente</option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="submitError()" class="form-error">
+          {{ submitError() }}
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-secundario" [routerLink]="['/main/burial']">Cancelar</button>
+          <button type="submit" class="btn-registro" [disabled]="submitting()">
+            {{ submitting() ? 'Atualizando...' : 'Atualizar Sepultamento' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
