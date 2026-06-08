@@ -19,6 +19,10 @@ import { CreateResponsibleComponent } from './pages/responsible/operations/creat
 import { ResponsibleUpdateComponent } from './pages/responsible/operations/update/update-responsible';
 import { CreateBurialUnitComponent } from './pages/burial-unit/operations/create/create-burial-unit';
 import { BurialUnitUpdateComponent } from './pages/burial-unit/operations/update/update-burial-unit';
+import { CreateBurialComponent } from './pages/burial/operations/create/create-burial';
+import { UpdateBurialComponent } from './pages/burial/operations/update/update-burial';
+import { CreateExhumationComponent } from './pages/exhumation/operations/create/create-exhumation';
+import { UpdateExhumationComponent } from './pages/exhumation/operations/update/update-exhumation';
 import { NotificationComponent } from './pages/notifications/notification';
 import { HomeComponent } from './pages/home/home';
 
@@ -46,6 +50,10 @@ export const routes: Routes = [
         {path: 'edit-responsible', component: ResponsibleUpdateComponent},
         {path: 'create-burial-unit', component: CreateBurialUnitComponent},
         {path: 'edit-burial-unit', component: BurialUnitUpdateComponent},
+        {path: 'create-burial', component: CreateBurialComponent},
+        {path: 'edit-burial', component: UpdateBurialComponent},
+        {path: 'create-exhumation', component: CreateExhumationComponent},
+        {path: 'edit-exhumation', component: UpdateExhumationComponent},
         {path: 'notifications', component: NotificationComponent},
         {path: '', component: HomeComponent}
     ]},
