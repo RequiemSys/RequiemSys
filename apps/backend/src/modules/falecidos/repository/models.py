@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from src.modules.responsible.repository.models import ResponsibleModel
     from src.modules.burial.repository.models import BurialModel
     from src.modules.jazigos.repository.models import JazigoModel
+    from src.modules.exhumation.repository.models import ExhumationModel
 
 
 class FalecidoModel(Base):
@@ -54,6 +55,11 @@ class FalecidoModel(Base):
         passive_deletes=True
     )
     jazigo: Mapped[Optional["JazigoModel"]] = relationship(
+        back_populates="falecido",
+        cascade="all, delete-orphan",
+        passive_deletes=True
+    )
+    exhumation: Mapped[Optional["ExhumationModel"]] = relationship(
         back_populates="falecido",
         cascade="all, delete-orphan",
         passive_deletes=True

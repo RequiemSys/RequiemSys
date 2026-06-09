@@ -3,6 +3,9 @@
   [subtitle]="subtitle"
   [columns]="columns"
   [data]="data"
-  [createRoute]="'/main/create-deceased'"
+  [createRoute]="'/main/create-exhumation'"
+  [queryParamKey]="'id'"
+  [queryParamValue]="'id'"
+  (view)="openView($event)"
 >
 </app-shared-table>

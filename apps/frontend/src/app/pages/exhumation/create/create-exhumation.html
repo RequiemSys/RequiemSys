@@ -1,0 +1,164 @@
+<div class="page-container">
+
+  <div class="back-button">
+    <button type="button" [routerLink]="['/main/responsible']">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar
+    </button>
+  </div>
+
+  <div class="registro-container">
+
+    <div class="registro-card registro-card--wide">
+
+      <div class="logo">
+        <h1>Exumação</h1>
+        <p>Preencha os dados do Falecido</p>
+      </div>
+
+      <form
+        [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        class="registro-form"
+      >
+
+        <div class="section-title">
+          Dados do Falecido
+        </div>
+
+        <div class="cadastro-grid">
+
+          <div class="form-group">
+            <label for="date">
+              Data de Agendamento 
+              <span class="req">*</span>
+            </label>
+
+            <input
+              id="date"
+              type="date"
+              formControlName="date"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="reason">
+              Motivo 
+              <span class="req">*</span>
+            </label>
+
+            <select
+              id="reason"
+              formControlName="reason"
+              class="form-control"
+            >
+              <option value="" disabled selected hidden>
+                Selecione
+              </option>
+
+              <option value="cremacao">Cremação</option>
+              <option value="ossario">Ossário</option>
+              <option value="nao_reclamado">Não reclamado - Ossário Geral</option>
+              <option value="transferido">Transferido</option>
+              <option value="Inumado">Inumado</option>
+              <option value="cancelado">Cancelado</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="deceased_id">
+              Falecido
+              <span class="req">*</span>
+            </label>
+
+            <button
+              id="deceased_id"
+              type="button"
+              class="form-control btn-busca-modal"
+              (click)="abrirModal()"
+            >
+              <div class="modal-button">
+                <mat-icon>{{ nomeFalecidoSelecionado() ? 'check_circle' : 'search' }}</mat-icon>
+                <p>{{ nomeFalecidoSelecionado() || 'Selecione um falecido' }}</p>
+              </div>
+            </button>
+          </div>
+
+        </div>
+
+        @if (submitError()) {
+          <p class="form-error">
+            {{ submitError() }}
+          </p>
+        }
+
+        <div class="form-actions">
+
+          <button
+            type="button"
+            class="btn-secundario"
+            [routerLink]="['/main/responsible']"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="submit"
+            class="btn-registro"
+            [disabled]="form.invalid || submitting()"
+          >
+            {{ submitting() ? 'Cadastrando...' : 'Cadastrar' }}
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <dialog #modalFalecidos class="modal-dialog" (click)="fecharPorFora($event)">
+    <div class="modal-header">
+      <h2>Selecionar Falecido</h2>
+      <button type="button" class="btn-fechar-x" (click)="fecharModal()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="modal-search-container">
+      <div class="search-input-wrapper">
+        <mat-icon>search</mat-icon>
+        <input 
+          type="text" 
+          placeholder="Pesquisar por nome..." 
+          class="modal-search-input"
+          [value]="filtroNome()"
+          (input)="atualizarFiltro($event)"
+        />
+      </div>
+    </div>
+
+    <div class="modal-body">
+      @if (carregandoFalecidos()) {
+        <div class="modal-loading">Carregando lista...</div>
+      } @else {
+        <ul class="lista-falecidos">
+          @for (falecido of falecidosFiltrados(); track falecido.id) {
+            <li class="item-falecido" (click)="selecionarFalecido(falecido)">
+              <mat-icon>person</mat-icon>
+              <div class="item-info">
+                <span class="item-nome">{{ falecido.nome_completo }}</span>
+                <span class="item-detalhe">CPF: {{ falecido.cpf || 'Não informado' }}</span>
+              </div>
+            </li>
+          } @empty {
+            <li class="lista-vazia">Nenhum falecido encontrado.</li>
+          }
+        </ul>
+      }
+    </div>
+  </dialog>
+
+</div>

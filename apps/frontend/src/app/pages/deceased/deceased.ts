@@ -183,7 +183,7 @@ export class DeceasedComponent implements OnInit {
                 },
                                {
                   label: 'Responsável',
-                  value: falecido.responsible.name ?? "Nenhum responsável associado"
+                  value: falecido.responsible ? falecido.responsible.name : "Nenhum responsável associado"
                 },
 
                 {

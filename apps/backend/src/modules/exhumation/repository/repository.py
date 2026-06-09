@@ -1,64 +1,60 @@
-from typing import Any
-
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import select
-from src.modules.responsible.repository.models import ResponsibleModel
-from src.modules.falecidos.repository.models import FalecidoModel
-from src.modules.falecidos.service.schemas import (
-    FalecidoCreate,
-    FalecidoUpdate
+from src.modules.exhumation.repository.models import ExhumationModel
+from src.modules.exhumation.service.schemas import (
+    ExhumationCreate,
+    ExhumationUpdate
     )
 
 
-class FalecidoRepository:
+class ExhumationRepository:
     def __init__(self, db: Session):
         self.db = db
 
-    def create(self, falecido: FalecidoCreate) -> FalecidoModel:
-        falecido_model = FalecidoModel(**falecido.model_dump())
+    def create(self, exhumation: ExhumationCreate) -> ExhumationModel:
+        exhumation_model = ExhumationModel(**exhumation.model_dump())
 
-        self.db.add(falecido_model)
+        self.db.add(exhumation_model)
         self.db.commit()
-        self.db.refresh(falecido_model)
+        self.db.refresh(exhumation_model)
 
-        return falecido_model
+        return exhumation_model
 
-    def get_all(self) -> list[FalecidoModel]:
-        stmt = select(FalecidoModel).options(
-                joinedload(FalecidoModel.responsible)
+    def get_all(self) -> list[ExhumationModel]:
+        stmt = select(ExhumationModel).options(
+                joinedload(ExhumationModel.falecido)
             )
         result = self.db.execute(stmt).scalars().all()
         return result  # type: ignore
 
-    def get_by_cpf(self, cpf: str) -> FalecidoModel | None:
+    def get_by_id(self, id: int) -> ExhumationModel | None:
         return self.db.execute(
-            select(FalecidoModel).where(FalecidoModel.cpf == cpf).options(
-                joinedload(FalecidoModel.responsible)
+            select(ExhumationModel).where(ExhumationModel.id == id).options(
+                joinedload(ExhumationModel.falecido)
             )
         ).scalars().first()
 
-    def get_by_id(self, id: Any) -> FalecidoModel | None:
-        return self.db.execute(
-            select(FalecidoModel).where(FalecidoModel.id == id)
-        ).scalars().first()
-
-    def update(self, cpf: str, dados: FalecidoUpdate) -> FalecidoModel | None:
-        falecido_model = self.get_by_cpf(cpf)
-        if not falecido_model:
+    def update(self, id: int, dados: ExhumationUpdate
+               ) -> ExhumationModel | None:
+        exhumation_model = self.get_by_id(id)
+        if not exhumation_model:
             return None
         for campo, valor in dados.model_dump(exclude_unset=True).items():
-            if campo == "responsible" and isinstance(valor, dict):
-                setattr(falecido_model, campo, ResponsibleModel(**valor))
+            if campo == "falecido" and isinstance(valor, dict):
+                if exhumation_model.falecido:
+                    for k, v in valor.items():
+                        setattr(exhumation_model.falecido, k, v)
                 continue
-            setattr(falecido_model, campo, valor)
-        self.db.commit()
-        self.db.refresh(falecido_model)
-        return falecido_model
 
-    def delete(self, cpf: str) -> bool:
-        falecido_model = self.get_by_cpf(cpf)
-        if not falecido_model:
+            setattr(exhumation_model, campo, valor)
+        self.db.commit()
+        self.db.refresh(exhumation_model)
+        return exhumation_model
+
+    def delete(self, id: int) -> bool:
+        exhumation_model = self.get_by_id(id)
+        if not exhumation_model:
             return False
-        self.db.delete(falecido_model)
+        self.db.delete(exhumation_model)
         self.db.commit()
         return True

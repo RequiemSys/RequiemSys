@@ -11,6 +11,7 @@ from src.modules.responsible.repository.models import ResponsibleModel
 from src.modules.jazigos.repository.models import JazigoModel
 from src.modules.notification.repository.models import EmailLogInfo
 from src.modules.burial.repository.models import BurialModel
+from src.modules.exhumation.repository.models import ExhumationModel
 
 
 # this is the Alembic Config object, which provides

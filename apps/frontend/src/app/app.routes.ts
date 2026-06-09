@@ -22,6 +22,7 @@ import { BurialUnitUpdateComponent } from './pages/burial-unit/operations/update
 import { CreateBurialComponent } from './pages/burial/operations/create/create-burial';
 import { NotificationComponent } from './pages/notifications/notification';
 import { HomeComponent } from './pages/home/home';
+import { CreateExhumationComponent } from './pages/exhumation/create/create-exhumation';
 
 export const routes: Routes = [
   { path: '', component: Login },
@@ -49,6 +50,7 @@ export const routes: Routes = [
         {path: 'edit-burial-unit', component: BurialUnitUpdateComponent},
         {path: 'create-burial', component: CreateBurialComponent},
         {path: 'notifications', component: NotificationComponent},
+        {path: 'create-exhumation', component: CreateExhumationComponent},
         {path: '', component: HomeComponent}
     ]},
 ];

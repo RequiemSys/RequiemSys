@@ -1,74 +1,43 @@
-from typing import Protocol
-from src.modules.responsible.repository.repository import ResponsibleRepository
-from src.modules.falecidos.service.schemas import (
-    FalecidoCreate,
-    FalecidoResponse,
-    FalecidoUpdate
+from src.modules.exhumation.service.schemas import (
+    ExhumationCreate,
+    ExhumationResponse,
+    ExhumationUpdate
     )
-from src.modules.falecidos.repository.repository import FalecidoRepository
+from src.modules.exhumation.repository.repository import ExhumationRepository
 from fastapi import HTTPException, status
 
 
-class IFalecidoService(Protocol):
-    def create_falecido(self, falecido: FalecidoCreate): ...
-    def get_all_falecidos(self): ...
-    def get_falecido_by_id(self, falecido_id: int): ...
-    def update_falecido(self, falecido_id: int, dados: FalecidoUpdate): ...
-    def delete_falecido(self, falecido_id: int): ...
-
-
-class FalecidoService:
+class ExhumationService:
     def __init__(
             self,
-            repository: FalecidoRepository,
-            responsible_repo: ResponsibleRepository
+            repository: ExhumationRepository,
             ):
         self.repository = repository
-        self.responsible_repo = responsible_repo
 
-    def create_falecido(self, falecido: FalecidoCreate):
-        return self.repository.create(falecido)
+    def create(self, exhumation: ExhumationCreate):
+        return self.repository.create(exhumation)
 
-    def get_all_falecidos(self) -> list[FalecidoResponse]:
-        deceased_list = self.repository.get_all()
+    def get_all(self) -> list[ExhumationResponse]:
+        exhumation_list = self.repository.get_all()
         return [
-            FalecidoResponse.model_validate(deceased) for
-            deceased in deceased_list
+            ExhumationResponse.model_validate(exhumation) for
+            exhumation in exhumation_list
             ]
 
-    def get_falecido_by_cpf(self, cpf: str) -> FalecidoResponse:
-        falecido = self.repository.get_by_cpf(cpf)
-        if not falecido:
+    def get_by_id(self, id: int) -> ExhumationResponse:
+        exhumation = self.repository.get_by_id(id)
+        if not exhumation:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Falecido não encontrado"
             )
-        return FalecidoResponse.model_validate(falecido)
+        return ExhumationResponse.model_validate(exhumation)
 
-    def update_falecido(self, cpf: str, dados: FalecidoUpdate):
-        falecido = self.repository.update(cpf, dados)
-        if not falecido:
+    def update(self, id: int, dados: ExhumationUpdate):
+        exhumation = self.repository.update(id, dados)
+        if not exhumation:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Falecido não encontrado"
             )
-        return falecido
-
-    def delete_falecido(self, cpf: str):
-        falecido = self.repository.get_by_cpf(cpf)
-
-        if falecido:
-            responsible = self.responsible_repo.get_by_parent_id(
-                parent_id=falecido.id
-                )
-            self.responsible_repo.delete(
-                responsible.email
-                ) if responsible else None
-            deleted = self.repository.delete(falecido.cpf)
-
-        if not deleted:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="Falecido não encontrado"
-            )
-        return {"message": "Falecido removido com sucesso"}
+        return exhumation

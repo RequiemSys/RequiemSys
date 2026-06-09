@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from src.modules.exhumation.routes import exhumation_route
 from modules.responsible.routes import responsible_route
 from modules.users.routes import user_route
 from modules.falecidos.routes import falecido_route
@@ -16,3 +17,4 @@ api_router.include_router(responsible_route.router)
 api_router.include_router(jazigo_route.router)
 api_router.include_router(mail_sender_routes.router)
 api_router.include_router(burial_route.router)
+api_router.include_router(exhumation_route.router)
