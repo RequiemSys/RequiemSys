@@ -219,6 +219,22 @@ td {
   transform: scale(1.1);
 }
 
+.email-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #2563eb;
+  transition: 0.2s ease;
+}
+
+.email-button:hover mat-icon {
+  color: #1d4ed8;
+  transform: scale(1.1);
+}
+
 .delete-button {
   display: flex;
   align-items: center;

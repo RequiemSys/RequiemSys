@@ -3,6 +3,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from enum import StrEnum
 from typing import Optional
 
+from src.modules.jazigos.service.schemas import JazigoOutput
 from src.modules.responsible.service.schemas import ResponsibleOutput
 
 
@@ -75,5 +76,6 @@ class FalecidoResponse(BaseModel):
     observacoes: Optional[str] = None
     status: Optional[StatusFalecido] = None
     responsible: Optional[ResponsibleOutput] = None
+    jazigo: Optional[JazigoOutput] = None
 
     model_config = ConfigDict(from_attributes=True)

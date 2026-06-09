@@ -29,6 +29,7 @@ export interface Falecido {
   observacoes?: string;
   status?: string;
   responsible?: any | null;
+  jazigo?: any | null
 }
 
 @Injectable({

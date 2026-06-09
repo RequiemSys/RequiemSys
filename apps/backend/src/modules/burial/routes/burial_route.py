@@ -58,3 +58,10 @@ def delete_falecido(
     db: Session = Depends(get_db)
 ):
     return _service(db).delete(id)
+
+
+@router.get('/count')
+def count(
+    db: Session = Depends(get_db)
+):
+    return _service(db).count()

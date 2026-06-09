@@ -4,5 +4,10 @@
   [columns]="columns"
   [data]="data"
   [showCreateButton]="false"
+  [showViewButton]="true"
+  [showEditButton]="false"
+  [showEmailButton]="true"
+  (view)="openView($event)"
+  (sendEmail)="enviarNotificacao($event)"
 >
 </app-shared-table>

@@ -51,3 +51,7 @@ class FalecidoService:
                 detail="Não encontrado"
             )
         return {"message": "Removido com sucesso"}
+
+    def count(self) -> int:
+        count = self.repository.count_burial_today()
+        return count

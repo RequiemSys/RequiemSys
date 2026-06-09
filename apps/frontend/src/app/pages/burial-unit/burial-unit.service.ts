@@ -11,8 +11,9 @@ export interface BurialUnit {
   localizacao?: string;
   status?: string;
   observacoes?: string;
-  falecido?: string;
-  responsavel?: string;
+  falecido?: any | null;
+  falecido_id?: number;
+  responsavel?: any | null;
   data_final_concessao?: string;
 }
 

@@ -31,6 +31,7 @@ class JazigoBase(BaseModel):
     localizacao: str
     status: StatusJazigo = StatusJazigo.DISPONIVEL
     observacoes: str | None = None
+    falecido_id: int | None = None
     falecido: "FalecidoResponse | None" = None
     burial: "BurialOutput | None" = None
     data_final_concessao: datetime.date | None = None
@@ -55,3 +56,16 @@ class JazigoResponse(JazigoBase):
 
     class Config:
         from_attributes = True
+
+
+class JazigoOutput(BaseModel):
+    id: int | None = None
+    tipo: TipoJazigo | None = None
+    codigo: str
+    localizacao: str
+    status: StatusJazigo = StatusJazigo.DISPONIVEL
+    observacoes: str | None = None
+    falecido_id: int | None = None
+    data_final_concessao: datetime.date | None = None
+
+    model_config = ConfigDict(from_attributes=True)

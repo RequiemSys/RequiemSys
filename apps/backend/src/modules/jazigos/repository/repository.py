@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import select
+from sqlalchemy import func, select
 from src.modules.jazigos.repository.models import JazigoModel
 from src.modules.jazigos.service.schemas import JazigoCreate, JazigoUpdate
 
@@ -9,7 +9,8 @@ class JazigoRepository:
         self.db = db
 
     def create(self, jazigo: JazigoCreate) -> JazigoModel:
-        jazigo_model = JazigoModel(**jazigo.model_dump())
+        dados_limpos = jazigo.model_dump(exclude={"falecido", "burial"})
+        jazigo_model = JazigoModel(**dados_limpos)
 
         self.db.add(jazigo_model)
         self.db.commit()
@@ -18,7 +19,14 @@ class JazigoRepository:
         return jazigo_model
 
     def get_all(self) -> list[JazigoModel]:
-        return self.db.execute(select(JazigoModel)).scalars().all()
+        return list(self.db.execute(select(JazigoModel)).scalars().all())
+
+    def count_avaible(self) -> int:
+        stmt = select(func.count()).select_from(JazigoModel).where(
+            JazigoModel.status == "Disponível"
+            )
+        final = self.db.execute(stmt)
+        return final.scalar_one()
 
     def get_by_id(self, jazigo_id: int) -> JazigoModel | None:
         return self.db.execute(
@@ -29,8 +37,11 @@ class JazigoRepository:
         jazigo_model = self.get_by_id(jazigo_id)
         if not jazigo_model:
             return None
-        for campo, valor in dados.model_dump(exclude_unset=True).items():
+
+        dados_atualizacao = dados.model_dump(exclude={"falecido", "burial"}, exclude_unset=True)
+        for campo, valor in dados_atualizacao.items():
             setattr(jazigo_model, campo, valor)
+
         self.db.commit()
         self.db.refresh(jazigo_model)
         return jazigo_model

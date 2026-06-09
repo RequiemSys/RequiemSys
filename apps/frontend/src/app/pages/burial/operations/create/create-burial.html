@@ -9,11 +9,11 @@
 
   <div class="registro-container">
 
-    <div class="registro-card registro-card--wide">
+    <div class="registro-card">
 
       <div class="logo">
         <h1>Novo Cadastro de Sepultamento</h1>
-        <p>Preencha os dados do sepultamento</p>
+        <p>Preencha os dados essenciais para o agendamento</p>
       </div>
 
       <form
@@ -27,18 +27,29 @@
         </div>
 
         <div class="cadastro-grid">
+          
           <div class="form-group">
-            <label for="falecido">
+            <label for="btn_busca_falecido">
               Falecido
               <span class="req">*</span>
             </label>
 
-            <input
-              id="falecido"
-              type="text"
-              formControlName="falecido"
-              class="form-control"
+            <input 
+              type="hidden" 
+              formControlName="falecido_id" 
             />
+
+            <button
+              id="btn_busca_falecido"
+              type="button"
+              class="form-control btn-busca-modal"
+              (click)="abrirModal()"
+            >
+              <div class="modal-button">
+                <mat-icon>{{ nomeFalecidoSelecionado() ? 'check_circle' : 'search' }}</mat-icon>
+                <p>{{ nomeFalecidoSelecionado() || 'Selecione um falecido' }}</p>
+              </div>
+            </button>
           </div>
 
           <div class="form-group">
@@ -56,56 +67,6 @@
           </div>
 
           <div class="form-group">
-            <label for="horario">
-              Horário
-              <span class="req">*</span>
-            </label>
-
-            <input
-              id="horario"
-              type="time"
-              formControlName="horario"
-              class="form-control"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="unidade_sepultamento">
-              Unidade de Sepultamento
-              <span class="req">*</span>
-            </label>
-
-            <select
-              id="unidade_sepultamento"
-              formControlName="unidade_sepultamento"
-              class="form-control"
-            >
-
-            <option value="" disabled selected>
-              Selecione
-            </option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="responsavel">
-              Responsável
-              <span class="req">*</span>
-            </label>
-
-            <input
-              id="responsavel"
-              type="text"
-              formControlName="responsavel"
-              class="form-control"
-            />
-          </div>
-
-          <div class="form-group">
             <label for="status">
               Status
               <span class="req">*</span>
@@ -116,31 +77,12 @@
               formControlName="status"
               class="form-control"
             >
-              <option value="Pendente">
-                Pendente
-              </option>
-
-              <option value="Concluído">
-                Concluído
-              </option>
-
-              <option value="Cancelado">
-                Cancelado
-              </option>
+              <option value="pendente">Pendente</option>
+              <option value="concluido">Concluído</option>
+              <option value="cancelado">Cancelado</option>
             </select>
           </div>
 
-          <div class="form-group grid-full">
-            <label for="observacoes">
-              Observações
-            </label>
-
-            <textarea
-              id="observacoes"
-              formControlName="observacoes"
-              class="form-control textarea-control"
-            ></textarea>
-          </div>
         </div>
 
         @if (submitError()) {
@@ -174,5 +116,43 @@
     </div>
 
   </div>
+
+  <dialog #modalFalecidos (click)="fecharPorFora($event)" class="busca-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Selecionar Falecido</h2>
+        <button type="button" class="btn-close" (click)="fecharModal()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="search-box">
+          <input 
+            type="text" 
+            placeholder="Buscar por nome..." 
+            class="form-control" 
+            [value]="filtroNome()" 
+            (input)="atualizarFiltro($event)"
+          />
+        </div>
+
+        @if (carregandoFalecidos()) {
+          <p class="loading-text">Carregando falecidos...</p>
+        } @else {
+          <ul class="lista-selecao">
+            @for (falecido of falecidosFiltrados(); track falecido.id) {
+              <li (click)="selecionarFalecido(falecido)">
+                <span>{{ falecido.nome_completo }}</span>
+                <mat-icon>chevron_right</mat-icon>
+              </li>
+            } @empty {
+              <li class="sem-resultados">Nenhum falecido encontrado</li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+  </dialog>
 
 </div>

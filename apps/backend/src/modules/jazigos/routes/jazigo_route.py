@@ -10,10 +10,10 @@ from src.modules.jazigos.repository.repository import JazigoRepository
 from src.modules.falecidos.service.schemas import FalecidoResponse
 
 FalecidoResponse.model_rebuild()
+BurialOutput.model_rebuild()
 JazigoCreate.model_rebuild()
 JazigoUpdate.model_rebuild()
 JazigoResponse.model_rebuild()
-BurialOutput.model_rebuild()
 
 router = APIRouter(prefix="/jazigos", tags=["jazigos"])
 
@@ -35,6 +35,13 @@ def get_all_jazigos(
     repository = JazigoRepository(db)
     service = JazigoService(repository)
     return service.get_all_jazigos()
+
+
+@router.get("/count")
+def count(db: Session = Depends(get_db)):
+    repository = JazigoRepository(db)
+    service = JazigoService(repository)
+    return service.count()
 
 
 @router.get("/{jazigo_id}", response_model=JazigoResponse)

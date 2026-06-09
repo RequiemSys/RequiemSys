@@ -6,7 +6,7 @@
         <mat-icon matListItemIcon svgIcon="tombstone"></mat-icon>
       </div>
       <div class="card-info">
-        <h2>0</h2>
+        <h2>{{ totalFalecidos }}</h2>
         <p>Total de Falecidos</p>
       </div>
     </div>
@@ -16,7 +16,7 @@
         <mat-icon>location_on</mat-icon>
       </div>
       <div class="card-info">
-        <h2>0</h2>
+        <h2>{{ jazigosDisponiveis }}</h2>
         <p>Jazigos Disponíveis</p>
       </div>
     </div>
@@ -26,7 +26,7 @@
         <mat-icon>assignment</mat-icon>
       </div>
       <div class="card-info">
-        <h2>0</h2>
+        <h2>{{ sepultamentosHoje }}</h2>
         <p>Sepultamentos Hoje</p>
       </div>
     </div>
@@ -34,7 +34,6 @@
   </section>
 
   <section class="activity-container">
-    <!--CARD 01 ATIVIDADES RECENTES-->
     <div class="activity-card">
       <div class="header-card">
         <h3>Atividades Recentes</h3>
@@ -55,7 +54,6 @@
       </div>
     </div>
 
-    <!--CARD 02 NOTIFICAÇÕES RECENTES-->
     <div class="activity-card">
       <div class="header-card">
         <h3>Notificações Recentes</h3>
@@ -77,5 +75,4 @@
     </div>
 
   </section>
-
 </div>

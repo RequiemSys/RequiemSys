@@ -65,7 +65,7 @@ export class DeceasedComponent implements OnInit {
               .toLocaleDateString('pt-BR')
             : '-',
 
-          jazigo: '-',
+          jazigo:  f.jazigo ? f.jazigo.codigo : "Não associado",
 
           editValue: f.cpf
 

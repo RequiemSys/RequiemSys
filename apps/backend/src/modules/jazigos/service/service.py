@@ -10,6 +10,7 @@ class IJazigoService(Protocol):
     def get_jazigo_by_id(self, jazigo_id: int): ...
     def update_jazigo(self, jazigo_id: int, dados: JazigoUpdate): ...
     def delete_jazigo(self, jazigo_id: int): ...
+    def count(self) -> int: ...
 
 
 class JazigoService:
@@ -48,3 +49,7 @@ class JazigoService:
                 detail="Jazigo não encontrado"
             )
         return {"message": "Jazigo removido com sucesso"}
+
+    def count(self) -> int:
+        count = self.repository.count_avaible()
+        return count

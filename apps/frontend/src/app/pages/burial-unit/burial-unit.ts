@@ -81,8 +81,7 @@ export class BurialUnitComponent implements OnInit {
         this.data = response.map((item) => ({
           ...item,
           jazigo: item.codigo ?? '-',
-          falecido: item.falecido ?? '-',
-          responsavel: item.responsavel ?? '-',
+          falecido: item.falecido.nome_completo ?? '-',
           status: formatBurialUnitStatus(item.status),
           concessao: item.data_final_concessao ?? '-',
         }));
@@ -120,7 +119,7 @@ export class BurialUnitComponent implements OnInit {
               },
               { 
                 label: 'Falecido', 
-                value: burialUnit.falecido ?? 'Não informado' 
+                value: burialUnit.falecido ? burialUnit.falecido.nome_completo : 'Não associado' 
               },
               { 
                 label: 'Localização', 
@@ -132,7 +131,7 @@ export class BurialUnitComponent implements OnInit {
               },
               { 
                 label: 'Responsável', 
-                value: burialUnit.responsavel ?? 'Não informado' 
+                value: burialUnit.falecido.responsible ? burialUnit.falecido.responsible.name : 'Não associado' 
               },
               { 
                 label: 'Período concessivo', 

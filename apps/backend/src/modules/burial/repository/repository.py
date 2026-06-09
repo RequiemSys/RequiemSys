@@ -1,5 +1,7 @@
+import datetime
+
 from sqlalchemy.orm import Session, joinedload
-from sqlalchemy import select
+from sqlalchemy import func, select
 from src.modules.burial.service.schemas import CreateBurial, UpdateBurial
 from src.modules.burial.repository.models import BurialModel
 
@@ -19,7 +21,8 @@ class BurialRepository:
 
     def get_all(self) -> list[BurialModel]:
         stmt = select(BurialModel).options(
-                joinedload(BurialModel.falecido, BurialModel.jazigo)
+                joinedload(BurialModel.falecido),
+                joinedload(BurialModel.jazigo)
             )
         result = self.db.execute(stmt).scalars().all()
         return result  # type: ignore
@@ -30,6 +33,12 @@ class BurialRepository:
                 joinedload(BurialModel.falecido, BurialModel.jazigo)
             )
         ).scalars().first()
+
+    def count_burial_today(self) -> int:
+        stmt = select(func.count()).select_from(BurialModel).where(
+            BurialModel.data_sepultamento == datetime.date.today()
+        )
+        return self.db.execute(stmt).scalar_one()
 
     def update(self, id: int, dados: UpdateBurial) -> BurialModel | None:
         burial_model = self.get_by_id(id)

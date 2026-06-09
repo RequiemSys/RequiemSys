@@ -1,0 +1,29 @@
+.modal-container {
+  padding: 16px;
+  text-align: center;
+}
+
+.modal-container h2 {
+  font-size: 22px;
+  color: #7b4bc9;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.modal-container p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.modal-button {
+  background-color: #7b4bc9 !important;
+  color: white !important;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-weight: 500;
+}
+
+.modal-button:hover {
+  background-color: #693cb5 !important;
+}

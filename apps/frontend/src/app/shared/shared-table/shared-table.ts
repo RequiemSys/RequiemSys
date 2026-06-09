@@ -4,15 +4,9 @@ import {
   Input,
   Output
 } from '@angular/core';
-
 import { CommonModule } from '@angular/common';
-
 import { MatIconModule } from '@angular/material/icon';
-
-import {
-  Router,
-  RouterLink
-} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-shared-table',
@@ -26,9 +20,7 @@ import {
 })
 export class SharedTableComponent {
 
-  constructor(
-    private router: Router
-  ) {}
+  constructor(private router: Router) {}
 
   @Input() title!: string;
   @Input() subtitle!: string;
@@ -40,8 +32,12 @@ export class SharedTableComponent {
 
   @Input() queryParamKey: string = '';
   @Input() queryParamValue: string = '';
+  
+  @Input() showViewButton: boolean = true;
+  @Input() showEditButton: boolean = true;
   @Input() showDelete: boolean = false;
   @Input() showCreateButton: boolean = true;
+  @Input() showEmailButton: boolean = false;
 
   @Input() columns!: {
     key: string;
@@ -52,29 +48,23 @@ export class SharedTableComponent {
 
   @Output() view = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
+  @Output() sendEmail = new EventEmitter<any>();
 
   openView(item: any): void {
-
     if (this.viewRoute) {
-
       this.router.navigate([
         this.viewRoute,
         item[this.viewIdKey]
       ]);
-
       return;
     }
-
     this.view.emit(item);
-
   }
 
   openEdit(item: any): void {
-
     if (!this.editRoute) {
       return;
     }
-
     this.router.navigate(
       [this.editRoute],
       {
@@ -84,11 +74,13 @@ export class SharedTableComponent {
         }
       }
     );
-
   }
 
   openDelete(item: any): void {
     this.delete.emit(item);
   }
 
+  openEmail(item: any): void {
+    this.sendEmail.emit(item);
+  }
 }

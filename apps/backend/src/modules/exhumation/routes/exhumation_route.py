@@ -1,17 +1,23 @@
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
-from src.modules.exhumation.service.service import ExhumationService
-from src.modules.exhumation.service.schemas import (
-    ExhumationCreate, ExhumationResponse, ExhumationUpdate
-    )
 from src.core.database import get_db
-from src.modules.falecidos.service.schemas import FalecidoResponse
+
+from src.modules.exhumation.service.schemas import (
+    ExhumationCreate, ExhumationUpdate, ExhumationResponse
+)
+from src.modules.exhumation.service.service import ExhumationService
 from src.modules.exhumation.repository.repository import ExhumationRepository
 
-ExhumationCreate.model_rebuild()
-ExhumationResponse.model_rebuild()
-ExhumationUpdate.model_rebuild()
+from src.modules.falecidos.service.schemas import FalecidoResponse
+from src.modules.burial.service.schemas import BurialOutput
+from src.modules.jazigos.service.schemas import JazigoResponse
+
 FalecidoResponse.model_rebuild()
+BurialOutput.model_rebuild()
+JazigoResponse.model_rebuild()
+ExhumationCreate.model_rebuild()
+ExhumationUpdate.model_rebuild()
+ExhumationResponse.model_rebuild()
 
 router = APIRouter(prefix="/exhumation", tags=["exhumation"])
 

@@ -1,7 +1,7 @@
 from typing import Any
 
 from sqlalchemy.orm import Session, joinedload
-from sqlalchemy import select
+from sqlalchemy import func, select
 from src.modules.responsible.repository.models import ResponsibleModel
 from src.modules.falecidos.repository.models import FalecidoModel
 from src.modules.falecidos.service.schemas import (
@@ -22,6 +22,11 @@ class FalecidoRepository:
         self.db.refresh(falecido_model)
 
         return falecido_model
+
+    def get_count(self) -> int:
+        stmt = select(func.count()).select_from(FalecidoModel)
+        result = self.db.execute(stmt).scalar_one()
+        return result  # type: ignore
 
     def get_all(self) -> list[FalecidoModel]:
         stmt = select(FalecidoModel).options(

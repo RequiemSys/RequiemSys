@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 import datetime
 from enum import StrEnum
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 if TYPE_CHECKING:
     from src.modules.falecidos.service.schemas import FalecidoResponse
@@ -10,7 +10,9 @@ if TYPE_CHECKING:
 
 
 class StatusBurial(StrEnum):
-    AGENDAMENTO_PENDENTE = 'Agendamento pendente'
+    AGENDAMENTO_PENDENTE = 'pendente'
+    CONCLUIDO = 'concluido'
+    CANCELADO = 'cancelado'
 
 
 class CreateBurial(BaseModel):
@@ -20,11 +22,15 @@ class CreateBurial(BaseModel):
         default=StatusBurial.AGENDAMENTO_PENDENTE
         )
 
+    model_config = ConfigDict(from_attributes=True)
+
 
 class UpdateBurial(BaseModel):
     falecido_id: int | None = Field(default=None)
     data_sepultamento: datetime.date | None = Field(default=None)
     status: StatusBurial | None = Field(default=None)
+
+    model_config = ConfigDict(from_attributes=True)
 
 
 class BurialOutput(BaseModel):
@@ -34,3 +40,5 @@ class BurialOutput(BaseModel):
     status: StatusBurial | None = Field(default=None)
     falecido: "FalecidoResponse | None" = Field(default=None)
     jazigo: "JazigoResponse | None" = Field(default=None)
+
+    model_config = ConfigDict(from_attributes=True)

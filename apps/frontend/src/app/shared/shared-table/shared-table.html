@@ -10,9 +10,7 @@
 <div class="container">
 
   <div class="header">
-
     <div class="header-top">
-
       <div>
         <h1>{{ title }}</h1>
         <p>{{ subtitle }}</p>
@@ -32,58 +30,60 @@
   <div class="actions-container">
     <div class="search-container">
       <mat-icon>search</mat-icon>
-
       <input
         type="text"
         placeholder="Buscar..."
       >
     </div>
-
   </div>
 
   <div class="table-container">
-
     <table>
-
       <thead>
-
         <tr>
-
           <th *ngFor="let column of columns">
             {{ column.label }}
           </th>
-
           <th class="action-column"></th>
-
         </tr>
-
       </thead>
-
       <tbody>
-
         <tr *ngFor="let item of data">
-
           <td *ngFor="let column of columns">
             {{ item[column.key] }}
           </td>
 
           <td class="action-column">
+            
+            @if (showViewButton) {
+              <button
+                class="view-button"
+                type="button"
+                (click)="openView(item)"
+              >
+                <mat-icon>search</mat-icon>
+              </button>
+            }
 
-            <button
-              class="view-button"
-              type="button"
-              (click)="openView(item)"
-            >
-              <mat-icon>search</mat-icon>
-            </button>
+            @if (showEmailButton) {
+              <button
+                class="email-button"
+                type="button"
+                (click)="openEmail(item)"
+              >
+                <mat-icon>mail</mat-icon>
+              </button>
+            }
 
-            <button
-              class="edit-button"
-              type="button"
-              (click)="openEdit(item)"
-            >
-              <mat-icon>edit</mat-icon>
-            </button>
+            @if (showEditButton) {
+              <button
+                class="edit-button"
+                type="button"
+                (click)="openEdit(item)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+            }
 
             @if (showDelete) {
               <button
@@ -99,7 +99,6 @@
           </td>
         </tr>
       </tbody>
-
     </table>
   </div>
 

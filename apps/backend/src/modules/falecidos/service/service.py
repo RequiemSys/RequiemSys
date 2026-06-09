@@ -72,3 +72,7 @@ class FalecidoService:
                 detail="Falecido não encontrado"
             )
         return {"message": "Falecido removido com sucesso"}
+
+    def count(self) -> int:
+        count = self.repository.get_count()
+        return count

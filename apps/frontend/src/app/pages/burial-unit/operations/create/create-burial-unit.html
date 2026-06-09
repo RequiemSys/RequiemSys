@@ -9,7 +9,7 @@
 
   <div class="registro-container">
 
-    <div class="registro-card registro-card--wide">
+    <div class="registro-card">
 
       <div class="logo">
         <h1>Nova Unidade de Sepultamento</h1>
@@ -125,7 +125,29 @@
             </div>
           </div>
 
-          <div class="form-group hidden-on-mobile"></div>
+          <div class="form-group">
+            <label for="btn_busca_falecido">
+              Falecido
+              <span class="req">*</span>
+            </label>
+
+            <input 
+              type="hidden" 
+              formControlName="falecido_id" 
+            />
+
+            <button
+              id="btn_busca_falecido"
+              type="button"
+              class="form-control btn-busca-modal"
+              (click)="abrirModal()"
+            >
+              <div class="modal-button">
+                <mat-icon>{{ nomeFalecidoSelecionado() ? 'check_circle' : 'search' }}</mat-icon>
+                <p>{{ nomeFalecidoSelecionado() || 'Selecione um falecido' }}</p>
+              </div>
+            </button>
+          </div>
 
           <div class="form-group grid-full">
             <label for="observacoes">
@@ -171,5 +193,43 @@
     </div>
 
   </div>
+
+  <dialog #modalFalecidos (click)="fecharPorFora($event)" class="busca-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Selecionar Falecido</h2>
+        <button type="button" class="btn-close" (click)="fecharModal()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="search-box">
+          <input 
+            type="text" 
+            placeholder="Buscar por nome..." 
+            class="form-control" 
+            [value]="filtroNome()" 
+            (input)="atualizarFiltro($event)"
+          />
+        </div>
+
+        @if (carregandoFalecidos()) {
+          <p class="loading-text">Carregando falecidos...</p>
+        } @else {
+          <ul class="lista-selecao">
+            @for (falecido of falecidosFiltrados(); track falecido.id) {
+              <li (click)="selecionarFalecido(falecido)">
+                <span>{{ falecido.nome_completo }}</span>
+                <mat-icon>chevron_right</mat-icon>
+              </li>
+            } @empty {
+              <li class="sem-resultados">Nenhum falecido encontrado</li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+  </dialog>
 
 </div>

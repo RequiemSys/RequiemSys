@@ -20,17 +20,18 @@ import {
 import { MatIcon } from '@angular/material/icon';
 
 const STATUS_FALECIDO = [
-  'Sepultamento pendente',
-  'Aguardando documentação',
-  'Em velório',
-  'Sepultado',
-  'Cremado',
-  'Apto para exumação',
-  'Exumado',
-  'Ossário',
-  'Transferido',
-  'Inumado temporariamente',
-  'Não reclamado'
+  'sepultamento pendente',
+  'aguardando documentacao',
+  'em velorio',
+  'sepultado',
+  'exumado_cremado',
+  'apto para exumacao',
+  'exumacao confirmada',
+  'exumado',
+  'exumado_ossario',
+  'exumado_transferido',
+  'inumado temporariamente',
+  'nao reclamado'
 ];
 
 @Component({

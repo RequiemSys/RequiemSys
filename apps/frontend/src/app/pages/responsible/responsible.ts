@@ -37,7 +37,6 @@ export class ResponsibleComponent implements OnInit {
   columns = [
     { key: 'responsavel', label: 'Responsável' },
     { key: 'telefone', label: 'Telefone' },
-    { key: 'emailExibicao', label: 'E-mail' },
     { key: 'deceasedParent', label: 'Responsável por' },
   ];
 
@@ -80,7 +79,6 @@ export class ResponsibleComponent implements OnInit {
           ...item,
           responsavel: item.name ?? '-',
           telefone: item.phone ?? '-',
-          emailExibicao: item.email ?? '-',
           deceasedParent: item.deceased_parent ?? '-',
         }));
         this.cdr.detectChanges();
