@@ -13,13 +13,14 @@ import { SharedModalViewComponent } from '../../shared/shared-modal-view/shared-
 import { NotificationService, SendMail } from './notification.service';
 import { DeceasedService, Falecido } from '../deceased/deceased.service';
 import { SuccessModalComponent } from './success-modal';
+import { ErrorModalComponent } from './error-modal';
 
 @Component({
   selector: 'app-exhumation',
   imports: [
     CommonModule,
-    SharedTableComponent,
-  ],
+    SharedTableComponent
+],
   templateUrl: './notification.html',
   styleUrl: './notification.css',
 })
@@ -58,6 +59,7 @@ export class NotificationComponent implements OnInit {
               ...f,
               falecido_nome: f.nome_completo,
               responsavel_nome: f.responsible?.name,
+              responsavel_email: f.responsible?.email,
               exumacao: f.jazigo?.data_final_concessao 
                 ? new Date(f.jazigo.data_final_concessao).toLocaleDateString('pt-BR') 
                 : 'Não informada',
@@ -126,13 +128,23 @@ export class NotificationComponent implements OnInit {
         this.openSuccessModal();
         this.loadPendingNotifications();
       },
-      error: (error) => console.error(error)
+      error: (error) => {
+        console.error(error);
+        this.openErrorModal(error?.message);
+      }
     });
   }
 
   openSuccessModal(): void {
     this.dialog.open(SuccessModalComponent, {
       width: '400px'
+    });
+  }
+
+  openErrorModal(errorMessage?: string): void {
+    this.dialog.open(ErrorModalComponent, {
+      width: '400px',
+      data: { message: errorMessage }
     });
   }
 }

@@ -1,0 +1,9 @@
+<div class="modal-container error-modal">
+  <h2 mat-dialog-title>Ops, algo deu errado!</h2>
+  <mat-dialog-content>
+    <p>{{ data.message || 'Não foi possível enviar a notificação de exumação por e-mail. Por favor, tente novamente mais tarde.' }}</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button class="modal-button error-button" [mat-dialog-close]="false">Fechar</button>
+  </mat-dialog-actions>
+</div>
