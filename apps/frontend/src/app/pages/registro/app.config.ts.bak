@@ -1,0 +1,7 @@
+import { bootstrapApplication } from '@angular/platform-browser';
+import { Registro } from './registro';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+
+bootstrapApplication(Registro, {
+    providers: [provideHttpClient(withFetch())]
+});
